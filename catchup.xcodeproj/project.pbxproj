@@ -13,24 +13,16 @@
 		DC0D9E3323E270F300383CE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0D9E3223E270F300383CE1 /* Assets.xcassets */; };
 		DC0D9E3623E270F300383CE1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0D9E3523E270F300383CE1 /* Preview Assets.xcassets */; };
 		DC0D9E3923E270F300383CE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0D9E3723E270F300383CE1 /* LaunchScreen.storyboard */; };
-		DC0D9E4423E270F300383CE1 /* catchupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E4323E270F300383CE1 /* catchupTests.swift */; };
-		DC0D9E4F23E270F300383CE1 /* catchupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E4E23E270F300383CE1 /* catchupUITests.swift */; };
 		DC0D9E5E23E2745900383CE1 /* Catchup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E5D23E2745900383CE1 /* Catchup.swift */; };
-		DC0D9E5F23E2745900383CE1 /* Catchup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E5D23E2745900383CE1 /* Catchup.swift */; };
-		DC0D9E6023E2745900383CE1 /* Catchup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E5D23E2745900383CE1 /* Catchup.swift */; };
 		DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
-		DC0D9E6323E2758600383CE1 /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
-		DC0D9E6423E2758600383CE1 /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6523E276AA00383CE1 /* Touch.swift */; };
-		DC0D9E6723E276AA00383CE1 /* Touch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6523E276AA00383CE1 /* Touch.swift */; };
-		DC0D9E6823E276AA00383CE1 /* Touch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6523E276AA00383CE1 /* Touch.swift */; };
 		DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
-		DC0D9E6B23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
-		DC0D9E6C23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
+		DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */; };
+		DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111023E3FB9D00FFA866 /* Upcoming.swift */; };
+		DC57111723E40AAF00FFA866 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111623E40AAF00FFA866 /* ContactPickerView.swift */; };
+		DC57111923E40E7900FFA866 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111823E40E7900FFA866 /* ImagePicker.swift */; };
 		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
 		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
-		DCF04BA223E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
-		DCF04BA323E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +61,10 @@
 		DC0D9E6123E2758600383CE1 /* ContactMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethod.swift; sourceTree = "<group>"; };
 		DC0D9E6523E276AA00383CE1 /* Touch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touch.swift; sourceTree = "<group>"; };
 		DC0D9E6923E27D7100383CE1 /* Intervals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intervals.swift; sourceTree = "<group>"; };
+		DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
+		DC57111023E3FB9D00FFA866 /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
+		DC57111623E40AAF00FFA866 /* ContactPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
+		DC57111823E40E7900FFA866 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		DCF04BA023E3A86A00D433AB /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,10 +122,14 @@
 				DC0D9E2E23E270EC00383CE1 /* SceneDelegate.swift */,
 				DC0D9E3023E270EC00383CE1 /* ContentView.swift */,
 				DCF04BA023E3A86A00D433AB /* Database.swift */,
+				DC57111023E3FB9D00FFA866 /* Upcoming.swift */,
+				DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */,
+				DC57111623E40AAF00FFA866 /* ContactPickerView.swift */,
 				DC0D9E3223E270F300383CE1 /* Assets.xcassets */,
 				DC0D9E3723E270F300383CE1 /* LaunchScreen.storyboard */,
 				DC0D9E3A23E270F300383CE1 /* Info.plist */,
 				DC0D9E3423E270F300383CE1 /* Preview Content */,
+				DC57111823E40E7900FFA866 /* ImagePicker.swift */,
 			);
 			path = catchup;
 			sourceTree = "<group>";
@@ -309,12 +309,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0D9E5E23E2745900383CE1 /* Catchup.swift in Sources */,
+				DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */,
 				DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */,
+				DC57111723E40AAF00FFA866 /* ContactPickerView.swift in Sources */,
 				DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */,
 				DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */,
 				DC0D9E2F23E270EC00383CE1 /* SceneDelegate.swift in Sources */,
 				DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */,
 				DCF04BA123E3A86A00D433AB /* Database.swift in Sources */,
+				DC57111923E40E7900FFA866 /* ImagePicker.swift in Sources */,
+				DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */,
 				DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,12 +327,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCF04BA223E3A86A00D433AB /* Database.swift in Sources */,
-				DC0D9E5F23E2745900383CE1 /* Catchup.swift in Sources */,
-				DC0D9E6723E276AA00383CE1 /* Touch.swift in Sources */,
-				DC0D9E4423E270F300383CE1 /* catchupTests.swift in Sources */,
-				DC0D9E6B23E27D7100383CE1 /* Intervals.swift in Sources */,
-				DC0D9E6323E2758600383CE1 /* ContactMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,12 +334,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCF04BA323E3A86A00D433AB /* Database.swift in Sources */,
-				DC0D9E6023E2745900383CE1 /* Catchup.swift in Sources */,
-				DC0D9E6823E276AA00383CE1 /* Touch.swift in Sources */,
-				DC0D9E4F23E270F300383CE1 /* catchupUITests.swift in Sources */,
-				DC0D9E6C23E27D7100383CE1 /* Intervals.swift in Sources */,
-				DC0D9E6423E2758600383CE1 /* ContactMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

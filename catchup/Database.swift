@@ -20,10 +20,11 @@ let nextTouch = Expression<Date>("next_touch")
 let nextNotification = Expression<String>("next_notification")
 
 struct Database {
+    static let shared = try! Database()
     var db: Connection
     var catchups: Table
     
-    init() throws {
+    private init() throws {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         db = try Connection("\(path)/db.sqlite3")
         catchups = Table("catchups")

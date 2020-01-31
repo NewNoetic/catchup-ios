@@ -10,7 +10,11 @@ import Foundation
 import Contacts
 import UserNotifications
 
-struct Catchup {
+struct Catchup: Identifiable {
+    var id: String {
+        return contact.identifier
+    }
+    
     var contact: CNContact
     var interval: TimeInterval
     var method: ContactMethod
