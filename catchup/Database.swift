@@ -37,9 +37,28 @@ struct Database {
     }
     
     func allCatchups() throws -> [Catchup]{
-        return try db.prepare(catchups).compactMap({ (row: Row) throws -> Catchup? in
-            let c = try contactStore.unifiedContact(withIdentifier: row[contact], keysToFetch: contactKeys)
+        return try db.prepare(catchups).compactMap({ (row: Row) -> Catchup? in
+            guard let c = try? contactStore.unifiedContact(withIdentifier: row[contact], keysToFetch: contactKeys)
+                else { return nil }
             return Catchup(contact: c, interval: row[interval], method: ContactMethod(rawValue: row[method]) ?? ContactMethod.call, nextTouch: row[nextTouch], nextNotification: row[nextNotification])
         })
+    }
+    
+    func upsert(catchup: Catchup) throws {
+        var setters = [
+            contact <- catchup.contact.identifier, interval <- catchup.interval, method <- catchup.method.rawValue
+        ]
+        if (catchup.nextTouch != nil) {
+            setters.append(nextTouch <- catchup.nextTouch!)
+        }
+        if (catchup.nextNotification != nil) {
+            setters.append(nextNotification <- catchup.nextNotification!)
+        }
+        try db.run(catchups.insert(or: .replace, setters))
+    }
+    
+    func remove(catchup: Catchup) throws {
+        let toDelete = catchups.filter(contact == catchup.contact.identifier)
+        try db.run(toDelete.delete())
     }
 }
