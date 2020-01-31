@@ -8,16 +8,19 @@
 
 import Foundation
 import Contacts
+import UserNotifications
 
 struct Catchup {
     var contact: CNContact
     var interval: TimeInterval
     var method: ContactMethod
-    var touches: [Touch]
+    var nextTouch: Date?
+    var nextNotification: String?
+    
     static func generateRandom(name: String) -> Catchup {
         let contact = CNMutableContact()
         contact.givenName = name.components(separatedBy: " ")[0]
         contact.familyName = name.components(separatedBy: " ")[1]
-        return Catchup(contact: contact, interval: Intervals.day.rawValue, method: .call, touches: [])
+        return Catchup(contact: contact, interval: Intervals.day.rawValue, method: .call, nextTouch: Date(timeIntervalSinceNow: 300), nextNotification: nil)
     }
 }

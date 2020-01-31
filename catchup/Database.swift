@@ -1,0 +1,45 @@
+//
+//  Database.swift
+//  catchup
+//
+//  Created by Sidhant Gandhi on 1/30/20.
+//  Copyright © 2020 newnoetic. All rights reserved.
+//
+
+import Foundation
+import Contacts
+import SQLite
+
+let contactStore = CNContactStore()
+let contactKeys = [CNContactIdentifierKey as CNKeyDescriptor, CNContactGivenNameKey as CNKeyDescriptor, CNContactFamilyNameKey as CNKeyDescriptor, CNContactPhoneNumbersKey as CNKeyDescriptor, CNContactEmailAddressesKey as CNKeyDescriptor]
+
+let contact = Expression<String>("contact_id")
+let interval = Expression<TimeInterval>("interval")
+let method = Expression<String>("method")
+let nextTouch = Expression<Date>("next_touch")
+let nextNotification = Expression<String>("next_notification")
+
+struct Database {
+    var db: Connection
+    var catchups: Table
+    
+    init() throws {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        db = try Connection("\(path)/db.sqlite3")
+        catchups = Table("catchups")
+        try db.run(catchups.create(ifNotExists: true) { t in
+            t.column(contact)
+            t.column(interval)
+            t.column(method)
+            t.column(nextTouch)
+            t.column(nextNotification)
+        })
+    }
+    
+    func allCatchups() throws -> [Catchup]{
+        return try db.prepare(catchups).compactMap({ (row: Row) throws -> Catchup? in
+            let c = try contactStore.unifiedContact(withIdentifier: row[contact], keysToFetch: contactKeys)
+            return Catchup(contact: c, interval: row[interval], method: ContactMethod(rawValue: row[method]) ?? ContactMethod.call, nextTouch: row[nextTouch], nextNotification: row[nextNotification])
+        })
+    }
+}

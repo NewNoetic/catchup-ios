@@ -6,7 +6,7 @@
 //  Copyright © 2020 newnoetic. All rights reserved.
 //
 
-enum ContactMethod {
+enum ContactMethod: String {
     case call
     case text
     case email

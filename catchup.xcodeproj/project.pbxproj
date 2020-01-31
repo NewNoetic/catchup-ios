@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,10 @@
 		DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
 		DC0D9E6B23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
 		DC0D9E6C23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
+		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
+		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
+		DCF04BA223E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
+		DCF04BA323E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,7 @@
 		DC0D9E6123E2758600383CE1 /* ContactMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethod.swift; sourceTree = "<group>"; };
 		DC0D9E6523E276AA00383CE1 /* Touch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touch.swift; sourceTree = "<group>"; };
 		DC0D9E6923E27D7100383CE1 /* Intervals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intervals.swift; sourceTree = "<group>"; };
+		DCF04BA023E3A86A00D433AB /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +125,7 @@
 				DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */,
 				DC0D9E2E23E270EC00383CE1 /* SceneDelegate.swift */,
 				DC0D9E3023E270EC00383CE1 /* ContentView.swift */,
+				DCF04BA023E3A86A00D433AB /* Database.swift */,
 				DC0D9E3223E270F300383CE1 /* Assets.xcassets */,
 				DC0D9E3723E270F300383CE1 /* LaunchScreen.storyboard */,
 				DC0D9E3A23E270F300383CE1 /* Info.plist */,
@@ -180,6 +187,9 @@
 			dependencies = (
 			);
 			name = catchup;
+			packageProductDependencies = (
+				DCF04B9E23E3A7AE00D433AB /* SQLite */,
+			);
 			productName = catchup;
 			productReference = DC0D9E2923E270EC00383CE1 /* catchup.app */;
 			productType = "com.apple.product-type.application";
@@ -252,6 +262,9 @@
 				Base,
 			);
 			mainGroup = DC0D9E2023E270EC00383CE1;
+			packageReferences = (
+				DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */,
+			);
 			productRefGroup = DC0D9E2A23E270EC00383CE1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -301,6 +314,7 @@
 				DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */,
 				DC0D9E2F23E270EC00383CE1 /* SceneDelegate.swift in Sources */,
 				DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */,
+				DCF04BA123E3A86A00D433AB /* Database.swift in Sources */,
 				DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF04BA223E3A86A00D433AB /* Database.swift in Sources */,
 				DC0D9E5F23E2745900383CE1 /* Catchup.swift in Sources */,
 				DC0D9E6723E276AA00383CE1 /* Touch.swift in Sources */,
 				DC0D9E4423E270F300383CE1 /* catchupTests.swift in Sources */,
@@ -321,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF04BA323E3A86A00D433AB /* Database.swift in Sources */,
 				DC0D9E6023E2745900383CE1 /* Catchup.swift in Sources */,
 				DC0D9E6823E276AA00383CE1 /* Touch.swift in Sources */,
 				DC0D9E4F23E270F300383CE1 /* catchupUITests.swift in Sources */,
@@ -634,6 +650,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NewNoetic/SQLite.swift";
+			requirement = {
+				kind = exactVersion;
+				version = 0.12.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DCF04B9E23E3A7AE00D433AB /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DC0D9E2123E270EC00383CE1 /* Project object */;
 }
