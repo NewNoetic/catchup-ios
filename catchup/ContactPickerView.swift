@@ -22,7 +22,7 @@ struct ContactPickerView: View {
             }
         }
         .sheet(isPresented: $showingContactPicker) {
-            ImagePicker()
+            ContactPickerViewController()
         }
     }
 }

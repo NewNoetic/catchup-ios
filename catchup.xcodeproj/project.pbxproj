@@ -17,6 +17,7 @@
 		DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6523E276AA00383CE1 /* Touch.swift */; };
 		DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
+		DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4043C423E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift */; };
 		DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */; };
 		DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111023E3FB9D00FFA866 /* Upcoming.swift */; };
 		DC57111723E40AAF00FFA866 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111623E40AAF00FFA866 /* ContactPickerView.swift */; };
@@ -61,6 +62,7 @@
 		DC0D9E6123E2758600383CE1 /* ContactMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethod.swift; sourceTree = "<group>"; };
 		DC0D9E6523E276AA00383CE1 /* Touch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touch.swift; sourceTree = "<group>"; };
 		DC0D9E6923E27D7100383CE1 /* Intervals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intervals.swift; sourceTree = "<group>"; };
+		DC4043C423E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewControllerWrapper.swift; sourceTree = "<group>"; };
 		DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
 		DC57111023E3FB9D00FFA866 /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
 		DC57111623E40AAF00FFA866 /* ContactPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
@@ -123,13 +125,14 @@
 				DC0D9E3023E270EC00383CE1 /* ContentView.swift */,
 				DCF04BA023E3A86A00D433AB /* Database.swift */,
 				DC57111023E3FB9D00FFA866 /* Upcoming.swift */,
+				DC4043C423E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift */,
 				DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */,
 				DC57111623E40AAF00FFA866 /* ContactPickerView.swift */,
+				DC57111823E40E7900FFA866 /* ImagePicker.swift */,
 				DC0D9E3223E270F300383CE1 /* Assets.xcassets */,
 				DC0D9E3723E270F300383CE1 /* LaunchScreen.storyboard */,
 				DC0D9E3A23E270F300383CE1 /* Info.plist */,
 				DC0D9E3423E270F300383CE1 /* Preview Content */,
-				DC57111823E40E7900FFA866 /* ImagePicker.swift */,
 			);
 			path = catchup;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */,
 				DC0D9E2F23E270EC00383CE1 /* SceneDelegate.swift in Sources */,
 				DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */,
+				DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */,
 				DCF04BA123E3A86A00D433AB /* Database.swift in Sources */,
 				DC57111923E40E7900FFA866 /* ImagePicker.swift in Sources */,
 				DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */,
