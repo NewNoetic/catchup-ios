@@ -22,7 +22,10 @@ struct ContactPickerView: View {
             }
         }
         .sheet(isPresented: $showingContactPicker) {
-            ContactPickerViewController()
+            ContactPickerViewController { contact in
+                self.showingContactPicker = false
+                self.contact = contact
+            }
         }
     }
 }

@@ -16,8 +16,8 @@ let contactKeys = [CNContactIdentifierKey as CNKeyDescriptor, CNContactGivenName
 let contact = Expression<String>("contact_id")
 let interval = Expression<TimeInterval>("interval")
 let method = Expression<String>("method")
-let nextTouch = Expression<Date>("next_touch")
-let nextNotification = Expression<String>("next_notification")
+let nextTouch = Expression<Date?>("next_touch")
+let nextNotification = Expression<String?>("next_notification")
 
 struct Database {
     static let shared = try! Database()
@@ -61,5 +61,13 @@ struct Database {
     func remove(catchup: Catchup) throws {
         let toDelete = catchups.filter(contact == catchup.contact.identifier)
         try db.run(toDelete.delete())
+    }
+    
+    func drop(tableName: String) {
+        do {
+            try db.run(Table(tableName).drop(ifExists: true))
+        } catch {
+            print("Could not drop table")
+        }
     }
 }

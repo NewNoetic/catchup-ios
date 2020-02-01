@@ -28,22 +28,30 @@ struct ContentView: View {
                     Button("New CatchUp") {
                        self.showNewCatchup.toggle()
                     }
-//                    .sheet(isPresented: $showNewCatchup) {
-//                        ContactPickerView() { contact in
-//                            do {
-//                                try Database.shared.upsert(catchup: Catchup(contact: contact, interval: Intervals.week.rawValue, method: .call))
-//                                self.upcoming.update()
-//                            } catch {
-//                                self.errorAlert = true
-//                            }
-//                        }
-//                    }
+                    .sheet(isPresented: $showNewCatchup) {
+                        ContactPickerViewController() { contact in
+                            self.showNewCatchup = false
+                            guard let contact = contact else { return }
+                            do {
+                                try Database.shared.upsert(catchup: Catchup(contact: contact, interval: Intervals.week.rawValue, method: .call))
+                                self.upcoming.update()
+                            } catch {
+                                print(error)
+                                self.errorAlert = true
+                            }
+                        }
+                    }
                     .alert(isPresented: $errorAlert) {
                         Alert(title: Text("Could not create new CatchUp"))
                     }
                 Spacer()
             }
             .navigationBarTitle("CatchUp")
+            .navigationBarItems(trailing:
+                NavigationLink(destination: SettingsView()) {
+                    Text("Settings")
+                }
+            )
         }
     }
 }

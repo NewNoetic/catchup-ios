@@ -14,13 +14,12 @@ class ContactPickerViewControllerWrapper: UIViewController, CNContactPickerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         let contacts = CNContactPickerViewController()
+        contacts.delegate = self.delegate
         self.present(contacts, animated: false, completion: nil)
     }
     
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-        self.dismiss(animated: true) {
-            self.delegate?.contactPickerDidCancel?(picker)
-        }
+        self.delegate?.contactPickerDidCancel?(picker)
     }
     
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
