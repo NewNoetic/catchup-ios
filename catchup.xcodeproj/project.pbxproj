@@ -21,7 +21,6 @@
 		DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */; };
 		DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111023E3FB9D00FFA866 /* Upcoming.swift */; };
 		DC57111723E40AAF00FFA866 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111623E40AAF00FFA866 /* ContactPickerView.swift */; };
-		DC57111923E40E7900FFA866 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111823E40E7900FFA866 /* ImagePicker.swift */; };
 		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
 		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
 /* End PBXBuildFile section */
@@ -66,7 +65,6 @@
 		DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
 		DC57111023E3FB9D00FFA866 /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
 		DC57111623E40AAF00FFA866 /* ContactPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
-		DC57111823E40E7900FFA866 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		DCF04BA023E3A86A00D433AB /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,7 +126,6 @@
 				DC4043C423E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift */,
 				DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */,
 				DC57111623E40AAF00FFA866 /* ContactPickerView.swift */,
-				DC57111823E40E7900FFA866 /* ImagePicker.swift */,
 				DC0D9E3223E270F300383CE1 /* Assets.xcassets */,
 				DC0D9E3723E270F300383CE1 /* LaunchScreen.storyboard */,
 				DC0D9E3A23E270F300383CE1 /* Info.plist */,
@@ -321,7 +318,6 @@
 				DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */,
 				DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */,
 				DCF04BA123E3A86A00D433AB /* Database.swift in Sources */,
-				DC57111923E40E7900FFA866 /* ImagePicker.swift in Sources */,
 				DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */,
 				DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */,
 			);
