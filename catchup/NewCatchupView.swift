@@ -9,10 +9,17 @@
 import SwiftUI
 import Contacts
 
-struct ContactPickerView: View {
+struct NewCatchupView: View {
+    typealias DoneSignature = (Catchup?) -> Void
+    var done: DoneSignature
     @State private var contact: CNContact?
-    @State private var showingContactPicker = false
+    @State private var duration: TimeInterval?
+    @State private var showingContactPicker = true // open contact picker immediately
 
+    init(done: @escaping DoneSignature) {
+        self.done = done
+    }
+    
     var body: some View {
         VStack {
             Text(self.contact?.givenName ?? "No contact selected")
@@ -20,9 +27,14 @@ struct ContactPickerView: View {
             Button("Select Contact") {
                self.showingContactPicker = true
             }
+            
+            Button("Create Catchup") {
+                guard let contact = self.contact else { return }
+                self.done(Catchup(contact: contact, interval: Intervals.week.rawValue, method: .call))
+            }
         }
         .sheet(isPresented: $showingContactPicker) {
-            ContactPickerViewController { contact in
+            ContactPickerViewController() { contact in
                 self.showingContactPicker = false
                 self.contact = contact
             }
@@ -32,6 +44,8 @@ struct ContactPickerView: View {
 
 struct ContactPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactPickerView()
+        NewCatchupView() { catchup in
+            //
+        }
     }
 }

@@ -29,11 +29,11 @@ struct ContentView: View {
                        self.showNewCatchup.toggle()
                     }
                     .sheet(isPresented: $showNewCatchup) {
-                        ContactPickerViewController() { contact in
+                        NewCatchupView() { catchup in
                             self.showNewCatchup = false
-                            guard let contact = contact else { return }
+                            guard let catchup = catchup else { return }
                             do {
-                                try Database.shared.upsert(catchup: Catchup(contact: contact, interval: Intervals.week.rawValue, method: .call))
+                                try Database.shared.upsert(catchup: catchup)
                                 self.upcoming.update()
                             } catch {
                                 print(error)
