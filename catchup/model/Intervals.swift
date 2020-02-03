@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Intervals: TimeInterval {
+enum Intervals: TimeInterval, CaseIterable {
     case day = 86400
     case week = 604800
     case month = 2419200

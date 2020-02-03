@@ -12,31 +12,45 @@ import Contacts
 struct NewCatchupView: View {
     typealias DoneSignature = (Catchup?) -> Void
     var done: DoneSignature
+    
+    var durationCases: [Intervals] = Intervals.allCases
+//    var durationCases: [Intervals] = [Intervals.day, Intervals.week, Intervals.month]
     @State private var contact: CNContact?
-    @State private var duration: TimeInterval?
+    @State private var durationIndex: Int?
     @State private var showingContactPicker = true // open contact picker immediately
-
+    @State private var showingDurationPicker = false
+    
     init(done: @escaping DoneSignature) {
         self.done = done
     }
     
     var body: some View {
-        VStack {
-            Text(self.contact?.givenName ?? "No contact selected")
-
-            Button("Select Contact") {
-               self.showingContactPicker = true
+        NavigationView {
+            VStack {
+                Spacer(minLength: 25)
+                Text("Catch up with").font(.subheadline)
+                Text(self.contact?.givenName ?? "").font(.largeTitle)
+                Form {
+                    Section {
+                        Picker("How often?", selection: $durationIndex) {
+                            ForEach(0 ..< durationCases.count ) { index in
+                                Text(String(self.durationCases[index].rawValue))
+                                    .tag(index)
+                            }
+                            
+                        }
+                        Button("Create Catchup") {
+                            guard let contact = self.contact else { return }
+                            self.done(Catchup(contact: contact, interval: Intervals.week.rawValue, method: .call))
+                        }
+                    }
+                }
             }
-            
-            Button("Create Catchup") {
-                guard let contact = self.contact else { return }
-                self.done(Catchup(contact: contact, interval: Intervals.week.rawValue, method: .call))
-            }
-        }
-        .sheet(isPresented: $showingContactPicker) {
-            ContactPickerViewController() { contact in
-                self.showingContactPicker = false
-                self.contact = contact
+            .sheet(isPresented: $showingContactPicker) {
+                ContactPickerViewController() { contact in
+                    self.showingContactPicker = false
+                    self.contact = contact
+                }
             }
         }
     }
