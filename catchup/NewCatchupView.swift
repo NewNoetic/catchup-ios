@@ -30,7 +30,7 @@ struct NewCatchupView: View {
             VStack {
                 Spacer(minLength: 25)
                 Text("Catch up with").font(.subheadline)
-                Text(self.contact?.givenName ?? "").font(.largeTitle)
+                Text(self.contact?.displayName ?? "").font(.largeTitle)
                 Form {
                     Section {
                         Picker("How often?", selection: $durationIndex) {

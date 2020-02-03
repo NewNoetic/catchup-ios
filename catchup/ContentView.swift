@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Contacts
 
 struct ContentView: View {
     @EnvironmentObject var upcoming: Upcoming
@@ -19,7 +20,7 @@ struct ContentView: View {
                 List {
                     Section(header: Text("upcoming")) {
                         ForEach(upcoming.catchups) { up in
-                            Text("\(up.contact.givenName) \(up.contact.familyName)")
+                            Text(up.contact.displayName)
                         }
                     }
                 }

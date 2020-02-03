@@ -17,6 +17,7 @@
 		DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6523E276AA00383CE1 /* Touch.swift */; };
 		DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
+		DC2015F123E8BC410019BCD6 /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
 		DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */; };
 		DC22532723E5E9BB00A20AF8 /* ViewControllerPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */; };
 		DC22532923E5EAAA00A20AF8 /* CombineCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532823E5EAAA00A20AF8 /* CombineCompatible.swift */; };
@@ -65,6 +66,7 @@
 		DC0D9E6123E2758600383CE1 /* ContactMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethod.swift; sourceTree = "<group>"; };
 		DC0D9E6523E276AA00383CE1 /* Touch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touch.swift; sourceTree = "<group>"; };
 		DC0D9E6923E27D7100383CE1 /* Intervals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intervals.swift; sourceTree = "<group>"; };
+		DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNContactDisplayExtension.swift; sourceTree = "<group>"; };
 		DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSubscription.swift; sourceTree = "<group>"; };
 		DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPublisher.swift; sourceTree = "<group>"; };
 		DC22532823E5EAAA00A20AF8 /* CombineCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineCompatible.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		DCABF9A523E603D5002B1727 /* ContactPicker */ = {
 			isa = PBXGroup;
 			children = (
+				DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */,
 				DC4043C423E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift */,
 				DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */,
 			);
@@ -340,6 +343,7 @@
 				DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */,
 				DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */,
 				DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */,
+				DC2015F123E8BC410019BCD6 /* CNContactDisplayExtension.swift in Sources */,
 				DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */,
 				DC22532923E5EAAA00A20AF8 /* CombineCompatible.swift in Sources */,
 				DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */,

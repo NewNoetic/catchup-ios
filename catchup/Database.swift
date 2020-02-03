@@ -11,7 +11,7 @@ import Contacts
 import SQLite
 
 let contactStore = CNContactStore()
-let contactKeys = [CNContactIdentifierKey as CNKeyDescriptor, CNContactGivenNameKey as CNKeyDescriptor, CNContactFamilyNameKey as CNKeyDescriptor, CNContactPhoneNumbersKey as CNKeyDescriptor, CNContactEmailAddressesKey as CNKeyDescriptor]
+var contactKeys: [CNKeyDescriptor] = [CNContactIdentifierKey as CNKeyDescriptor, CNContactPhoneNumbersKey as CNKeyDescriptor, CNContactEmailAddressesKey as CNKeyDescriptor, CNContactFormatter.descriptorForRequiredKeys(for: .fullName)]
 
 let contact = Expression<String>("contact_id")
 let interval = Expression<TimeInterval>("interval")
