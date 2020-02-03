@@ -25,6 +25,6 @@ struct Catchup: Identifiable {
         let contact = CNMutableContact()
         contact.givenName = name.components(separatedBy: " ")[0]
         contact.familyName = name.components(separatedBy: " ")[1]
-        return Catchup(contact: contact, interval: Intervals.day.rawValue, method: .call, nextTouch: Date(timeIntervalSinceNow: 300), nextNotification: nil)
+        return Catchup(contact: contact, interval: Intervals.day.value(), method: .call, nextTouch: Date(timeIntervalSinceNow: 300), nextNotification: nil)
     }
 }

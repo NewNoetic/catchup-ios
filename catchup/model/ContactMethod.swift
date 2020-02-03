@@ -6,9 +6,13 @@
 //  Copyright © 2020 newnoetic. All rights reserved.
 //
 
-enum ContactMethod: String {
+enum ContactMethod: String, CaseIterable, Identifiable {
     case call
     case text
     case email
+    
+    var id: String {
+        self.rawValue
+    }
 }
 

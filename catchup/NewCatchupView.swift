@@ -14,9 +14,10 @@ struct NewCatchupView: View {
     var done: DoneSignature
     
     var durationCases: [Intervals] = Intervals.allCases
-//    var durationCases: [Intervals] = [Intervals.day, Intervals.week, Intervals.month]
+    var methodCases: [ContactMethod] = ContactMethod.allCases
     @State private var contact: CNContact?
-    @State private var durationIndex: Int?
+    @State private var durationIndex: Int = 1
+    @State private var methodIndex: Int = 0
     @State private var showingContactPicker = true // open contact picker immediately
     @State private var showingDurationPicker = false
     
@@ -34,15 +35,24 @@ struct NewCatchupView: View {
                     Section {
                         Picker("How often?", selection: $durationIndex) {
                             ForEach(0 ..< durationCases.count ) { index in
-                                Text(String(self.durationCases[index].rawValue))
+                                Text("every \(self.durationCases[index].rawValue)")
                                     .tag(index)
                             }
                             
                         }
-                        Button("Create Catchup") {
-                            guard let contact = self.contact else { return }
-                            self.done(Catchup(contact: contact, interval: Intervals.week.rawValue, method: .call))
+                        Picker("Method?", selection: $methodIndex) {
+                            ForEach(0 ..< methodCases.count ) { index in
+                                Text(self.methodCases[index].rawValue)
+                                    .tag(index)
+                            }
+                            
                         }
+                    }
+                }
+                VStack(alignment: .trailing, spacing: 20) {
+                    Button("Create Catchup") {
+                        guard let contact = self.contact else { return }
+                        self.done(Catchup(contact: contact, interval: self.durationCases[self.durationIndex].value(), method: self.methodCases[self.methodIndex]))
                     }
                 }
             }

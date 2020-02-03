@@ -8,8 +8,23 @@
 
 import Foundation
 
-enum Intervals: TimeInterval, CaseIterable {
-    case day = 86400
-    case week = 604800
-    case month = 2419200
+enum Intervals: String, CaseIterable, Identifiable {
+    case day
+    case week
+    case month
+    
+    func value() -> TimeInterval {
+        switch self {
+        case .day:
+            return 86400
+        case .week:
+            return 604800
+        case .month:
+            return 2419200
+        }
+    }
+    
+    var id: Double {
+        self.value()
+    }
 }

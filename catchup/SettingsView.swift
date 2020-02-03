@@ -17,7 +17,7 @@ struct SettingsView: View {
                     }
                 }
             }
-            .navigationBarTitle("Settings", displayMode: .inline)
+            .navigationBarTitle("Settings")
         }
 }
 struct SettingsView_Previews: PreviewProvider {

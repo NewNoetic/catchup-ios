@@ -67,7 +67,7 @@ struct Database {
         do {
             try db.run(Table(tableName).drop(ifExists: true))
         } catch {
-            print("Could not drop table")
+            print("Could not drop table: \(error.localizedDescription)")
         }
     }
 }

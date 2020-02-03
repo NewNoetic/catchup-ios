@@ -16,7 +16,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Spacer()
                 List {
                     Section(header: Text("upcoming")) {
                         ForEach(upcoming.catchups) { up in
@@ -25,39 +24,42 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-                    Button("New CatchUp") {
-                       self.showNewCatchup.toggle()
-                    }
-                    .sheet(isPresented: $showNewCatchup) {
-                        NewCatchupView() { catchup in
-                            self.showNewCatchup = false
-                            guard let catchup = catchup else { return }
-                            do {
-                                try Database.shared.upsert(catchup: catchup)
-                                self.upcoming.update()
-                            } catch {
-                                print(error)
-                                self.errorAlert = true
-                            }
+                Button("New CatchUp") {
+                    self.showNewCatchup.toggle()
+                }
+                .sheet(isPresented: $showNewCatchup) {
+                    NewCatchupView() { catchup in
+                        self.showNewCatchup = false
+                        guard let catchup = catchup else { return }
+                        do {
+                            try Database.shared.upsert(catchup: catchup)
+                            self.upcoming.update()
+                        } catch {
+                            print(error)
+                            self.errorAlert = true
                         }
                     }
-                    .alert(isPresented: $errorAlert) {
-                        Alert(title: Text("Could not create new CatchUp"))
-                    }
+                }
+                .alert(isPresented: $errorAlert) {
+                    Alert(title: Text("Could not create new CatchUp"))
+                }
                 Spacer()
             }
             .navigationBarTitle("CatchUp")
             .navigationBarItems(trailing:
                 NavigationLink(destination: SettingsView()) {
-                    Text("Settings")
+                    Image(systemName: "gear").imageScale(.medium)
                 }
             )
+        }
+        .onAppear {
+            self.upcoming.update()
         }
     }
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        .environmentObject(Upcoming())
+            .environmentObject(Upcoming())
     }
 }
