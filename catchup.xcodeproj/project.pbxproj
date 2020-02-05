@@ -25,6 +25,7 @@
 		DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */; };
 		DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111023E3FB9D00FFA866 /* Upcoming.swift */; };
 		DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111623E40AAF00FFA866 /* NewCatchupView.swift */; };
+		DC6B727C23EA38E800607A9D /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B727B23EA38E800607A9D /* Scheduler.swift */; };
 		DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABF9A323E603CA002B1727 /* SettingsView.swift */; };
 		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
 		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
@@ -74,6 +75,7 @@
 		DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
 		DC57111023E3FB9D00FFA866 /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
 		DC57111623E40AAF00FFA866 /* NewCatchupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatchupView.swift; sourceTree = "<group>"; };
+		DC6B727B23EA38E800607A9D /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		DCABF9A323E603CA002B1727 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		DCF04BA023E3A86A00D433AB /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 				DC0D9E3023E270EC00383CE1 /* ContentView.swift */,
 				DC57111623E40AAF00FFA866 /* NewCatchupView.swift */,
 				DCF04BA023E3A86A00D433AB /* Database.swift */,
+				DC6B727B23EA38E800607A9D /* Scheduler.swift */,
 				DCABF9A323E603CA002B1727 /* SettingsView.swift */,
 				DCABF9A523E603D5002B1727 /* ContactPicker */,
 				DCABF9A223E602D6002B1727 /* Combine Utils */,
@@ -348,6 +351,7 @@
 				DC22532923E5EAAA00A20AF8 /* CombineCompatible.swift in Sources */,
 				DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */,
 				DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */,
+				DC6B727C23EA38E800607A9D /* Scheduler.swift in Sources */,
 				DC0D9E2F23E270EC00383CE1 /* SceneDelegate.swift in Sources */,
 				DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */,
 				DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */,

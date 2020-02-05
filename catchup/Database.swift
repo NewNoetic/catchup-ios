@@ -37,7 +37,7 @@ struct Database {
         })
     }
     
-    func allCatchups() throws -> [Catchup]{
+    func allCatchups() throws -> [Catchup] {
         return try db.prepare(catchups).compactMap({ (row: Row) -> Catchup? in
             guard let c = try? contactStore.unifiedContact(withIdentifier: row[contact], keysToFetch: contactKeys)
                 else { return nil }
