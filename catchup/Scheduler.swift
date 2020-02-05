@@ -11,6 +11,10 @@ import Foundation
 struct Scheduler {
     static let shared = Scheduler()
     
+    enum SchedulerError: Error {
+        case noTomorrow
+    }
+    
     /// Represents a time slot in a day
     struct Slot {
         /// Seconds since start of day
@@ -20,9 +24,10 @@ struct Scheduler {
         var end: TimeInterval
     }
     
+    let calendar = Calendar(identifier: .gregorian)
+    
     func schedule() {
         let catchups = (try? Database.shared.allCatchups()) ?? []
-        let calendar = Calendar(identifier: .gregorian)
         let weekdaySlots = [Slot(start: 64800, end: 68400)/* 6pm-7pm */]
         let weekendSlots = [Slot(start: 36000, end: 79200)/*10am-10pm*/]
         let slotDuration = TimeInterval(1800) // 30 mins
@@ -44,23 +49,42 @@ struct Scheduler {
                 return // if already scheduled, don't schedule
             }
             
-            let nextSlotStart = calendar.isDateInWeekend(startOfTomorrow)
-                ? Date(timeInterval: weekendSlots[0].start, since: startOfTomorrow)
-                : Date(timeInterval: weekdaySlots[0].start, since: startOfTomorrow)
-            var nextSlot = DateInterval(start: nextSlotStart, duration: slotDuration)
+            guard let nextTouch = try? nextOpenSlot(startDate: startOfTomorrow, alreadySheduled: scheduledSlots, weekdayAvailability: weekdaySlots, weekendAvailability: weekendSlots, slotDuration: slotDuration) else {
+                return /* TODO: log error */
+            }
             
-            var scheduled = false
-            while (!scheduled) {
-                let overlapping = scheduledSlots.filter { scheduledSlot in
-                    return scheduledSlot.intersects(nextSlot)
-                }.count > 0
-                if (overlapping) {
-                    nextSlot.start = nextSlot.start.addingTimeInterval(slotDuration) // TODO: This needs to respect the available slots timings for the day
-                } else {
-                    // TODO: Schedule notification, attach it to the catchup and upsert it to the DB
-                    scheduled = true
+            let scheduledCatchup = Catchup(contact: catchup.contact, interval: slotDuration, method: catchup.method, nextTouch: nextTouch.start, nextNotification: "") // TODO: actually schedule the notification and add the notification ID to nextNotification
+            do {
+                try Database.shared.upsert(catchup: scheduledCatchup)
+            } catch {
+                print("Error saving catchup after saving it to the DB... \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func nextOpenSlot(startDate: Date, alreadySheduled: [DateInterval], weekdayAvailability: [Slot], weekendAvailability: [Slot], slotDuration: TimeInterval) throws -> DateInterval {
+        var trackingDate = Date(timeInterval: 0, since: startDate)
+        while true {
+            let isConflictingSlot = alreadySheduled.filter { $0.intersects(DateInterval(start: trackingDate, duration: slotDuration)) }.count > 0
+            guard isConflictingSlot == false else { trackingDate.addTimeInterval(slotDuration); continue }
+            guard let startOfTheDay = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: trackingDate) else { throw SchedulerError.noTomorrow }
+            let dailyAvailability = calendar.isDateInWeekend(trackingDate) ? weekendAvailability : weekdayAvailability
+            
+            var nextOpenSlot: DateInterval?
+            for availableSlot in dailyAvailability {
+                let availableInterval = DateInterval(start: Date(timeInterval: availableSlot.start, since: startOfTheDay), end: Date(timeInterval: availableSlot.end, since: startOfTheDay))
+                let openSlotCandidate = DateInterval(start: trackingDate, duration: slotDuration)
+                if (availableInterval.intersects(openSlotCandidate)) {
+                    nextOpenSlot = openSlotCandidate
                 }
             }
+            
+            guard let returnOpenSlot = nextOpenSlot else {
+                trackingDate.addTimeInterval(slotDuration)
+                continue
+            }
+            
+            return returnOpenSlot
         }
     }
 }
