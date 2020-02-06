@@ -17,6 +17,9 @@
 		DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6523E276AA00383CE1 /* Touch.swift */; };
 		DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
+		DC139D3F23ECA0350065B138 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139D3E23ECA0350065B138 /* Notifications.swift */; };
+		DC139D4023ECA0430065B138 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139D3E23ECA0350065B138 /* Notifications.swift */; };
+		DC139D4223ECA0630065B138 /* NotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139D4123ECA0630065B138 /* NotificationsTests.swift */; };
 		DC153CC523EBE1FB004533AD /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
 		DC153CC823EBE22D004533AD /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DC153CC723EBE22D004533AD /* SQLite */; };
 		DC153CC923EBE242004533AD /* Catchup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E5D23E2745900383CE1 /* Catchup.swift */; };
@@ -73,6 +76,8 @@
 		DC0D9E6123E2758600383CE1 /* ContactMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethod.swift; sourceTree = "<group>"; };
 		DC0D9E6523E276AA00383CE1 /* Touch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touch.swift; sourceTree = "<group>"; };
 		DC0D9E6923E27D7100383CE1 /* Intervals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intervals.swift; sourceTree = "<group>"; };
+		DC139D3E23ECA0350065B138 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		DC139D4123ECA0630065B138 /* NotificationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTests.swift; sourceTree = "<group>"; };
 		DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNContactDisplayExtension.swift; sourceTree = "<group>"; };
 		DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSubscription.swift; sourceTree = "<group>"; };
 		DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPublisher.swift; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 				DC57111623E40AAF00FFA866 /* NewCatchupView.swift */,
 				DCF04BA023E3A86A00D433AB /* Database.swift */,
 				DC6B727B23EA38E800607A9D /* Scheduler.swift */,
+				DC139D3E23ECA0350065B138 /* Notifications.swift */,
 				DCABF9A323E603CA002B1727 /* SettingsView.swift */,
 				DCABF9A523E603D5002B1727 /* ContactPicker */,
 				DCABF9A223E602D6002B1727 /* Combine Utils */,
@@ -170,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				DC4F16B823EBA13600785223 /* SchedulerTests.swift */,
+				DC139D4123ECA0630065B138 /* NotificationsTests.swift */,
 				DC0D9E4523E270F300383CE1 /* Info.plist */,
 			);
 			path = catchupTests;
@@ -365,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0D9E5E23E2745900383CE1 /* Catchup.swift in Sources */,
+				DC139D3F23ECA0350065B138 /* Notifications.swift in Sources */,
 				DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */,
 				DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */,
 				DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */,
@@ -389,7 +397,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC139D4223ECA0630065B138 /* NotificationsTests.swift in Sources */,
 				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
+				DC139D4023ECA0430065B138 /* Notifications.swift in Sources */,
 				DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */,
 				DC153CCB23EBE257004533AD /* Intervals.swift in Sources */,
 				DC153CC523EBE1FB004533AD /* Database.swift in Sources */,
