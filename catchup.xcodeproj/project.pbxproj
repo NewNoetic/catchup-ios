@@ -17,6 +17,11 @@
 		DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6523E276AA00383CE1 /* Touch.swift */; };
 		DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
+		DC153CC523EBE1FB004533AD /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
+		DC153CC823EBE22D004533AD /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DC153CC723EBE22D004533AD /* SQLite */; };
+		DC153CC923EBE242004533AD /* Catchup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E5D23E2745900383CE1 /* Catchup.swift */; };
+		DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
+		DC153CCB23EBE257004533AD /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
 		DC2015F123E8BC410019BCD6 /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
 		DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */; };
 		DC22532723E5E9BB00A20AF8 /* ViewControllerPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */; };
@@ -60,7 +65,6 @@
 		DC0D9E3823E270F300383CE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC0D9E3A23E270F300383CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC0D9E3F23E270F300383CE1 /* catchupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = catchupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC0D9E4323E270F300383CE1 /* catchupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catchupTests.swift; sourceTree = "<group>"; };
 		DC0D9E4523E270F300383CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC0D9E4A23E270F300383CE1 /* catchupUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = catchupUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0D9E4E23E270F300383CE1 /* catchupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catchupUITests.swift; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC153CC823EBE22D004533AD /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +122,7 @@
 				DC0D9E4223E270F300383CE1 /* catchupTests */,
 				DC0D9E4D23E270F300383CE1 /* catchupUITests */,
 				DC0D9E2A23E270EC00383CE1 /* Products */,
+				DC153CC623EBE22D004533AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				DC4F16B823EBA13600785223 /* SchedulerTests.swift */,
-				DC0D9E4323E270F300383CE1 /* catchupTests.swift */,
 				DC0D9E4523E270F300383CE1 /* Info.plist */,
 			);
 			path = catchupTests;
@@ -189,6 +194,13 @@
 				DC57111023E3FB9D00FFA866 /* Upcoming.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		DC153CC623EBE22D004533AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DCABF9A223E602D6002B1727 /* Combine Utils */ = {
@@ -248,6 +260,9 @@
 				DC0D9E4123E270F300383CE1 /* PBXTargetDependency */,
 			);
 			name = catchupTests;
+			packageProductDependencies = (
+				DC153CC723EBE22D004533AD /* SQLite */,
+			);
 			productName = catchupTests;
 			productReference = DC0D9E3F23E270F300383CE1 /* catchupTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -374,6 +389,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
+				DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */,
+				DC153CCB23EBE257004533AD /* Intervals.swift in Sources */,
+				DC153CC523EBE1FB004533AD /* Database.swift in Sources */,
 				DC4F16B923EBA13600785223 /* SchedulerTests.swift in Sources */,
 				DC4F16BA23EBA19700785223 /* Scheduler.swift in Sources */,
 			);
@@ -709,6 +728,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DC153CC723EBE22D004533AD /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
+		};
 		DCF04B9E23E3A7AE00D433AB /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */;

@@ -63,7 +63,7 @@ struct Scheduler {
     }
     
     func nextOpenSlot(startDate: Date, alreadySheduled: [DateInterval], weekdayAvailability: [Slot], weekendAvailability: [Slot], slotDuration: TimeInterval) throws -> DateInterval {
-        var trackingDate = Date(timeInterval: 0, since: startDate)
+        var trackingDate = Date(timeInterval: 1, since: startDate) // need to add one second to make it not overlap with end of previous slot when comparing by "minute"
         while true {
             let isConflictingSlot = alreadySheduled.filter { $0.intersects(DateInterval(start: trackingDate, duration: slotDuration)) }.count > 0
             guard isConflictingSlot == false else { trackingDate.addTimeInterval(slotDuration); continue }
