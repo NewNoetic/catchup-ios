@@ -7,56 +7,69 @@
 //
 
 import UserNotifications
-import Combine
-
-extension Future where Output: Any, Failure: Error {}
+import Contacts
+import Then
 
 struct Notifications {
-    static let _shared = Notifications()
-    func schedule(catchup: Catchup) -> String {
-        // TODO: implement
+    static let shared = Notifications()
+    func schedule(catchup: Catchup) -> Promise<Catchup> {
+        UserNotificationsAsync.authenticaticated()
+            .then { _ in
+                Promise { resolve, reject in
+                guard let date = catchup.nextTouch else {
+                    reject(NotificationsError.noDate)
+                    return
+                }
+                let notification = UNMutableNotificationContent()
+                notification.title = "Catch up with \(catchup.contact.displayName)"
+                notification.body = "Tap to \(catchup.method.rawValue)"
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.day, .hour, .minute, .second], from: date), repeats: false)
+                let uuid = UUID().uuidString
+                let request = UNNotificationRequest(identifier: uuid, content: notification, trigger: trigger)
+                UNUserNotificationCenter.current().add(request) { error in
+                    guard error == nil else {
+                        reject(NotificationsError.userNotificationCenterFailed)
+                        return
+                    }
+                    var scheduledCatchup = catchup
+                    scheduledCatchup.nextNotification = uuid
+                    resolve(scheduledCatchup)
+                }
+            }
+        }
     }
 }
 
 struct UserNotificationsAsync {
     static let center = UNUserNotificationCenter.current()
     
-    static func authenticate() -> Future<Void, Error> {
-        let future = Future<Void, Error> { promise in
-            self.center.requestAuthorization(options: [.alert]) { (granted, error) in
-                granted ? promise(.success(())) : promise(.failure(NotificationsError.authorizationError))
+    static func authenticate() -> Promise<Any> {
+        return Promise { resolve, reject in
+            self.center.requestAuthorization(options: [.alert]) { granted, error in
+                if (granted) {
+                    resolve(())
+                } else {
+                    reject(NotificationsError.authorization)
+                }
             }
         }
-        return future
     }
     
-    static func authenticaticated() -> Future<Void, Error> {
-        let future = Future<Void, Error> { (@Await promise) in
+    static func authenticaticated() -> Promise<Any> {
+        return Promise { resolve, reject in
             self.center.getNotificationSettings { settings in
-                settings.authorizationStatus == .authorized ? promise(.success(())) : promise(.failure(NotificationsError.authorizationError))
+                if (settings.authorizationStatus == .authorized) {
+                    resolve(())
+                } else {
+                    reject(NotificationsError.authorization)
+                }
             }
         }
-        return future
     }
 }
 
 enum NotificationsError: Error {
-    case authorizationError
+    case noDate
+    case authorization
+    case userNotificationCenterFailed
 }
-
-// Was trying something cool here to allow "await" on futures, but I don't think it'll work out.
-//@propertyWrapper
-//struct Await<V: Any, E: Error> {
-//    var value: V
-//    var error: E
-//
-//    init(wrappedValue: V, wrappedError: E) {
-//        value = wrappedValue
-//        error = wrappedError
-//    }
-//
-//    var wrappedValue: V {
-//        get {}
-//        set {}
-//    }
-//}

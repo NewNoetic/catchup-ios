@@ -25,6 +25,8 @@
 		DC153CC923EBE242004533AD /* Catchup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E5D23E2745900383CE1 /* Catchup.swift */; };
 		DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DC153CCB23EBE257004533AD /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
+		DC153CCC23ED351E004533AD /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
+		DC153CCF23ED3D3A004533AD /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DC153CCE23ED3D3A004533AD /* Then */; };
 		DC2015F123E8BC410019BCD6 /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
 		DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */; };
 		DC22532723E5E9BB00A20AF8 /* ViewControllerPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */; };
@@ -99,6 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */,
+				DC153CCF23ED3D3A004533AD /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +251,7 @@
 			name = catchup;
 			packageProductDependencies = (
 				DCF04B9E23E3A7AE00D433AB /* SQLite */,
+				DC153CCE23ED3D3A004533AD /* Then */,
 			);
 			productName = catchup;
 			productReference = DC0D9E2923E270EC00383CE1 /* catchup.app */;
@@ -327,6 +331,7 @@
 			mainGroup = DC0D9E2023E270EC00383CE1;
 			packageReferences = (
 				DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */,
+				DC153CCD23ED3D3A004533AD /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = DC0D9E2A23E270EC00383CE1 /* Products */;
 			projectDirPath = "";
@@ -404,6 +409,7 @@
 				DC153CCB23EBE257004533AD /* Intervals.swift in Sources */,
 				DC153CC523EBE1FB004533AD /* Database.swift in Sources */,
 				DC4F16B923EBA13600785223 /* SchedulerTests.swift in Sources */,
+				DC153CCC23ED351E004533AD /* CNContactDisplayExtension.swift in Sources */,
 				DC4F16BA23EBA19700785223 /* Scheduler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -727,6 +733,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DC153CCD23ED3D3A004533AD /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NewNoetic/Then";
+			requirement = {
+				kind = exactVersion;
+				version = 5.1.4;
+			};
+		};
 		DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/NewNoetic/SQLite.swift";
@@ -742,6 +756,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
+		};
+		DC153CCE23ED3D3A004533AD /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC153CCD23ED3D3A004533AD /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 		DCF04B9E23E3A7AE00D433AB /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -49,11 +49,11 @@ struct Database {
         var setters = [
             contact <- catchup.contact.identifier, interval <- catchup.interval, method <- catchup.method.rawValue
         ]
-        if (catchup.nextTouch != nil) {
-            setters.append(nextTouch <- catchup.nextTouch!)
+        if let nt = catchup.nextTouch {
+            setters.append(nextTouch <- nt)
         }
-        if (catchup.nextNotification != nil) {
-            setters.append(nextNotification <- catchup.nextNotification!)
+        if let nn = catchup.nextNotification {
+            setters.append(nextNotification <- nn)
         }
         try db.run(catchups.insert(or: .replace, setters))
     }
