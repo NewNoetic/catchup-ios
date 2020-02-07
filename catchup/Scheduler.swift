@@ -57,36 +57,31 @@ struct Scheduler {
             }
             .sorted(by: dateSort)
             
-            let scheduledCatchups = catchups.map { catchup -> Promise<Any> in
-                Promise { resolve, reject in
-                    guard (catchup.nextNotification == nil || catchup.nextTouch == nil) else {
-                        reject(SchedulerError.alreadyScheduled) // if already scheduled, don't schedule
-                        return
-                    }
-                    
-                    guard let nextTouch = try? self.nextOpenSlot(startDate: startOfTomorrow, alreadySheduled: scheduledSlots, weekdayAvailability: weekdaySlots, weekendAvailability: weekendSlots, slotDuration: slotDuration) else {
-                        reject(SchedulerError.noNextSlot)
-                        return
-                    }
-                    
-                    scheduledSlots.append(nextTouch)
-                    scheduledSlots.sort(by: dateSort)
-                                        
-                    let unscheduledCatchup = Catchup(contact: catchup.contact, interval: slotDuration, method: catchup.method, nextTouch: nextTouch.start, nextNotification: "")
-                    
-                    Notifications.shared.schedule(catchup: unscheduledCatchup)
-                        .then { scheduledCatchup in
-                            do {
-                                try Database.shared.upsert(catchup: scheduledCatchup)
-                                resolve(())
-                            } catch {
-                                reject(SchedulerError.database(error.localizedDescription))
-                            }
-                    }
-                }
+            let catchupsToSchedule = catchups.filter { (c) -> Bool in
+                return c.nextNotification == nil || c.nextTouch == nil
             }
             
-            
+            catchupsToSchedule.forEach { (catchup) in
+                guard let nextTouch = try? self.nextOpenSlot(startDate: startOfTomorrow, alreadySheduled: scheduledSlots, weekdayAvailability: weekdaySlots, weekendAvailability: weekendSlots, slotDuration: slotDuration) else {
+                    return // don't schedule if we can't find an open slot
+                    // TODO: Do something to recover?
+                }
+                
+                var unscheduledCatchup = catchup
+                unscheduledCatchup.nextTouch = nextTouch.start
+                
+                scheduledSlots.append(nextTouch)
+                scheduledSlots.sort(by: dateSort)
+                
+                Notifications.shared.schedule(catchup: unscheduledCatchup)
+                    .then({ scheduledCatchup -> Promise<Void> in
+                        async {
+                            try Database.shared.upsert(catchup: scheduledCatchup)
+                            resolve(())
+                        }
+                    })
+                }
+            }
         }
     }
     
