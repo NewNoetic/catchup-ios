@@ -14,13 +14,21 @@ struct ContentView: View {
     @State private var errorAlert = false
     @State private var showNewCatchup = false
     
+    static var dateFormatter = { () -> DateFormatter in
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }
+    
     var body: some View {
-        NavigationView {
+        let nav = NavigationView {
             VStack {
                 List {
                     Section(header: Text("upcoming")) {
-                        ForEach(upcoming.catchups) { up in
-                            Text(up.contact.displayName)
+                        ForEach(upcoming.catchups) { up -> Text in
+                            guard let nt = up.nextTouch else { return Text("\(up.contact.displayName)") }
+                            return Text("\(up.contact.displayName) @ \(ContentView.dateFormatter().string(from: nt))")
                         }
                     }
                 }
@@ -59,6 +67,8 @@ struct ContentView: View {
         .onAppear {
             self.upcoming.update()
         }
+        
+        return nav
     }
 }
 struct ContentView_Previews: PreviewProvider {
