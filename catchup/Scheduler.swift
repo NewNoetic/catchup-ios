@@ -17,7 +17,6 @@ struct Scheduler {
         case noStartOfTomorrow
         case alreadyScheduled
         case noNextSlot
-        case database(_ message: String)
     }
     
     /// Represents a time slot in a day
@@ -31,8 +30,8 @@ struct Scheduler {
     
     let calendar = Calendar(identifier: .gregorian)
     
-    func schedule() -> Promise<Any> {
-        return Promise { resolve, reject in
+    func schedule() -> Promise<Void> {
+        return Promise<Void> { (resolve: @escaping () -> Void, reject) in
             let catchups = (try? Database.shared.allCatchups()) ?? []
             let weekdaySlots = [Slot(start: 64800, end: 68400)/* 6pm-7pm */]
             let weekendSlots = [Slot(start: 36000, end: 79200)/*10am-10pm*/]
@@ -77,10 +76,9 @@ struct Scheduler {
                     .then({ scheduledCatchup -> Promise<Void> in
                         async {
                             try Database.shared.upsert(catchup: scheduledCatchup)
-                            resolve(())
+                            resolve()
                         }
                     })
-                }
             }
         }
     }

@@ -34,7 +34,10 @@ struct ContentView: View {
                         guard let catchup = catchup else { return }
                         do {
                             try Database.shared.upsert(catchup: catchup)
-                            self.upcoming.update()
+                            Scheduler.shared.schedule()
+                                .then { _ in
+                                    self.upcoming.update()
+                            }
                         } catch {
                             print(error)
                             self.errorAlert = true

@@ -43,11 +43,11 @@ struct Notifications {
 struct UserNotificationsAsync {
     static let center = UNUserNotificationCenter.current()
     
-    static func authenticate() -> Promise<Any> {
-        return Promise { resolve, reject in
+    static func authenticate() -> Promise<Void> {
+        return Promise<Void> { (resolve: @escaping () -> Void, reject) in
             self.center.requestAuthorization(options: [.alert]) { granted, error in
                 if (granted) {
-                    resolve(())
+                    resolve()
                 } else {
                     reject(NotificationsError.authorization)
                 }
@@ -55,11 +55,11 @@ struct UserNotificationsAsync {
         }
     }
     
-    static func authenticaticated() -> Promise<Any> {
-        return Promise { resolve, reject in
+    static func authenticaticated() -> Promise<Void> {
+        return Promise<Void> { (resolve: @escaping () -> Void, reject) in
             self.center.getNotificationSettings { settings in
                 if (settings.authorizationStatus == .authorized) {
-                    resolve(())
+                    resolve()
                 } else {
                     reject(NotificationsError.authorization)
                 }
