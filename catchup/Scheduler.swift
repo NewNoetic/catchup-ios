@@ -45,8 +45,8 @@ struct Scheduler {
             return a.start.compare(b.start) == ComparisonResult.orderedAscending
         }
         
-        var scheduledSlots = catchups
-            .compactMap { (catchup) -> DateInterval? in
+        var scheduledSlots: [DateInterval] = ((try? Database.shared.allCatchups()) ?? [])
+        .compactMap { (catchup) -> DateInterval? in
                 guard let nextTouch = catchup.nextTouch, let _ = catchup.nextNotification else { return nil }
                 return DateInterval(start: nextTouch, duration: slotDuration)
         }

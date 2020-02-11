@@ -51,7 +51,7 @@ class NotificationsTests: XCTestCase {
                     expectation.fulfill()
                 }
         }
-        .onError { error in
+        .catch { error in
             assertionFailure("could not schedule catchup")
         }
         

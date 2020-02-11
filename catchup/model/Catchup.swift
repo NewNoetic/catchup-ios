@@ -21,10 +21,10 @@ struct Catchup: Identifiable {
     var nextTouch: Date?
     var nextNotification: String?
     
-    static func generateRandom(name: String) -> Catchup {
+    static func generateRandom(name: String, interval: TimeInterval = Intervals.day.value(), nextTouch: Date? = nil, nextNotification: String? = nil) -> Catchup {
         let contact = CNMutableContact()
         contact.givenName = name.components(separatedBy: " ")[0]
         contact.familyName = name.components(separatedBy: " ")[1]
-        return Catchup(contact: contact, interval: Intervals.day.value(), method: .call, nextTouch: Date(timeIntervalSinceNow: 300), nextNotification: nil)
+        return Catchup(contact: contact, interval: interval, method: .call, nextTouch: nextTouch, nextNotification: nextNotification)
     }
 }

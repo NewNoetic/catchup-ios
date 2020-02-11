@@ -27,8 +27,9 @@ struct ContentView: View {
                 List {
                     Section(header: Text("upcoming")) {
                         ForEach(upcoming.catchups) { up -> Text in
-                            guard let nt = up.nextTouch else { return Text("\(up.contact.displayName)") }
-                            return Text("\(up.contact.displayName) @ \(ContentView.dateFormatter().string(from: nt))")
+//                            guard let nt = up.nextTouch else { return Text("\(up.contact.displayName)") }
+//                            return Text("\(up.contact.displayName) @ \(ContentView.dateFormatter().string(from: nt))")
+                            return Text("\(up.contact.displayName) @ \(up.nextTouch!)")
                         }
                     }
                 }

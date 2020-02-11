@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Promises
 
 class SchedulerTests: XCTestCase {
 
@@ -123,6 +124,31 @@ class SchedulerTests: XCTestCase {
         assert(nextOpenSlot.duration == slotDuration, "open slot duration doesn't match provided slot duration")
         assert(calendar.compare(nextOpenSlot.start, to: dateOnWhichToExpectOpenSlot, toGranularity: .day) == .orderedSame, "open slot is not on the correct date")
         assert(calendar.compare(nextOpenSlot.start, to: alreadyScheduled[1].end.addingTimeInterval(alreadyScheduledSecondSlotGap), toGranularity: .minute) == .orderedSame, "open slot does not fall right after second already scheduled block (and added gap)")
+    }
+    
+    func testTwoScheduledCatchups() {
+        let expectation = XCTestExpectation(description: "schedule two catchups")
+        
+        let catchup1 = Catchup.generateRandom(name: "Testy Fail")
+        let catchup2 = Catchup.generateRandom(name: "Testy Junior")
+        
+        Scheduler.shared.schedule([catchup1, catchup2])
+            .then { (catchupsOrErrors: [Maybe<Catchup>]) in
+                assert(catchupsOrErrors.compactMap { $0.error }.count == 0, "one or more catchups errored while scheduling")
+                let scheduledCatchups = catchupsOrErrors.compactMap { $0.value }
+                assert(scheduledCatchups.count == 2, "wrong number of catchups scheduled")
+                let scheduledCatchup1 = scheduledCatchups[0]
+                let scheduledCatchup2 = scheduledCatchups[1]
+                XCTAssertNotNil(scheduledCatchup1.nextTouch, "catchup1 not scheduled")
+                XCTAssertNotNil(scheduledCatchup2.nextTouch, "catchup2 not scheduled")
+                XCTAssertFalse(self.calendar.isDate(scheduledCatchup1.nextTouch!, equalTo: scheduledCatchup2.nextTouch!, toGranularity: .minute), "catchups scheduling conflict")
+                expectation.fulfill()
+        }
+        .catch { error in
+            assertionFailure(error.localizedDescription)
+        }
+    
+        wait(for: [expectation], timeout: 5)
     }
     
     func testPerformanceNextOpenSlotWeekday() {
