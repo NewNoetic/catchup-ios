@@ -63,11 +63,11 @@ struct ContentView: View {
                 leading: Button(action: {
                     self.upcoming.update()
                 }) {
-                    Image(systemName: "arrow.clockwise").imageScale(.medium)
+                    Image(systemName: "arrow.clockwise")
                 },
                 trailing:
                 NavigationLink(destination: SettingsView()) {
-                    Image(systemName: "gear").imageScale(.medium)
+                    Image(systemName: "gear")
                 }
             )
         }
