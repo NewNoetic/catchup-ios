@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Then
+import Promises
 import UserNotifications
 
 class NotificationsTests: XCTestCase {

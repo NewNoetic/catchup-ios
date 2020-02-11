@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Promises
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UserNotificationsAsync.authenticate()
             .then { _ in }
-            .onError { error in
+            .catch { error in
                 print("error authenticating user notifications: \(error.localizedDescription)")
         }
         return true

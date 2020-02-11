@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Then
+import Promises
 
 struct Scheduler {
     static let shared = Scheduler()
@@ -16,7 +16,7 @@ struct Scheduler {
         case noTomorrow
         case noStartOfTomorrow
         case alreadyScheduled
-        case noNextSlot
+        case noNextSlot(_ catchup: Catchup)
     }
     
     /// Represents a time slot in a day
@@ -30,57 +30,48 @@ struct Scheduler {
     
     let calendar = Calendar(identifier: .gregorian)
     
-    func schedule() -> Promise<Void> {
-        return Promise<Void> { (resolve: @escaping () -> Void, reject) in
-            let catchups = (try? Database.shared.allCatchups()) ?? []
-            let weekdaySlots = [Slot(start: 64800, end: 68400)/* 6pm-7pm */]
-            let weekendSlots = [Slot(start: 36000, end: 79200)/*10am-10pm*/]
-            let slotDuration = TimeInterval(1800) // 30 mins
-            let today = Date()
-            guard let tomorrow = self.calendar.date(byAdding: .day, value: 1, to: today) else {
-                reject(SchedulerError.noTomorrow)
-                return
-            }
-            guard let startOfTomorrow = self.calendar.date(bySettingHour: 0, minute: 0, second: 0, of: tomorrow) else {
-                reject(SchedulerError.noTomorrow)
-                return
-            }
-            let dateSort = { (a: DateInterval, b: DateInterval) -> Bool in
-                return a.start.compare(b.start) == ComparisonResult.orderedAscending
-            }
-            
-            var scheduledSlots = catchups
-                .compactMap { (catchup) -> DateInterval? in
-                    guard let nextTouch = catchup.nextTouch, let _ = catchup.nextNotification else { return nil }
-                    return DateInterval(start: nextTouch, duration: slotDuration)
-            }
-            .sorted(by: dateSort)
-            
-            let catchupsToSchedule = catchups.filter { (c) -> Bool in
-                return c.nextNotification == nil || c.nextTouch == nil
-            }
-            
-            catchupsToSchedule.forEach { (catchup) in
-                guard let nextTouch = try? self.nextOpenSlot(startDate: startOfTomorrow, alreadySheduled: scheduledSlots, weekdayAvailability: weekdaySlots, weekendAvailability: weekendSlots, slotDuration: slotDuration) else {
-                    return // don't schedule if we can't find an open slot
-                    // TODO: Do something to recover?
-                }
-                
-                var unscheduledCatchup = catchup
-                unscheduledCatchup.nextTouch = nextTouch.start
-                
-                scheduledSlots.append(nextTouch)
-                scheduledSlots.sort(by: dateSort)
-                
-                Notifications.shared.schedule(catchup: unscheduledCatchup)
-                    .then({ scheduledCatchup -> Promise<Void> in
-                        async {
-                            try Database.shared.upsert(catchup: scheduledCatchup)
-                            resolve()
-                        }
-                    })
-            }
+    func schedule(_ catchups: [Catchup]) -> Promise<[Maybe<Catchup>]> {
+        let weekdaySlots = [Slot(start: 64800, end: 68400)/* 6pm-7pm */]
+        let weekendSlots = [Slot(start: 36000, end: 79200)/*10am-10pm*/]
+        let slotDuration = TimeInterval(1800) // 30 mins
+        let today = Date()
+        guard let tomorrow = self.calendar.date(byAdding: .day, value: 1, to: today) else {
+            return Promise(SchedulerError.noTomorrow)
         }
+        guard let startOfTomorrow = self.calendar.date(bySettingHour: 0, minute: 0, second: 0, of: tomorrow) else {
+            return Promise(SchedulerError.noTomorrow)
+        }
+        let dateSort = { (a: DateInterval, b: DateInterval) -> Bool in
+            return a.start.compare(b.start) == ComparisonResult.orderedAscending
+        }
+        
+        var scheduledSlots = catchups
+            .compactMap { (catchup) -> DateInterval? in
+                guard let nextTouch = catchup.nextTouch, let _ = catchup.nextNotification else { return nil }
+                return DateInterval(start: nextTouch, duration: slotDuration)
+        }
+        .sorted(by: dateSort)
+        
+        let catchupsToSchedule = catchups.filter { (c) -> Bool in
+            return c.nextNotification == nil || c.nextTouch == nil
+        }
+        
+        let scheduledCatchups = catchupsToSchedule.map { catchup -> Promise<Catchup> in
+            guard let nextTouch = try? self.nextOpenSlot(startDate: startOfTomorrow, alreadySheduled: scheduledSlots, weekdayAvailability: weekdaySlots, weekendAvailability: weekendSlots, slotDuration: slotDuration) else {
+                return Promise(SchedulerError.noNextSlot(catchup))
+                // TODO: Do something to recover?
+            }
+            
+            var unscheduledCatchup = catchup
+            unscheduledCatchup.nextTouch = nextTouch.start
+            
+            scheduledSlots.append(nextTouch)
+            scheduledSlots.sort(by: dateSort)
+            
+            return Notifications.shared.schedule(catchup: unscheduledCatchup)
+        }
+        
+        return any(scheduledCatchups)
     }
     
     func nextOpenSlot(startDate: Date, alreadySheduled: [DateInterval], weekdayAvailability: [Slot], weekendAvailability: [Slot], slotDuration: TimeInterval) throws -> DateInterval {

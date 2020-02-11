@@ -15,6 +15,9 @@ struct SettingsView: View {
                     Button("Drop catchups table") {
                         Database.shared.drop(tableName: "catchups")
                     }
+                    Button("Clear all scheduled notifications") {
+                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    }
                 }
             }
             .navigationBarTitle("Settings")

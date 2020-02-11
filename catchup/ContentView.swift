@@ -40,14 +40,14 @@ struct ContentView: View {
                     NewCatchupView() { catchup in
                         self.showNewCatchup = false
                         guard let catchup = catchup else { return }
-                        do {
-                            try Database.shared.upsert(catchup: catchup)
-                            Scheduler.shared.schedule()
-                                .then { _ in
-                                    self.upcoming.update()
-                            }
-                        } catch {
-                            print(error)
+                        Scheduler.shared.schedule([catchup])
+                            .then { scheduledOrError in
+                                try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
+                                scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
+                                
+                                self.upcoming.update()
+                        }
+                        .catch { error in
                             self.errorAlert = true
                         }
                     }

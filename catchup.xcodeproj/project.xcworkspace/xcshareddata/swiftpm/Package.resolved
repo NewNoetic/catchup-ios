@@ -2,21 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "Promises",
+        "repositoryURL": "https://github.com/NewNoetic/promises.git",
+        "state": {
+          "branch": null,
+          "revision": "6b6f4fe3385ed37389fb231bc40be81de2f1230f",
+          "version": "1.2.8"
+        }
+      },
+      {
         "package": "SQLite.swift",
         "repositoryURL": "https://github.com/NewNoetic/SQLite.swift",
         "state": {
           "branch": null,
           "revision": "0a9893ec030501a3956bee572d6b4fdd3ae158a1",
           "version": "0.12.2"
-        }
-      },
-      {
-        "package": "Then",
-        "repositoryURL": "https://github.com/NewNoetic/Then",
-        "state": {
-          "branch": null,
-          "revision": "2a0fe0720b979360820e871717855b894e76e562",
-          "version": "5.1.4"
         }
       }
     ]

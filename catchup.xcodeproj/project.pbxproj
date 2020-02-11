@@ -26,7 +26,6 @@
 		DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DC153CCB23EBE257004533AD /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
 		DC153CCC23ED351E004533AD /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
-		DC153CCF23ED3D3A004533AD /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DC153CCE23ED3D3A004533AD /* Then */; };
 		DC2015F123E8BC410019BCD6 /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
 		DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */; };
 		DC22532723E5E9BB00A20AF8 /* ViewControllerPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */; };
@@ -41,6 +40,8 @@
 		DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABF9A323E603CA002B1727 /* SettingsView.swift */; };
 		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
 		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
+		DCFF5E9F23F22654008F48CA /* Promises in Frameworks */ = {isa = PBXBuildFile; productRef = DCFF5E9E23F22654008F48CA /* Promises */; };
+		DCFF5EA123F22654008F48CA /* PromisesTestHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = DCFF5EA023F22654008F48CA /* PromisesTestHelpers */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,8 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCFF5E9F23F22654008F48CA /* Promises in Frameworks */,
 				DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */,
-				DC153CCF23ED3D3A004533AD /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCFF5EA123F22654008F48CA /* PromisesTestHelpers in Frameworks */,
 				DC153CC823EBE22D004533AD /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,7 +253,7 @@
 			name = catchup;
 			packageProductDependencies = (
 				DCF04B9E23E3A7AE00D433AB /* SQLite */,
-				DC153CCE23ED3D3A004533AD /* Then */,
+				DCFF5E9E23F22654008F48CA /* Promises */,
 			);
 			productName = catchup;
 			productReference = DC0D9E2923E270EC00383CE1 /* catchup.app */;
@@ -273,6 +275,7 @@
 			name = catchupTests;
 			packageProductDependencies = (
 				DC153CC723EBE22D004533AD /* SQLite */,
+				DCFF5EA023F22654008F48CA /* PromisesTestHelpers */,
 			);
 			productName = catchupTests;
 			productReference = DC0D9E3F23E270F300383CE1 /* catchupTests.xctest */;
@@ -331,7 +334,7 @@
 			mainGroup = DC0D9E2023E270EC00383CE1;
 			packageReferences = (
 				DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */,
-				DC153CCD23ED3D3A004533AD /* XCRemoteSwiftPackageReference "Then" */,
+				DCFF5E9D23F22654008F48CA /* XCRemoteSwiftPackageReference "promises" */,
 			);
 			productRefGroup = DC0D9E2A23E270EC00383CE1 /* Products */;
 			projectDirPath = "";
@@ -733,20 +736,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DC153CCD23ED3D3A004533AD /* XCRemoteSwiftPackageReference "Then" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/NewNoetic/Then";
-			requirement = {
-				kind = exactVersion;
-				version = 5.1.4;
-			};
-		};
 		DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/NewNoetic/SQLite.swift";
 			requirement = {
 				kind = exactVersion;
 				version = 0.12.2;
+			};
+		};
+		DCFF5E9D23F22654008F48CA /* XCRemoteSwiftPackageReference "promises" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NewNoetic/promises.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.8;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -757,15 +760,20 @@
 			package = DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
 		};
-		DC153CCE23ED3D3A004533AD /* Then */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DC153CCD23ED3D3A004533AD /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
-		};
 		DCF04B9E23E3A7AE00D433AB /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
+		};
+		DCFF5E9E23F22654008F48CA /* Promises */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCFF5E9D23F22654008F48CA /* XCRemoteSwiftPackageReference "promises" */;
+			productName = Promises;
+		};
+		DCFF5EA023F22654008F48CA /* PromisesTestHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCFF5E9D23F22654008F48CA /* XCRemoteSwiftPackageReference "promises" */;
+			productName = PromisesTestHelpers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,7 +8,7 @@
 
 import UserNotifications
 import Contacts
-import Then
+import Promises
 
 struct Notifications {
     static let shared = Notifications()
@@ -17,7 +17,7 @@ struct Notifications {
             .then { _ in
                 Promise { resolve, reject in
                 guard let date = catchup.nextTouch else {
-                    reject(NotificationsError.noDate)
+                    reject(NotificationsError.noDate(catchup))
                     return
                 }
                 let notification = UNMutableNotificationContent()
@@ -44,10 +44,10 @@ struct UserNotificationsAsync {
     static let center = UNUserNotificationCenter.current()
     
     static func authenticate() -> Promise<Void> {
-        return Promise<Void> { (resolve: @escaping () -> Void, reject) in
+        Promise { resolve, reject in
             self.center.requestAuthorization(options: [.alert]) { granted, error in
                 if (granted) {
-                    resolve()
+                    resolve(())
                 } else {
                     reject(NotificationsError.authorization)
                 }
@@ -56,10 +56,10 @@ struct UserNotificationsAsync {
     }
     
     static func authenticaticated() -> Promise<Void> {
-        return Promise<Void> { (resolve: @escaping () -> Void, reject) in
+        Promise { resolve, reject in
             self.center.getNotificationSettings { settings in
                 if (settings.authorizationStatus == .authorized) {
-                    resolve()
+                    resolve(())
                 } else {
                     reject(NotificationsError.authorization)
                 }
@@ -69,7 +69,7 @@ struct UserNotificationsAsync {
 }
 
 enum NotificationsError: Error {
-    case noDate
+    case noDate(_ catchup: Catchup)
     case authorization
     case userNotificationCenterFailed
 }
