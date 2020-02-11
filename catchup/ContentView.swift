@@ -59,7 +59,13 @@ struct ContentView: View {
                 Spacer()
             }
             .navigationBarTitle("CatchUp")
-            .navigationBarItems(trailing:
+            .navigationBarItems(
+                leading: Button(action: {
+                    self.upcoming.update()
+                }) {
+                    Image(systemName: "arrow.clockwise").imageScale(.medium)
+                },
+                trailing:
                 NavigationLink(destination: SettingsView()) {
                     Image(systemName: "gear").imageScale(.medium)
                 }
