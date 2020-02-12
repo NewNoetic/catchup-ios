@@ -29,7 +29,7 @@ struct Database {
         db = try Connection("\(path)/db.sqlite3")
         catchups = Table("catchups")
         try db.run(catchups.create(ifNotExists: true) { t in
-            t.column(contact)
+            t.column(contact, primaryKey: true)
             t.column(interval)
             t.column(method)
             t.column(nextTouch)
@@ -75,11 +75,11 @@ struct Database {
         try db.run(toDelete.delete())
     }
     
-    func drop(tableName: String) {
-        do {
-            try db.run(Table(tableName).drop(ifExists: true))
-        } catch {
-            print("Could not drop table: \(error.localizedDescription)")
-        }
+    func deleteAll() throws {
+        try db.run(self.catchups.delete())
+    }
+    
+    func dropCatchupsTable() throws {
+        try db.run(catchups.drop(ifExists: true))
     }
 }

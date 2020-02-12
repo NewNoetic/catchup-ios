@@ -8,13 +8,16 @@
 
 import XCTest
 import Promises
+import Contacts
 
 class SchedulerTests: XCTestCase {
 
     let calendar = Calendar(identifier: .gregorian)
+    let contacts = CNContactStore()
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        // TODO: If no contacts matching the test ones we need, create and save them
     }
 
     override func tearDown() {
