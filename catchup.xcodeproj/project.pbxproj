@@ -147,16 +147,13 @@
 		DC0D9E2B23E270EC00383CE1 /* catchup */ = {
 			isa = PBXGroup;
 			children = (
+				DCFD088223F4B02500420149 /* views */,
 				DC0D9E5C23E2741A00383CE1 /* model */,
 				DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */,
-				DC0D9E3023E270EC00383CE1 /* ContentView.swift */,
-				DC57111623E40AAF00FFA866 /* NewCatchupView.swift */,
 				DCF04BA023E3A86A00D433AB /* Database.swift */,
 				DC6B727B23EA38E800607A9D /* Scheduler.swift */,
 				DC139D3E23ECA0350065B138 /* Notifications.swift */,
-				DCABF9A323E603CA002B1727 /* SettingsView.swift */,
-				DCABF9A523E603D5002B1727 /* ContactPicker */,
-				DCABF9A223E602D6002B1727 /* Combine Utils */,
+				DCABF9A223E602D6002B1727 /* utils */,
 				DC0D9E3223E270F300383CE1 /* Assets.xcassets */,
 				DC0D9E3723E270F300383CE1 /* LaunchScreen.storyboard */,
 				DC0D9E3A23E270F300383CE1 /* Info.plist */,
@@ -212,14 +209,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DCABF9A223E602D6002B1727 /* Combine Utils */ = {
+		DCABF9A223E602D6002B1727 /* utils */ = {
 			isa = PBXGroup;
 			children = (
 				DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */,
 				DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */,
 				DC22532823E5EAAA00A20AF8 /* CombineCompatible.swift */,
 			);
-			path = "Combine Utils";
+			path = utils;
 			sourceTree = "<group>";
 		};
 		DCABF9A523E603D5002B1727 /* ContactPicker */ = {
@@ -230,6 +227,17 @@
 				DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */,
 			);
 			path = ContactPicker;
+			sourceTree = "<group>";
+		};
+		DCFD088223F4B02500420149 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				DCABF9A523E603D5002B1727 /* ContactPicker */,
+				DC0D9E3023E270EC00383CE1 /* ContentView.swift */,
+				DC57111623E40AAF00FFA866 /* NewCatchupView.swift */,
+				DCABF9A323E603CA002B1727 /* SettingsView.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

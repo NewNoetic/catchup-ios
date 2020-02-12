@@ -147,10 +147,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        if let notificationResponse = connectionOptions.notificationResponse {
-            print("notification: \(notificationResponse.notification.request.identifier)")
-        }
-        
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView().environmentObject(Upcoming())
         
