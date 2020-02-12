@@ -9,15 +9,38 @@
 import SwiftUI
 import Contacts
 
+extension Text {
+    static func +=(lhs: inout Text, rhs: Text) {
+        lhs = lhs + rhs
+    }
+}
+
 struct ContentView: View {
     @EnvironmentObject var upcoming: Upcoming
     @State private var errorAlert = false
+    @State private var errorMessage = ""
     @State private var showNewCatchup = false
     
     static var dateFormatter = { () -> DateFormatter in
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        formatter.dateStyle = .none
         formatter.timeStyle = .short
+        return formatter
+    }
+    
+    static var relativeDateFormatter = { () -> RelativeDateTimeFormatter in
+        let formatter = RelativeDateTimeFormatter()
+        formatter.dateTimeStyle = .numeric
+        formatter.formattingContext = .middleOfSentence
+        return formatter
+    }
+    
+    static var dateComponentsFormatter = { () -> DateComponentsFormatter in
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day]
+        formatter.allowsFractionalUnits = false
+        formatter.formattingContext = .beginningOfSentence
+        formatter.unitsStyle = .full
         return formatter
     }
     
@@ -27,9 +50,16 @@ struct ContentView: View {
                 List {
                     Section(header: Text("upcoming")) {
                         ForEach(upcoming.catchups) { up -> Text in
-//                            guard let nt = up.nextTouch else { return Text("\(up.contact.displayName)") }
-//                            return Text("\(up.contact.displayName) @ \(ContentView.dateFormatter().string(from: nt))")
-                            return Text("\(up.contact.displayName) @ \(up.nextTouch!)")
+                            var finalText = Text("\(up.method.rawValue.capitalized) \(up.contact.displayName)")
+                                .fontWeight(.bold)
+                            if let nextTouch = up.nextTouch {
+                                finalText += Text(" \(Self.relativeDateFormatter().localizedString(for: nextTouch, relativeTo: Date())), \(Self.dateFormatter().string(from: nextTouch))")
+                                    .fontWeight(.regular)
+                            }
+                            if let interval = Self.dateComponentsFormatter().string(from: up.interval) {
+                                finalText += Text("\nEvery \(interval)").foregroundColor(.gray)
+                            }
+                            return finalText
                         }
                     }
                 }
@@ -49,12 +79,13 @@ struct ContentView: View {
                                 self.upcoming.update()
                         }
                         .catch { error in
+                            self.errorMessage = error.localizedDescription
                             self.errorAlert = true
                         }
                     }
                 }
                 .alert(isPresented: $errorAlert) {
-                    Alert(title: Text("Could not create new CatchUp"))
+                    Alert(title: Text(self.errorMessage))
                 }
                 Spacer()
             }
