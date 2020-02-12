@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */; };
-		DC0D9E2F23E270EC00383CE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E2E23E270EC00383CE1 /* SceneDelegate.swift */; };
 		DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E3023E270EC00383CE1 /* ContentView.swift */; };
 		DC0D9E3323E270F300383CE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0D9E3223E270F300383CE1 /* Assets.xcassets */; };
 		DC0D9E3623E270F300383CE1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0D9E3523E270F300383CE1 /* Preview Assets.xcassets */; };
@@ -38,6 +37,11 @@
 		DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111623E40AAF00FFA866 /* NewCatchupView.swift */; };
 		DC6B727C23EA38E800607A9D /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B727B23EA38E800607A9D /* Scheduler.swift */; };
 		DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABF9A323E603CA002B1727 /* SettingsView.swift */; };
+		DCC428BD23F47EFC00D492DB /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC428BC23F47EFC00D492DB /* Contact.swift */; };
+		DCC428BE23F47EFC00D492DB /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC428BC23F47EFC00D492DB /* Contact.swift */; };
+		DCC428C123F4852000D492DB /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = DCC428C023F4852000D492DB /* PhoneNumberKit */; };
+		DCC428C323F4858C00D492DB /* PhoneNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC428C223F4858C00D492DB /* PhoneNumbers.swift */; };
+		DCC428C423F4858C00D492DB /* PhoneNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC428C223F4858C00D492DB /* PhoneNumbers.swift */; };
 		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
 		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
 		DCFF5E9F23F22654008F48CA /* Promises in Frameworks */ = {isa = PBXBuildFile; productRef = DCFF5E9E23F22654008F48CA /* Promises */; };
@@ -64,7 +68,6 @@
 /* Begin PBXFileReference section */
 		DC0D9E2923E270EC00383CE1 /* catchup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catchup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DC0D9E2E23E270EC00383CE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DC0D9E3023E270EC00383CE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC0D9E3223E270F300383CE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC0D9E3523E270F300383CE1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -93,6 +96,8 @@
 		DC57111623E40AAF00FFA866 /* NewCatchupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatchupView.swift; sourceTree = "<group>"; };
 		DC6B727B23EA38E800607A9D /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		DCABF9A323E603CA002B1727 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		DCC428BC23F47EFC00D492DB /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		DCC428C223F4858C00D492DB /* PhoneNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbers.swift; sourceTree = "<group>"; };
 		DCF04BA023E3A86A00D433AB /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCC428C123F4852000D492DB /* PhoneNumberKit in Frameworks */,
 				DCFF5E9F23F22654008F48CA /* Promises in Frameworks */,
 				DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */,
 			);
@@ -151,13 +157,13 @@
 			children = (
 				DC0D9E5C23E2741A00383CE1 /* model */,
 				DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */,
-				DC0D9E2E23E270EC00383CE1 /* SceneDelegate.swift */,
 				DC0D9E3023E270EC00383CE1 /* ContentView.swift */,
 				DC57111623E40AAF00FFA866 /* NewCatchupView.swift */,
 				DCF04BA023E3A86A00D433AB /* Database.swift */,
 				DC6B727B23EA38E800607A9D /* Scheduler.swift */,
 				DC139D3E23ECA0350065B138 /* Notifications.swift */,
 				DCABF9A323E603CA002B1727 /* SettingsView.swift */,
+				DCC428C223F4858C00D492DB /* PhoneNumbers.swift */,
 				DCABF9A523E603D5002B1727 /* ContactPicker */,
 				DCABF9A223E602D6002B1727 /* Combine Utils */,
 				DC0D9E3223E270F300383CE1 /* Assets.xcassets */,
@@ -204,6 +210,7 @@
 				DC0D9E6523E276AA00383CE1 /* Touch.swift */,
 				DC0D9E6923E27D7100383CE1 /* Intervals.swift */,
 				DC57111023E3FB9D00FFA866 /* Upcoming.swift */,
+				DCC428BC23F47EFC00D492DB /* Contact.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -254,6 +261,7 @@
 			packageProductDependencies = (
 				DCF04B9E23E3A7AE00D433AB /* SQLite */,
 				DCFF5E9E23F22654008F48CA /* Promises */,
+				DCC428C023F4852000D492DB /* PhoneNumberKit */,
 			);
 			productName = catchup;
 			productReference = DC0D9E2923E270EC00383CE1 /* catchup.app */;
@@ -335,6 +343,7 @@
 			packageReferences = (
 				DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */,
 				DCFF5E9D23F22654008F48CA /* XCRemoteSwiftPackageReference "promises" */,
+				DCC428BF23F4852000D492DB /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 			);
 			productRefGroup = DC0D9E2A23E270EC00383CE1 /* Products */;
 			projectDirPath = "";
@@ -386,11 +395,12 @@
 				DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */,
 				DC2015F123E8BC410019BCD6 /* CNContactDisplayExtension.swift in Sources */,
 				DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */,
+				DCC428C323F4858C00D492DB /* PhoneNumbers.swift in Sources */,
 				DC22532923E5EAAA00A20AF8 /* CombineCompatible.swift in Sources */,
 				DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */,
 				DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */,
 				DC6B727C23EA38E800607A9D /* Scheduler.swift in Sources */,
-				DC0D9E2F23E270EC00383CE1 /* SceneDelegate.swift in Sources */,
+				DCC428BD23F47EFC00D492DB /* Contact.swift in Sources */,
 				DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */,
 				DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */,
 				DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */,
@@ -405,8 +415,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCC428C423F4858C00D492DB /* PhoneNumbers.swift in Sources */,
 				DC139D4223ECA0630065B138 /* NotificationsTests.swift in Sources */,
 				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
+				DCC428BE23F47EFC00D492DB /* Contact.swift in Sources */,
 				DC139D4023ECA0430065B138 /* Notifications.swift in Sources */,
 				DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */,
 				DC153CCB23EBE257004533AD /* Intervals.swift in Sources */,
@@ -736,6 +748,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DCC428BF23F4852000D492DB /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NewNoetic/PhoneNumberKit";
+			requirement = {
+				kind = exactVersion;
+				version = 3.2.0;
+			};
+		};
 		DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/NewNoetic/SQLite.swift";
@@ -759,6 +779,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
+		};
+		DCC428C023F4852000D492DB /* PhoneNumberKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCC428BF23F4852000D492DB /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = PhoneNumberKit;
 		};
 		DCF04B9E23E3A7AE00D433AB /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
