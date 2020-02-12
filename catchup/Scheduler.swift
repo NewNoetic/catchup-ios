@@ -34,13 +34,7 @@ struct Scheduler {
         let weekdaySlots = [Slot(start: 64800, end: 68400)/* 6pm-7pm */]
         let weekendSlots = [Slot(start: 36000, end: 79200)/*10am-10pm*/]
         let slotDuration = TimeInterval(1800) // 30 mins
-        let today = Date()
-        guard let tomorrow = self.calendar.date(byAdding: .day, value: 1, to: today) else {
-            return Promise(SchedulerError.noTomorrow)
-        }
-        guard let startOfTomorrow = self.calendar.date(bySettingHour: 0, minute: 0, second: 0, of: tomorrow) else {
-            return Promise(SchedulerError.noTomorrow)
-        }
+
         let dateSort = { (a: DateInterval, b: DateInterval) -> Bool in
             return a.start.compare(b.start) == ComparisonResult.orderedAscending
         }
@@ -56,8 +50,16 @@ struct Scheduler {
             return c.nextNotification == nil || c.nextTouch == nil
         }
         
+        let today = Date()
+        
         let scheduledCatchups = catchupsToSchedule.map { catchup -> Promise<Catchup> in
-            guard let nextTouch = try? self.nextOpenSlot(startDate: startOfTomorrow, alreadySheduled: scheduledSlots, weekdayAvailability: weekdaySlots, weekendAvailability: weekendSlots, slotDuration: slotDuration) else {
+            
+            let startDate = today.addingTimeInterval(catchup.interval)
+            guard let startOfStartDate = self.calendar.date(bySettingHour: 0, minute: 0, second: 0, of: startDate) else {
+                return Promise(SchedulerError.noTomorrow)
+            }
+            
+            guard let nextTouch = try? self.nextOpenSlot(startDate: startOfStartDate, alreadySheduled: scheduledSlots, weekdayAvailability: weekdaySlots, weekendAvailability: weekendSlots, slotDuration: slotDuration) else {
                 return Promise(SchedulerError.noNextSlot(catchup))
                 // TODO: Do something to recover?
             }
@@ -72,6 +74,16 @@ struct Scheduler {
         }
         
         return any(scheduledCatchups)
+    }
+    
+    func reschedule(_ ctr: [Catchup]) -> Promise<[Maybe<Catchup>]> {
+        let catchupsToReschedule = ctr.map { (c: Catchup) -> Catchup in
+            var catchup = c
+            catchup.nextNotification = nil
+            catchup.nextTouch = nil
+            return catchup
+        }
+        return self.schedule(catchupsToReschedule)
     }
     
     func nextOpenSlot(startDate: Date, alreadySheduled: [DateInterval], weekdayAvailability: [Slot], weekendAvailability: [Slot], slotDuration: TimeInterval) throws -> DateInterval {
