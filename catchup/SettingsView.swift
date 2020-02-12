@@ -17,15 +17,7 @@ struct SettingsView: View {
     
     var body: some View {
         List {
-            Section {
-                Button("Drop catchups table ⚠️") {
-                    do {
-                        try Database.shared.dropCatchupsTable()
-                    } catch {
-                        self.alertMessage = error.localizedDescription
-                        self.showAlert = true
-                    }
-                }
+            Section(header: Text("Development")) {
                 Button("Clear all catchups") {
                     do {
                         try Database.shared.deleteAll()
@@ -47,7 +39,7 @@ struct SettingsView: View {
                 }
                 Button("Create test catchup (5s). First tap, select contact. Second tap create catchup.") {
                     if let contact = self.contact {
-                        let catchup = Catchup.generateRandom(contact: contact, interval: Intervals.day.value(), nextTouch: Date(timeIntervalSinceNow: 5), nextNotification: nil)
+                        let catchup = Catchup.generateRandom(contact: contact, interval: Intervals.week.value(), nextTouch: Date(timeIntervalSinceNow: 5), nextNotification: nil)
                         Notifications.shared.schedule(catchup: catchup)
                             .then { scheduledCatchup in
                                 try Database.shared.upsert(catchup: scheduledCatchup)
@@ -64,6 +56,16 @@ struct SettingsView: View {
                     ContactPickerViewController() { contact in
                         self.showContactPicker = false
                         self.contact = contact
+                    }
+                }
+            }
+            Section(header: Text("Danger ⚠️")) {
+                Button("Drop catchups table") {
+                    do {
+                        try Database.shared.dropCatchupsTable()
+                    } catch {
+                        self.alertMessage = error.localizedDescription
+                        self.showAlert = true
                     }
                 }
             }
