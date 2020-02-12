@@ -8,6 +8,7 @@
 
 import Foundation
 import Contacts
+import ContactsUI
 import UserNotifications
 
 struct Catchup: Identifiable {
@@ -18,7 +19,11 @@ struct Catchup: Identifiable {
     /// Get the most relevant phone number from the contact
     /// TODO: Try to pick mobile number?
     var phoneNumber: String? {
-        return contact.phoneNumbers.first?.value.stringValue
+        return contact.phoneNumbers.first?.value.stringValue.filter{ $0.isNumber }
+    }
+    
+    var email: String? {
+        return contact.emailAddresses.first?.value as String?
     }
     
     var contact: CNContact
@@ -31,6 +36,10 @@ struct Catchup: Identifiable {
         let contact = CNMutableContact()
         contact.givenName = name.components(separatedBy: " ")[0]
         contact.familyName = name.components(separatedBy: " ")[1]
+        return generateRandom(contact: contact, interval: interval, nextTouch: nextTouch, nextNotification: nextNotification)
+    }
+    
+    static func generateRandom(contact: CNContact, interval: TimeInterval = Intervals.day.value(), nextTouch: Date? = nil, nextNotification: String? = nil) -> Catchup {
         return Catchup(contact: contact, interval: interval, method: .call, nextTouch: nextTouch, nextNotification: nextNotification)
     }
 }
