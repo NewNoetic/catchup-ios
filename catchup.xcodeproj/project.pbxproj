@@ -37,8 +37,6 @@
 		DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111623E40AAF00FFA866 /* NewCatchupView.swift */; };
 		DC6B727C23EA38E800607A9D /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B727B23EA38E800607A9D /* Scheduler.swift */; };
 		DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABF9A323E603CA002B1727 /* SettingsView.swift */; };
-		DCC428BD23F47EFC00D492DB /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC428BC23F47EFC00D492DB /* Contact.swift */; };
-		DCC428BE23F47EFC00D492DB /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC428BC23F47EFC00D492DB /* Contact.swift */; };
 		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
 		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
 		DCFF5E9F23F22654008F48CA /* Promises in Frameworks */ = {isa = PBXBuildFile; productRef = DCFF5E9E23F22654008F48CA /* Promises */; };
@@ -93,7 +91,6 @@
 		DC57111623E40AAF00FFA866 /* NewCatchupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatchupView.swift; sourceTree = "<group>"; };
 		DC6B727B23EA38E800607A9D /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		DCABF9A323E603CA002B1727 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		DCC428BC23F47EFC00D492DB /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		DCF04BA023E3A86A00D433AB /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,7 +201,6 @@
 				DC0D9E6523E276AA00383CE1 /* Touch.swift */,
 				DC0D9E6923E27D7100383CE1 /* Intervals.swift */,
 				DC57111023E3FB9D00FFA866 /* Upcoming.swift */,
-				DCC428BC23F47EFC00D492DB /* Contact.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -391,7 +387,6 @@
 				DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */,
 				DC0D9E6623E276AA00383CE1 /* Touch.swift in Sources */,
 				DC6B727C23EA38E800607A9D /* Scheduler.swift in Sources */,
-				DCC428BD23F47EFC00D492DB /* Contact.swift in Sources */,
 				DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */,
 				DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */,
 				DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */,
@@ -408,7 +403,6 @@
 			files = (
 				DC139D4223ECA0630065B138 /* NotificationsTests.swift in Sources */,
 				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
-				DCC428BE23F47EFC00D492DB /* Contact.swift in Sources */,
 				DC139D4023ECA0430065B138 /* Notifications.swift in Sources */,
 				DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */,
 				DC153CCB23EBE257004533AD /* Intervals.swift in Sources */,
@@ -576,6 +570,7 @@
 				DEVELOPMENT_TEAM = CUCB33MFQZ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = catchup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -596,6 +591,7 @@
 				DEVELOPMENT_TEAM = CUCB33MFQZ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = catchup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
