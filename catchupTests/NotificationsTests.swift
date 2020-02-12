@@ -29,7 +29,7 @@ class NotificationsTests: XCTestCase {
     func testScheduleNotification() {
         let expectation = XCTestExpectation(description: "schedule catchup notification")
         
-        var catchup = Catchup.generateRandom(name: "Testerson")
+        var catchup = Catchup.generateRandom(name: "Testy Testerson")
         let nextTouch = Date().addingTimeInterval(Intervals.day.value())
         catchup.nextTouch = nextTouch
         Notifications.shared.schedule(catchup: catchup)

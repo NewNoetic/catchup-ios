@@ -87,9 +87,12 @@ struct Scheduler {
     }
     
     func nextOpenSlot(startDate: Date, alreadySheduled: [DateInterval], weekdayAvailability: [Slot], weekendAvailability: [Slot], slotDuration: TimeInterval) throws -> DateInterval {
-        var trackingDate = Date(timeInterval: 1, since: startDate) // need to add one second to make it not overlap with end of previous slot when comparing by "minute"
+        var trackingDate = Date(timeInterval: 0, since: startDate)
         while true {
-            let isConflictingSlot = alreadySheduled.filter { $0.intersects(DateInterval(start: trackingDate, duration: slotDuration - 1)) }.count > 0
+            let isConflictingSlot = alreadySheduled.filter { scheduled in
+                guard let intersection = scheduled.intersection(with: DateInterval(start: trackingDate, duration: slotDuration)) else { return false }
+                return intersection.duration > 1
+            }.count > 0
             guard isConflictingSlot == false else { trackingDate.addTimeInterval(slotDuration); continue }
             guard let startOfTheDay = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: trackingDate) else { throw SchedulerError.noTomorrow }
             let dailyAvailability = calendar.isDateInWeekend(trackingDate) ? weekendAvailability : weekdayAvailability
@@ -98,7 +101,8 @@ struct Scheduler {
             for availableSlot in dailyAvailability {
                 let availableInterval = DateInterval(start: Date(timeInterval: availableSlot.start, since: startOfTheDay), end: Date(timeInterval: availableSlot.end, since: startOfTheDay))
                 let openSlotCandidate = DateInterval(start: trackingDate, duration: slotDuration)
-                if (availableInterval.intersects(openSlotCandidate)) {
+                guard let intersection = availableInterval.intersection(with: openSlotCandidate) else { continue }
+                if (intersection.duration >= slotDuration) {
                     nextOpenSlot = openSlotCandidate
                 }
             }
