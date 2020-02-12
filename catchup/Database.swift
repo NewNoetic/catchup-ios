@@ -45,6 +45,18 @@ struct Database {
         })
     }
     
+    func catchup(notification: String) -> Catchup? {
+        do {
+            return try db.prepare(catchups.where(nextNotification == notification)).compactMap({ row -> Catchup? in
+                guard let c = try? contactStore.unifiedContact(withIdentifier: row[contact], keysToFetch: contactKeys)
+                    else { return nil }
+                return Catchup(contact: c, interval: row[interval], method: ContactMethod(rawValue: row[method]) ?? ContactMethod.call, nextTouch: row[nextTouch], nextNotification: row[nextNotification])
+            }).first
+        } catch {
+            return nil
+        }
+    }
+    
     func upsert(catchup: Catchup) throws {
         var setters = [
             contact <- catchup.contact.identifier, interval <- catchup.interval, method <- catchup.method.rawValue

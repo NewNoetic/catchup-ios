@@ -15,6 +15,12 @@ struct Catchup: Identifiable {
         return contact.identifier
     }
     
+    /// Get the most relevant phone number from the contact
+    /// TODO: Try to pick mobile number?
+    var phoneNumber: String? {
+        return contact.phoneNumbers.first?.value.stringValue
+    }
+    
     var contact: CNContact
     var interval: TimeInterval
     var method: ContactMethod

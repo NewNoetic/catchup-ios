@@ -18,6 +18,14 @@ struct SettingsView: View {
                     Button("Clear all scheduled notifications") {
                         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                     }
+                    Button("Create test local notification (5s)") {
+                        let content = UNMutableNotificationContent()
+                        content.title = "Test notification"
+                        content.body = "This is a test notification!"
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                        let request = UNNotificationRequest(identifier: "test-\(UUID().uuidString)", content: content, trigger: trigger)
+                        UNUserNotificationCenter.current().add(request)
+                    }
                 }
             }
             .navigationBarTitle("Settings")
