@@ -38,7 +38,7 @@ struct Database {
     }
     
     func allCatchups() throws -> [Catchup] {
-        return try db.prepare(catchups).compactMap({ (row: Row) -> Catchup? in
+        return try db.prepare(catchups.order(nextTouch.asc)).compactMap({ (row: Row) -> Catchup? in
             guard let c = try? contactStore.unifiedContact(withIdentifier: row[contact], keysToFetch: contactKeys)
                 else { return nil }
             return Catchup(contact: c, interval: row[interval], method: ContactMethod(rawValue: row[method]) ?? ContactMethod.call, nextTouch: row[nextTouch], nextNotification: row[nextNotification])
