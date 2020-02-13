@@ -17,4 +17,17 @@ final class Upcoming: ObservableObject {
             else { return }
         self.catchups = c
     }
+    
+    func remove(at offsets: IndexSet) {
+        for (index, element) in self.catchups.enumerated() {
+            if (offsets.contains(index)) {
+                do {
+                    try Database.shared.remove(catchup: element)
+                } catch {
+                    print("could not delete catchup: \(error.localizedDescription)")
+                }
+            }
+        }
+        self.update()
+    }
 }

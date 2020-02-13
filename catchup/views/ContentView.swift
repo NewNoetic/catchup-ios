@@ -61,6 +61,7 @@ struct ContentView: View {
                             }
                             return finalText
                         }
+                        .onDelete(perform: upcoming.remove(at:))
                     }
                 }
                 Spacer()
