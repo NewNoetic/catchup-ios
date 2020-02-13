@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Combine
+import UserNotifications
 
 final class Upcoming: ObservableObject {
     @Published var catchups: [Catchup] = []
@@ -21,10 +22,16 @@ final class Upcoming: ObservableObject {
     func remove(at offsets: IndexSet) {
         for (index, element) in self.catchups.enumerated() {
             if (offsets.contains(index)) {
+                // remove it from the db
                 do {
                     try Database.shared.remove(catchup: element)
                 } catch {
                     print("could not delete catchup: \(error.localizedDescription)")
+                }
+                
+                // remove the pending notification
+                if let notificationIdentifier = element.nextNotification {
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
                 }
             }
         }
