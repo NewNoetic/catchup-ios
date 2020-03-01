@@ -39,7 +39,7 @@ struct SettingsView: View {
                 }
                 Button("Create test catchup (5s). First tap, select contact. Second tap create catchup.") {
                     if let contact = self.contact {
-                        let catchup = Catchup.generateRandom(contact: contact, interval: Intervals.week.value(), nextTouch: Date(timeIntervalSinceNow: 5), nextNotification: nil)
+                        let catchup = Catchup.generateRandom(contact: contact, interval: Intervals.week.value(), method: .text, nextTouch: Date(timeIntervalSinceNow: 5), nextNotification: nil)
                         Notifications.shared.schedule(catchup: catchup)
                             .then { scheduledCatchup in
                                 try Database.shared.upsert(catchup: scheduledCatchup)

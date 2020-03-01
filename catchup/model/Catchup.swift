@@ -39,7 +39,7 @@ struct Catchup: Identifiable {
         return generateRandom(contact: contact, interval: interval, nextTouch: nextTouch, nextNotification: nextNotification)
     }
     
-    static func generateRandom(contact: CNContact, interval: TimeInterval = Intervals.day.value(), nextTouch: Date? = nil, nextNotification: String? = nil) -> Catchup {
-        return Catchup(contact: contact, interval: interval, method: .call, nextTouch: nextTouch, nextNotification: nextNotification)
+    static func generateRandom(contact: CNContact, interval: TimeInterval = Intervals.day.value(), method: ContactMethod = .email, nextTouch: Date? = nil, nextNotification: String? = nil) -> Catchup {
+        return Catchup(contact: contact, interval: interval, method: method, nextTouch: nextTouch, nextNotification: nextNotification)
     }
 }
