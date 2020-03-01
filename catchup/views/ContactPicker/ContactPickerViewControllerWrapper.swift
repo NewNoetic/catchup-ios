@@ -9,6 +9,8 @@
 import UIKit
 import ContactsUI
 
+/// We create a wrapper for the contact picker because just presenting it via `UIViewControllerRepresentable`
+/// results in a blank screen. BUG!
 class ContactPickerViewControllerWrapper: UIViewController, CNContactPickerDelegate {
     var delegate: CNContactPickerDelegate?
     
