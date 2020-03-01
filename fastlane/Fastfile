@@ -21,8 +21,12 @@ platform :ios do
     # Ensure that your git status is not dirty
     ensure_git_status_clean
 
-    get_certificates           # invokes cert
-    get_provisioning_profile   # invokes sigh
+    get_certificates(
+        output_path: "./build"
+    )
+    get_provisioning_profile(
+        output_path: "./build"
+    )
 
     # Increment the build number (not the version number)
     # Providing the xcodeproj is optional
