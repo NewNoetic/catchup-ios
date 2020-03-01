@@ -1,0 +1,8 @@
+app_identifier("com.newnoetic.catchup") # The bundle identifier of your app
+apple_id("s@newnoetic.com") # Your Apple email address
+
+itc_team_id("2050622") # App Store Connect Team ID
+team_id("CUCB33MFQZ") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
