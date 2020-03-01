@@ -42,7 +42,10 @@ platform :ios do
     # Push the new commit and tag back to your git remote
     push_to_git_remote
   
-    build_app(scheme: "catchup")
+    build_app(
+        scheme: "catchup",
+        output_directory: "./build"
+    )
     upload_to_testflight
   end
 end
