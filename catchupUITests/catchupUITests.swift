@@ -22,10 +22,19 @@ class catchupUITests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testRecord() {
+        XCUIApplication()/*@START_MENU_TOKEN@*/.buttons["new catchup"]/*[[".buttons[\"New CatchUp\"]",".buttons[\"new catchup\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        XCUIApplication()/*@START_MENU_TOKEN@*/.buttons["new catchup"].press(forDuration: 0.7);/*[[".buttons[\"New CatchUp\"]",".tap()",".press(forDuration: 0.7);",".buttons[\"new catchup\"]"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/
 
-    func testExample() {
+                
+        
+    }
+
+    func testTakeScreenshots() {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
+        setupSnapshot(app)
         app.launch()
 
         // Use recording to get started writing UI tests.

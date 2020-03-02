@@ -67,7 +67,7 @@ struct ContentView: View {
                 Spacer()
                 Button("New CatchUp") {
                     self.showNewCatchup.toggle()
-                }
+                }.accessibility(identifier: "new catchup")
                 .sheet(isPresented: $showNewCatchup) {
                     NewCatchupView() { catchup in
                         self.showNewCatchup = false

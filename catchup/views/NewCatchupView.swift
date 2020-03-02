@@ -39,21 +39,20 @@ struct NewCatchupView: View {
                                     .tag(index)
                             }
                             
-                        }
+                        }.accessibility(identifier: "duration")
                         Picker("Method?", selection: $methodIndex) {
                             ForEach(0 ..< methodCases.count ) { index in
                                 Text(self.methodCases[index].rawValue)
                                     .tag(index)
                             }
-                            
-                        }
+                        }.accessibility(identifier: "method")
                     }
                 }
                 VStack(alignment: .trailing, spacing: 20) {
                     Button("Create Catchup") {
                         guard let contact = self.contact else { return }
                         self.done(Catchup(contact: contact, interval: self.durationCases[self.durationIndex].value(), method: self.methodCases[self.methodIndex]))
-                    }
+                    }.accessibility(identifier: "create")
                 }
             }
             .sheet(isPresented: $showingContactPicker) {
