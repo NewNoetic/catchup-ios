@@ -48,4 +48,38 @@ platform :ios do
     )
     upload_to_testflight
   end
+  
+  lane :release do
+      # Ensure that your git status is not dirty
+      ensure_git_status_clean
+
+      get_certificates(
+          output_path: "./build"
+      )
+      get_provisioning_profile(
+          output_path: "./build"
+      )
+
+      # Increment the build number (not the version number)
+      # Providing the xcodeproj is optional
+      increment_build_number
+
+      # Commit the version bump
+      commit_version_bump
+
+      # Add a git tag for this build. This will automatically
+      # use an appropriate git tag name
+      add_git_tag
+
+      # Push the new commit and tag back to your git remote
+      push_to_git_remote
+    
+      build_app(
+          scheme: "catchup",
+          output_directory: "./build",
+          include_bitcode: true
+      )
+      
+      upload_to_app_store
+  end
 end

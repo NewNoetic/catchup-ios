@@ -1,3 +1,5 @@
 *.xcuserdatad
 fastlane/report.xml
 build/
+*.ipa
+*.DSYM.zip
