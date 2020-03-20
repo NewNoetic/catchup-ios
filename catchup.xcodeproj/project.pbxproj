@@ -32,6 +32,7 @@
 		DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4043C423E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift */; };
 		DC4F16B923EBA13600785223 /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4F16B823EBA13600785223 /* SchedulerTests.swift */; };
 		DC4F16BA23EBA19700785223 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B727B23EA38E800607A9D /* Scheduler.swift */; };
+		DC5542A22424502C00119BE9 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5542A12424502C00119BE9 /* Debug.swift */; };
 		DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */; };
 		DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111023E3FB9D00FFA866 /* Upcoming.swift */; };
 		DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111623E40AAF00FFA866 /* NewCatchupView.swift */; };
@@ -97,6 +98,7 @@
 		DC4043C423E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewControllerWrapper.swift; sourceTree = "<group>"; };
 		DC4F16B723EBA13500785223 /* catchupTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "catchupTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC4F16B823EBA13600785223 /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SchedulerTests.swift; path = catchupTests/SchedulerTests.swift; sourceTree = SOURCE_ROOT; };
+		DC5542A12424502C00119BE9 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
 		DC57111023E3FB9D00FFA866 /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
 		DC57111623E40AAF00FFA866 /* NewCatchupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatchupView.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */,
 				DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */,
 				DC22532823E5EAAA00A20AF8 /* CombineCompatible.swift */,
+				DC5542A12424502C00119BE9 /* Debug.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */,
 				DC2015F123E8BC410019BCD6 /* CNContactDisplayExtension.swift in Sources */,
 				DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */,
+				DC5542A22424502C00119BE9 /* Debug.swift in Sources */,
 				DC22532923E5EAAA00A20AF8 /* CombineCompatible.swift in Sources */,
 				DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */,
 				DC8DE663240BA0A6009363A6 /* MailComposeView.swift in Sources */,

@@ -97,10 +97,9 @@ struct ContentView: View {
                 }) {
                     Image(systemName: "arrow.clockwise").imageScale(.large)
                 },
-                trailing:
-                NavigationLink(destination: SettingsView()) {
+                trailing: isDebug() ? NavigationLink(destination: SettingsView()) {
                     Image(systemName: "gear").imageScale(.large)
-                }
+                } : nil
             )
         }
         .onAppear {
