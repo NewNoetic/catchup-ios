@@ -647,7 +647,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.newnoetic.catchup;
 				PRODUCT_NAME = CatchUp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -673,7 +673,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.newnoetic.catchup;
 				PRODUCT_NAME = CatchUp;
 				PROVISIONING_PROFILE_SPECIFIER = "com.newnoetic.catchup AppStore";
