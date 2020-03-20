@@ -103,6 +103,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
                 UIApplication.shared.open(whatsappUrl, options: [:], completionHandler: nil)
                 break
+            case .facetime:
+                guard let number = catchup.phoneNumber else {
+                    print("trying to facetime, but phone number doesn't exist")
+                    return
+                }
+                guard let facetimeUrl = URL(string: "facetime://\(number)") else {
+                    print("could not create facetime url from phone number")
+                    return
+                }
+                UIApplication.shared.open(facetimeUrl, options: [:], completionHandler: nil)
+                break
             }
         }
     }
