@@ -32,14 +32,14 @@ struct Catchup: Identifiable {
     var nextTouch: Date?
     var nextNotification: String?
     
-    static func generateRandom(name: String, interval: TimeInterval = Intervals.day.value(), nextTouch: Date? = nil, nextNotification: String? = nil) -> Catchup {
+    static func generateRandom(name: String, interval: TimeInterval = Intervals.day.value, nextTouch: Date? = nil, nextNotification: String? = nil) -> Catchup {
         let contact = CNMutableContact()
         contact.givenName = name.components(separatedBy: " ")[0]
         contact.familyName = name.components(separatedBy: " ")[1]
         return generateRandom(contact: contact, interval: interval, nextTouch: nextTouch, nextNotification: nextNotification)
     }
     
-    static func generateRandom(contact: CNContact, interval: TimeInterval = Intervals.day.value(), method: ContactMethod = .email, nextTouch: Date? = nil, nextNotification: String? = nil) -> Catchup {
+    static func generateRandom(contact: CNContact, interval: TimeInterval = Intervals.day.value, method: ContactMethod = .email, nextTouch: Date? = nil, nextNotification: String? = nil) -> Catchup {
         return Catchup(contact: contact, interval: interval, method: method, nextTouch: nextTouch, nextNotification: nextNotification)
     }
 }

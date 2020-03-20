@@ -50,7 +50,7 @@ struct ContentView: View {
                 List {
                     Section(header: Text("upcoming")) {
                         ForEach(upcoming.catchups) { up -> Text in
-                            var finalText = Text("\(up.method.rawValue.capitalized) \(up.contact.displayName)")
+                            var finalText = Text("\(up.method.display.capitalized) \(up.contact.displayName)") // .capitalized produces wrong string for WhatsApp because it sets everything except first character to lowercase (https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized)
                                 .fontWeight(.bold)
                             if let nextTouch = up.nextTouch {
                                 finalText += Text(" \(Self.relativeDateFormatter().localizedString(for: nextTouch, relativeTo: Date())), \(Self.dateFormatter().string(from: nextTouch))")

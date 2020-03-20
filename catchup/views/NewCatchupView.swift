@@ -35,14 +35,14 @@ struct NewCatchupView: View {
                     Section {
                         Picker("How often?", selection: $durationIndex) {
                             ForEach(0 ..< durationCases.count ) { index in
-                                Text("every \(self.durationCases[index].display())")
+                                Text("every \(self.durationCases[index].display)")
                                     .tag(index)
                             }
                             
                         }.accessibility(identifier: "duration")
                         Picker("Method?", selection: $methodIndex) {
                             ForEach(0 ..< methodCases.count ) { index in
-                                Text(self.methodCases[index].rawValue)
+                                Text(self.methodCases[index].display)
                                     .tag(index)
                             }
                         }.accessibility(identifier: "method")
@@ -51,7 +51,7 @@ struct NewCatchupView: View {
                 VStack(alignment: .trailing, spacing: 20) {
                     Button("Create Catchup") {
                         guard let contact = self.contact else { return }
-                        self.done(Catchup(contact: contact, interval: self.durationCases[self.durationIndex].value(), method: self.methodCases[self.methodIndex]))
+                        self.done(Catchup(contact: contact, interval: self.durationCases[self.durationIndex].value, method: self.methodCases[self.methodIndex]))
                     }.accessibility(identifier: "create")
                 }
             }

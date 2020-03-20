@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     return
                 }
                 UIApplication.shared.open(url)
+                break
             case .text:
                 guard let number = catchup.phoneNumber else {
                     print("trying to text, but phone number doesn't exist")
@@ -79,6 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     return
                 }
                 SceneDelegate.appState.startView = .text(recipients: [number])
+                break
             case .email:
                 guard let email = catchup.email else {
                     print("trying to email, but email doesn't exist")
@@ -89,6 +91,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     return
                 }
                 SceneDelegate.appState.startView = .email(recipients: [email])
+                break
+            case .whatsapp:
+                guard let number = catchup.phoneNumber else {
+                    print("trying to whatsapp, but phone number doesn't exist")
+                    return
+                }
+                guard let whatsappUrl = URL(string: "https://wa.me/\(number)") else {
+                    print("could not create whatsapp url from phone number")
+                    return
+                }
+                UIApplication.shared.open(whatsappUrl, options: [:], completionHandler: nil)
+                break
             }
         }
     }

@@ -14,7 +14,7 @@ enum Intervals: String, CaseIterable, Identifiable {
     case biweek
     case month
     
-    func display() -> String {
+    var display: String {
         switch self {
         case .day:
             return "day"
@@ -27,7 +27,7 @@ enum Intervals: String, CaseIterable, Identifiable {
         }
     }
     
-    func value() -> TimeInterval {
+    var value: TimeInterval {
         switch self {
         case .day:
             return 86400
@@ -41,6 +41,6 @@ enum Intervals: String, CaseIterable, Identifiable {
     }
     
     var id: Double {
-        self.value()
+        self.value
     }
 }

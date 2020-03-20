@@ -12,8 +12,8 @@ import ContactsUI
 struct SettingsView: View {
     @State private var showAlert: Bool = false
     @State private var alertMessage = ""
-    @State private var showContactPicker: Bool = false
-    @State private var contact: CNContact? = nil
+    @State private var showNewCatchupView: Bool = false
+    @State private var catchup: Catchup? = nil
     
     var body: some View {
         List {
@@ -38,8 +38,9 @@ struct SettingsView: View {
                     UNUserNotificationCenter.current().add(request)
                 }
                 Button("Create test catchup (5s). First tap, select contact. Second tap create catchup.") {
-                    if let contact = self.contact {
-                        let catchup = Catchup.generateRandom(contact: contact, interval: Intervals.week.value(), method: .text, nextTouch: Date(timeIntervalSinceNow: 5), nextNotification: nil)
+                    if var catchup = self.catchup {
+                        catchup.nextTouch = Date(timeIntervalSinceNow: 5)
+                        catchup.nextNotification = nil
                         Notifications.shared.schedule(catchup: catchup)
                             .then { scheduledCatchup in
                                 try Database.shared.upsert(catchup: scheduledCatchup)
@@ -49,13 +50,13 @@ struct SettingsView: View {
                             self.showAlert = true
                         }
                     } else {
-                        self.showContactPicker = true
+                        self.showNewCatchupView = true
                     }
                 }
-                .sheet(isPresented: $showContactPicker) {
-                    ContactPickerViewController() { contact in
-                        self.showContactPicker = false
-                        self.contact = contact
+                .sheet(isPresented: $showNewCatchupView) {
+                    NewCatchupView() { catchup in
+                        self.catchup = catchup
+                        self.showNewCatchupView = false
                     }
                 }
             }

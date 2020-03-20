@@ -22,7 +22,7 @@ struct Notifications {
                 }
                 let notification = UNMutableNotificationContent()
                 notification.title = "Catch up with \(catchup.contact.displayName)"
-                notification.body = "Tap to \(catchup.method.rawValue)"
+                notification.body = "Tap to \(catchup.method.display)"
                 let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.day, .hour, .minute, .second], from: date), repeats: false)
                 let uuid = UUID().uuidString
                 let request = UNNotificationRequest(identifier: uuid, content: notification, trigger: trigger)
