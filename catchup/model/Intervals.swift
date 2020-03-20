@@ -11,7 +11,21 @@ import Foundation
 enum Intervals: String, CaseIterable, Identifiable {
     case day
     case week
+    case biweek
     case month
+    
+    func display() -> String {
+        switch self {
+        case .day:
+            return "day"
+        case .week:
+            return "week"
+        case .biweek:
+            return "2 weeks"
+        case .month:
+            return "month"
+        }
+    }
     
     func value() -> TimeInterval {
         switch self {
@@ -19,6 +33,8 @@ enum Intervals: String, CaseIterable, Identifiable {
             return 86400
         case .week:
             return 604800
+        case .biweek:
+            return 1209600
         case .month:
             return 2419200
         }

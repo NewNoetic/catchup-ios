@@ -16,7 +16,7 @@ struct NewCatchupView: View {
     var durationCases: [Intervals] = Intervals.allCases
     var methodCases: [ContactMethod] = ContactMethod.allCases
     @State private var contact: CNContact?
-    @State private var durationIndex: Int = 1
+    @State private var durationIndex: Int = 2
     @State private var methodIndex: Int = 0
     @State private var showingContactPicker = true // open contact picker immediately
     @State private var showingDurationPicker = false
@@ -35,7 +35,7 @@ struct NewCatchupView: View {
                     Section {
                         Picker("How often?", selection: $durationIndex) {
                             ForEach(0 ..< durationCases.count ) { index in
-                                Text("every \(self.durationCases[index].rawValue)")
+                                Text("every \(self.durationCases[index].display())")
                                     .tag(index)
                             }
                             
