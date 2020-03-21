@@ -32,11 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print(#function)
         
-        defer {
-            UIApplication.shared.applicationIconBadgeNumber = 0
-            completionHandler()
-        }
-        
         let identifier = response.notification.request.identifier
         guard let catchup = Database.shared.catchup(notification: identifier) else {
             print("could not find saved catchup with that identifier")
@@ -52,12 +47,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             .catch { error in
                 print("could not reschedule some or all catchups")
             }
+            .always {
+                UIApplication.shared.applicationIconBadgeNumber = 0
+                completionHandler()
+            }
         }
         
         if response.actionIdentifier == UNNotificationDismissActionIdentifier {
             // TODO: Snooze?
-        }
-        else if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+        } else if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
             switch catchup.method {
             case .call:
                 guard let number = catchup.phoneNumber else {
