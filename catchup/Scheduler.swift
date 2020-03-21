@@ -54,7 +54,11 @@ struct Scheduler {
         
         let scheduledCatchups = catchupsToSchedule.map { catchup -> Promise<Catchup> in
             
-            let startDate = today.addingTimeInterval(catchup.interval)
+            var startDate = today.addingTimeInterval(catchup.interval)
+            let fuzziness = catchup.interval / 4.0 // fuzzy setting for interval
+            let range = -fuzziness..<fuzziness
+            startDate.addTimeInterval(Double.random(in: range))
+            
             guard let startOfStartDate = self.calendar.date(bySettingHour: 0, minute: 0, second: 0, of: startDate) else {
                 return Promise(SchedulerError.noTomorrow)
             }

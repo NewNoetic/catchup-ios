@@ -11,7 +11,13 @@ import Combine
 import UserNotifications
 
 final class Upcoming: ObservableObject {
+    enum Display {
+        case standard
+        case debug
+    }
+    
     @Published var catchups: [Catchup] = []
+    @Published var display: Display = .standard
     
     func update() {
         guard let c = try? Database.shared.allCatchups()

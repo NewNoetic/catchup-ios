@@ -10,6 +10,7 @@ import SwiftUI
 import ContactsUI
 
 struct SettingsView: View {
+    @EnvironmentObject var upcoming: Upcoming
     @State private var showAlert: Bool = false
     @State private var alertMessage = ""
     @State private var showNewCatchupView: Bool = false
@@ -25,6 +26,7 @@ struct SettingsView: View {
                         self.alertMessage = error.localizedDescription
                         self.showAlert = true
                     }
+                    self.upcoming.update()
                 }
                 Button("Clear all scheduled notifications") {
                     UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -57,6 +59,13 @@ struct SettingsView: View {
                     NewCatchupView() { catchup in
                         self.catchup = catchup
                         self.showNewCatchupView = false
+                    }
+                }
+                Button("Show debug list") {
+                    if (self.upcoming.display == .debug) {
+                        self.upcoming.display = .standard
+                    } else {
+                        self.upcoming.display = .debug
                     }
                 }
             }

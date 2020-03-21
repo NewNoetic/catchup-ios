@@ -21,9 +21,16 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showNewCatchup = false
     
-    static var dateFormatter = { () -> DateFormatter in
+    static var timeFormatter = { () -> DateFormatter in
         let formatter = DateFormatter()
         formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }
+    
+    static var dateFormatter = { () -> DateFormatter in
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
         formatter.timeStyle = .short
         return formatter
     }
@@ -50,16 +57,21 @@ struct ContentView: View {
                 List {
                     Section(header: Text("upcoming")) {
                         ForEach(upcoming.catchups) { up -> Text in
-                            var finalText = Text("\(up.method.display.capitalized) \(up.contact.displayName)") // .capitalized produces wrong string for WhatsApp because it sets everything except first character to lowercase (https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized)
-                                .fontWeight(.bold)
-                            if let nextTouch = up.nextTouch {
-                                finalText += Text(" \(Self.relativeDateFormatter().localizedString(for: nextTouch, relativeTo: Date())), \(Self.dateFormatter().string(from: nextTouch))")
-                                    .fontWeight(.regular)
+                            switch self.upcoming.display {
+                            case .standard:
+                                var finalText = Text("\(up.method.display.capitalized) \(up.contact.displayName)") // .capitalized produces wrong string for WhatsApp because it sets everything except first character to lowercase (https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized)
+                                    .fontWeight(.bold)
+                                if let nextTouch = up.nextTouch {
+                                    finalText += Text(" \(Self.relativeDateFormatter().localizedString(for: nextTouch, relativeTo: Date())), \(Self.timeFormatter().string(from: nextTouch))")
+                                        .fontWeight(.regular)
+                                }
+                                if let interval = Self.dateComponentsFormatter().string(from: up.interval) {
+                                    finalText += Text("\nEvery \(interval)").foregroundColor(.gray)
+                                }
+                                return finalText
+                            case .debug:
+                                return Text("name: \(up.contact.displayName)\ninterval: \(up.interval)\nmethod: \(up.method.rawValue)\nnextTouch: \(Self.dateFormatter().string(from: up.nextTouch!))\nnextNotification: \(up.nextNotification?.description ?? "x")")
                             }
-                            if let interval = Self.dateComponentsFormatter().string(from: up.interval) {
-                                finalText += Text("\nEvery \(interval)").foregroundColor(.gray)
-                            }
-                            return finalText
                         }
                         .onDelete(perform: upcoming.remove(at:))
                     }
@@ -97,7 +109,7 @@ struct ContentView: View {
                 }) {
                     Image(systemName: "arrow.clockwise").imageScale(.large)
                 },
-                trailing: isDebug() ? NavigationLink(destination: SettingsView()) {
+                trailing: isDebug() ? NavigationLink(destination: SettingsView().environmentObject(self.upcoming)) {
                     Image(systemName: "gear").imageScale(.large)
                 } : nil
             )
