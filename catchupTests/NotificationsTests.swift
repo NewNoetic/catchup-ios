@@ -30,7 +30,7 @@ class NotificationsTests: XCTestCase {
         let expectation = XCTestExpectation(description: "schedule catchup notification")
         
         var catchup = Catchup.generateRandom(name: "Testy Testerson")
-        let nextTouch = Date().addingTimeInterval(Intervals.day.value())
+        let nextTouch = Date().addingTimeInterval(Intervals.day.value)
         catchup.nextTouch = nextTouch
         Notifications.shared.schedule(catchup: catchup)
             .then { scheduled in

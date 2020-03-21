@@ -77,42 +77,54 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-                Button("New CatchUp") {
-                    self.showNewCatchup.toggle()
-                }.accessibility(identifier: "new catchup")
-                .sheet(isPresented: $showNewCatchup) {
-                    NewCatchupView() { catchup in
-                        self.showNewCatchup = false
-                        guard let catchup = catchup else { return }
-                        Scheduler.shared.schedule([catchup])
-                            .then { scheduledOrError in
-                                try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
-                                scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
-                                
-                                self.upcoming.update()
-                        }
-                        .catch { error in
-                            self.errorMessage = error.localizedDescription
-                            self.errorAlert = true
-                        }
+                HStack {
+                    Button(action: {
+                        self.upcoming.update()
+                    }) {
+                        Image(systemName: "arrow.clockwise").imageScale(.large)
+                            .padding([Edge.Set.trailing], 40)
                     }
-                }
-                .alert(isPresented: $errorAlert) {
-                    Alert(title: Text(self.errorMessage))
+                    Button(action: {
+                        self.showNewCatchup.toggle()
+                    }) {
+                        Text("New CatchUp")
+                            .padding([Edge.Set.leading, Edge.Set.trailing], 30)
+                            .padding([Edge.Set.top, Edge.Set.bottom])
+                        .background(Color.accentColor)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(12)
+                    }
+                    .accessibility(identifier: "new catchup")
+                    isDebug()
+                        ? NavigationLink(destination: SettingsView().environmentObject(self.upcoming)) {
+                            Image(systemName: "gear").imageScale(.large)
+                            .padding([Edge.Set.leading], 40)
+                        }
+                        : nil
                 }
                 Spacer()
             }
+            .sheet(isPresented: $showNewCatchup) {
+                NewCatchupView() { catchup in
+                    self.showNewCatchup = false
+                    guard let catchup = catchup else { return }
+                    Scheduler.shared.schedule([catchup])
+                        .then { scheduledOrError in
+                            try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
+                            scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
+                            
+                            self.upcoming.update()
+                    }
+                    .catch { error in
+                        self.errorMessage = error.localizedDescription
+                        self.errorAlert = true
+                    }
+                }
+            }
+            .alert(isPresented: $errorAlert) {
+                Alert(title: Text(self.errorMessage))
+            }
             .navigationBarTitle("CatchUp")
-            .navigationBarItems(
-                leading: Button(action: {
-                    self.upcoming.update()
-                }) {
-                    Image(systemName: "arrow.clockwise").imageScale(.large)
-                },
-                trailing: isDebug() ? NavigationLink(destination: SettingsView().environmentObject(self.upcoming)) {
-                    Image(systemName: "gear").imageScale(.large)
-                } : nil
-            )
         }
         .onAppear {
             self.upcoming.update()

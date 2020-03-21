@@ -11,18 +11,22 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var state: AppState
+    var accentColor = Color.orange
     
     var body: some View {
         switch self.state.startView {
         case .catchups:
             print("view catchups")
             return AnyView(ContentView().environmentObject(Upcoming()))
+            .accentColor(accentColor)
         case let .text(recipients):
             print("view text")
             return AnyView(MessageComposeView(recipients: recipients))
+            .accentColor(accentColor)
         case let .email(recipients):
             print("view email")
             return AnyView(MailComposeView(recipients: recipients))
+            .accentColor(accentColor)
         }
     }
 }
