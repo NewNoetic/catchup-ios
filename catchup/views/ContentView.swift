@@ -95,12 +95,10 @@ struct ContentView: View {
                         .cornerRadius(12)
                     }
                     .accessibility(identifier: "new catchup")
-                    isDebug()
-                        ? NavigationLink(destination: SettingsView().environmentObject(self.upcoming)) {
-                            Image(systemName: "gear").imageScale(.large)
-                            .padding([Edge.Set.leading], 40)
-                        }
-                        : nil
+                    NavigationLink(destination: SettingsView().environmentObject(self.upcoming)) {
+                        Image(systemName: "gear").imageScale(.large)
+                        .padding([Edge.Set.leading], 40)
+                    }
                 }
                 Spacer()
             }
