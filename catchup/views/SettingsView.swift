@@ -16,19 +16,36 @@ struct SettingsView: View {
     @State private var showNewCatchupView: Bool = false
     @State private var catchup: Catchup? = nil
     
-    @State private var weekdayTimeslotStart = 0.0
-    @State private var weekdayTimeslotEnd = 1.0
-    
+    @State private var weekdayTimeslotStartIndex = 0
+    @State private var weekdayTimeslotEndIndex = 3
+    var weekdayTimeslotOptions = [0, 3600, 7200, 10800]
+    @State private var timeslotDurationIndex = 1
+    var timeslotDurationOptions = [900, 1800, 2700, 3600]
     
     var body: some View {
         GeometryReader { geometry in
-            List {
-                Section() {
-                    VStack(alignment: .leading) {
-                        Text("Weekday time slots")
-                        DoubleSlider(minimumState: self.$weekdayTimeslotStart, maximumState: self.$weekdayTimeslotEnd, width: Double(geometry.size.width))
+            Form {
+                Section(header: Text("Timeslot duration")) {
+                    Picker("Duration", selection: self.$timeslotDurationIndex) {
+                        ForEach(0 ..< self.timeslotDurationOptions.count) { index in
+                            Text("\(self.timeslotDurationOptions[index] / 60) minutes")
+                                .tag(index)
+                        }
                     }
-//                    .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+                }
+                Section(header: Text("Weekday time slots")) {
+                    Picker("Start", selection: self.$weekdayTimeslotStartIndex) {
+                        ForEach(0 ..< self.weekdayTimeslotOptions.count) { index in
+                            Text("\(self.weekdayTimeslotOptions[index])")
+                                .tag(index)
+                        }
+                    }
+                    Picker("End", selection: self.$weekdayTimeslotEndIndex) {
+                        ForEach(0 ..< self.weekdayTimeslotOptions.count) { index in
+                            Text("\(self.weekdayTimeslotOptions[index])")
+                                .tag(index)
+                        }
+                    }
                 }
                 #if DEBUG
                 Section(header: Text("Development")) {
@@ -101,6 +118,8 @@ struct SettingsView: View {
 }
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        NavigationView {
+            SettingsView()
+        }
     }
 }
