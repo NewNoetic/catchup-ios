@@ -52,6 +52,7 @@
 		DCBD38C7240D03A60027628A /* Snapfile in Resources */ = {isa = PBXBuildFile; fileRef = DCBD38C1240D03A50027628A /* Snapfile */; };
 		DCBD38C8240D03BB0027628A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBD38BD240D03A50027628A /* SnapshotHelper.swift */; };
 		DCBD38C9240D04F20027628A /* catchupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E4E23E270F300383CE1 /* catchupUITests.swift */; };
+		DCDE2DE4243176E00036CEED /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE2DE3243176E00036CEED /* Slot.swift */; };
 		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
 		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
 		DCFF5E9F23F22654008F48CA /* Promises in Frameworks */ = {isa = PBXBuildFile; productRef = DCFF5E9E23F22654008F48CA /* Promises */; };
@@ -120,6 +121,7 @@
 		DCBD38BF240D03A50027628A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCBD38C0240D03A50027628A /* report.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
 		DCBD38C1240D03A50027628A /* Snapfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Snapfile; sourceTree = "<group>"; };
+		DCDE2DE3243176E00036CEED /* Slot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		DCF04BA023E3A86A00D433AB /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -229,6 +231,7 @@
 				DC0D9E6523E276AA00383CE1 /* Touch.swift */,
 				DC0D9E6923E27D7100383CE1 /* Intervals.swift */,
 				DC57111023E3FB9D00FFA866 /* Upcoming.swift */,
+				DCDE2DE3243176E00036CEED /* Slot.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */,
 				DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */,
 				DC975B2A240B647D000E6D25 /* MainView.swift in Sources */,
+				DCDE2DE4243176E00036CEED /* Slot.swift in Sources */,
 				DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */,
 				DCF04BA123E3A86A00D433AB /* Database.swift in Sources */,
 				DC4BF3432427E48D00595CD8 /* DoubleSlider.swift in Sources */,

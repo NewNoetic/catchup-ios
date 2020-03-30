@@ -31,9 +31,7 @@ struct SettingsView: View {
 //            UserDefaults.standard.setValue(settingsWeekdayTimeslotStartIndex, forKey: "settings.weekdayTimelslotStartIndex")
 //        }
 //    }
-    
-    var timeslotOptions: [TimeInterval] = [3600, 3600*2, 3600*3, 3600*4, 3600*5, 3600*6, 3600*7, 3600*8, 3600*9, 3600*10, 3600*11, 3600*12, 3600*13, 3600*14, 3600*15, 3600*16, 3600*17, 3600*18, 3600*19, 3600*20, 3600*21, 3600*22, 3600*23]
-    
+        
     func timeslotToHour(timeslot: TimeInterval) -> String {
         guard var today = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) else {
             return "\(timeslot)"
@@ -56,25 +54,25 @@ struct SettingsView: View {
                 }
                 Section(header: Text("Weekday time slots")) {
                     Picker("Start", selection: self.$settings.weekdayTimeslotStartIndex) {
-                        ForEach(0 ..< self.timeslotOptions.count) { index in
-                            Text("\(self.timeslotToHour(timeslot: self.timeslotOptions[index]))")
+                        ForEach(0 ..< self.settings.timeslotOptions.count) { index in
+                            Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
                         }
                     }
                     Picker("End", selection: self.$settings.weekdayTimeslotEndIndex) {
-                        ForEach(0 ..< self.timeslotOptions.count) { index in
-                            Text("\(self.timeslotToHour(timeslot: self.timeslotOptions[index]))")
+                        ForEach(0 ..< self.settings.timeslotOptions.count) { index in
+                            Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
                         }
                     }
                 }
                 Section(header: Text("Weekend time slots")) {
                     Picker("Start", selection: self.$settings.weekendTimeslotStartIndex) {
-                        ForEach(0 ..< self.timeslotOptions.count) { index in
-                            Text("\(self.timeslotToHour(timeslot: self.timeslotOptions[index]))")
+                        ForEach(0 ..< self.settings.timeslotOptions.count) { index in
+                            Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
                         }
                     }
                     Picker("End", selection: self.$settings.weekendTimeslotEndIndex) {
-                        ForEach(0 ..< self.timeslotOptions.count) { index in
-                            Text("\(self.timeslotToHour(timeslot: self.timeslotOptions[index]))")
+                        ForEach(0 ..< self.settings.timeslotOptions.count) { index in
+                            Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
                         }
                     }
                 }
