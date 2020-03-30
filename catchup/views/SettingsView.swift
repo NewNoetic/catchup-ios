@@ -79,7 +79,7 @@ struct SettingsView: View {
                     }
                 }
                 Section(footer: Text("Re-schedule to use new duration and time slot settings.")) {
-                    Button("Re-schedule catchups") {
+                    Button("Re-schedule Ketchups") {
                         let allCatchups = (try? Database.shared.allCatchups()) ?? []
                         Scheduler.shared.reschedule(allCatchups)
                         .then { scheduledOrError in
@@ -88,14 +88,14 @@ struct SettingsView: View {
                         }
                         .catch { error in
                             print("could not reschedule some or all catchups")
-                            self.alertMessage = "Could not reschedule some or all catchups"
+                            self.alertMessage = "Could not reschedule some or all Ketchups"
                             self.showAlert = true
                         }
                     }
                 }
                 #if DEBUG
                 Section(header: Text("Development")) {
-                    Button("Clear all catchups") {
+                    Button("Clear all Ketchups") {
                         do {
                             try Database.shared.deleteAll()
                         } catch {
@@ -115,7 +115,7 @@ struct SettingsView: View {
                         let request = UNNotificationRequest(identifier: "test-\(UUID().uuidString)", content: content, trigger: trigger)
                         UNUserNotificationCenter.current().add(request)
                     }
-                    Button("Create test catchup (5s). First tap, select contact. Second tap create catchup.") {
+                    Button("Create test Ketchup (5s). First tap, select contact. Second tap create Ketchup.") {
                         if var catchup = self.catchup {
                             catchup.nextTouch = Date(timeIntervalSinceNow: 5)
                             catchup.nextNotification = nil

@@ -76,7 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DC0D9E2923E270EC00383CE1 /* CatchUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0D9E2923E270EC00383CE1 /* 🥫 Ketchup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "🥫 Ketchup.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC0D9E3023E270EC00383CE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC0D9E3223E270F300383CE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		DC0D9E2A23E270EC00383CE1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DC0D9E2923E270EC00383CE1 /* CatchUp.app */,
+				DC0D9E2923E270EC00383CE1 /* 🥫 Ketchup.app */,
 				DC0D9E3F23E270F300383CE1 /* catchupTests.xctest */,
 				DC0D9E4A23E270F300383CE1 /* catchupUITests.xctest */,
 			);
@@ -320,7 +320,7 @@
 				DCFF5E9E23F22654008F48CA /* Promises */,
 			);
 			productName = catchup;
-			productReference = DC0D9E2923E270EC00383CE1 /* CatchUp.app */;
+			productReference = DC0D9E2923E270EC00383CE1 /* 🥫 Ketchup.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DC0D9E3E23E270F300383CE1 /* catchupTests */ = {
@@ -661,7 +661,7 @@
 				);
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.newnoetic.catchup;
-				PRODUCT_NAME = CatchUp;
+				PRODUCT_NAME = "🥫 Ketchup";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -687,7 +687,7 @@
 				);
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.newnoetic.catchup;
-				PRODUCT_NAME = CatchUp;
+				PRODUCT_NAME = "🥫 Ketchup";
 				PROVISIONING_PROFILE_SPECIFIER = "com.newnoetic.catchup AppStore";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
