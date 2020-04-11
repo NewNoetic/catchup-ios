@@ -49,7 +49,7 @@ struct NewCatchupView: View {
                     }
                 }
                 VStack(alignment: .trailing, spacing: 20) {
-                    Button("Create Catchup") {
+                    Button("Create Ketchup") {
                         guard let contact = self.contact else { return }
                         self.done(Catchup(contact: contact, interval: self.durationCases[self.durationIndex].value, method: self.methodCases[self.methodIndex]))
                     }.accessibility(identifier: "create")

@@ -8,8 +8,11 @@
 
 import Foundation
 import Promises
+import SwiftUI
 
 struct Scheduler {
+    
+    @ObservedObject var settings = Settings()
     static let shared = Scheduler()
     
     enum SchedulerError: Error {
@@ -19,21 +22,12 @@ struct Scheduler {
         case noNextSlot(_ catchup: Catchup)
     }
     
-    /// Represents a time slot in a day
-    struct Slot {
-        /// Seconds since start of day
-        var start: TimeInterval
-        
-        /// Seconds since start of day
-        var end: TimeInterval
-    }
-    
     let calendar = Calendar(identifier: .gregorian)
     
     func schedule(_ catchups: [Catchup]) -> Promise<[Maybe<Catchup>]> {
-        let weekdaySlots = [Slot(start: 64800, end: 68400)/* 6pm-7pm */]
-        let weekendSlots = [Slot(start: 36000, end: 79200)/*10am-10pm*/]
-        let slotDuration = TimeInterval(1800) // 30 mins
+        let weekdaySlots = settings.weekdayTimeslots()
+        let weekendSlots = settings.weekendTimeslots()
+        let slotDuration = settings.timeslotDuration
 
         let dateSort = { (a: DateInterval, b: DateInterval) -> Bool in
             return a.start.compare(b.start) == ComparisonResult.orderedAscending

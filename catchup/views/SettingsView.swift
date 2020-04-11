@@ -9,85 +9,161 @@
 import SwiftUI
 import ContactsUI
 
+let calendar = Calendar(identifier: .gregorian)
+
 struct SettingsView: View {
+    
     @EnvironmentObject var upcoming: Upcoming
+    @ObservedObject var settings = Settings()
     @State private var showAlert: Bool = false
     @State private var alertMessage = ""
     @State private var showNewCatchupView: Bool = false
     @State private var catchup: Catchup? = nil
+
+//    @State private var settingsTimeslotDuration: TimeInterval = UserDefaults.standard.value(forKey: "settings.timeslotDuration") as? TimeInterval ?? 1800 {
+//        didSet {
+//            UserDefaults.standard.setValue(settingsTimeslotDuration, forKey: "settings.timeslotDuration")
+//        }
+//    }
+//
+//    @State private var settingsWeekdayTimeslotStartIndex: Int = UserDefaults.standard.value(forKey: "settings.weekdayTimelslotStartIndex") as? Int ?? 17 {
+//        didSet {
+//            UserDefaults.standard.setValue(settingsWeekdayTimeslotStartIndex, forKey: "settings.weekdayTimelslotStartIndex")
+//        }
+//    }
+        
+    func timeslotToHour(timeslot: TimeInterval) -> String {
+        guard var today = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) else {
+            return "\(timeslot)"
+        }
+        today.addTimeInterval(timeslot)
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .none
+        return formatter.string(from: today)
+    }
     
     var body: some View {
-        List {
-            Section(header: Text("Development")) {
-                Button("Clear all catchups") {
-                    do {
-                        try Database.shared.deleteAll()
-                    } catch {
-                        self.alertMessage = error.localizedDescription
-                        self.showAlert = true
+        GeometryReader { geometry in
+            Form {
+                Section(header: Text("Timeslot duration")) {
+                    VStack {
+                        Slider(value: self.$settings.timeslotDuration, in: 900.0...3600.0, step: 300.0)
+                        Text("\(Int(self.settings.timeslotDuration/60)) minutes")
+                    }.padding()
+                }
+                Section(header: Text("Weekday time slots")) {
+                    Picker("Start", selection: self.$settings.weekdayTimeslotStartIndex) {
+                        ForEach(0 ..< self.settings.timeslotOptions.count) { index in
+                            Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
+                        }
                     }
-                    self.upcoming.update()
+                    Picker("End", selection: self.$settings.weekdayTimeslotEndIndex) {
+                        ForEach(0 ..< self.settings.timeslotOptions.count) { index in
+                            Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
+                        }
+                    }
                 }
-                Button("Clear all scheduled notifications") {
-                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                Section(header: Text("Weekend time slots")) {
+                    Picker("Start", selection: self.$settings.weekendTimeslotStartIndex) {
+                        ForEach(0 ..< self.settings.timeslotOptions.count) { index in
+                            Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
+                        }
+                    }
+                    Picker("End", selection: self.$settings.weekendTimeslotEndIndex) {
+                        ForEach(0 ..< self.settings.timeslotOptions.count) { index in
+                            Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
+                        }
+                    }
                 }
-                Button("Create test local notification (5s)") {
-                    let content = UNMutableNotificationContent()
-                    content.title = "Test notification"
-                    content.body = "This is a test notification!"
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                    let request = UNNotificationRequest(identifier: "test-\(UUID().uuidString)", content: content, trigger: trigger)
-                    UNUserNotificationCenter.current().add(request)
-                }
-                Button("Create test catchup (5s). First tap, select contact. Second tap create catchup.") {
-                    if var catchup = self.catchup {
-                        catchup.nextTouch = Date(timeIntervalSinceNow: 5)
-                        catchup.nextNotification = nil
-                        Notifications.shared.schedule(catchup: catchup)
-                            .then { scheduledCatchup in
-                                try Database.shared.upsert(catchup: scheduledCatchup)
+                Section(footer: Text("Re-schedule to use new duration and time slot settings.")) {
+                    Button("Re-schedule Ketchups") {
+                        let allCatchups = (try? Database.shared.allCatchups()) ?? []
+                        Scheduler.shared.reschedule(allCatchups)
+                        .then { scheduledOrError in
+                                try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
+                                scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
                         }
                         .catch { error in
+                            print("could not reschedule some or all catchups")
+                            self.alertMessage = "Could not reschedule some or all Ketchups"
+                            self.showAlert = true
+                        }
+                    }
+                }
+                #if DEBUG
+                Section(header: Text("Development")) {
+                    Button("Clear all Ketchups") {
+                        do {
+                            try Database.shared.deleteAll()
+                        } catch {
                             self.alertMessage = error.localizedDescription
                             self.showAlert = true
                         }
-                    } else {
-                        self.showNewCatchupView = true
+                        self.upcoming.update()
+                    }
+                    Button("Clear all scheduled notifications") {
+                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    }
+                    Button("Create test local notification (5s)") {
+                        let content = UNMutableNotificationContent()
+                        content.title = "Test notification"
+                        content.body = "This is a test notification!"
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                        let request = UNNotificationRequest(identifier: "test-\(UUID().uuidString)", content: content, trigger: trigger)
+                        UNUserNotificationCenter.current().add(request)
+                    }
+                    Button("Create test Ketchup (5s). First tap, select contact. Second tap create Ketchup.") {
+                        if var catchup = self.catchup {
+                            catchup.nextTouch = Date(timeIntervalSinceNow: 5)
+                            catchup.nextNotification = nil
+                            Notifications.shared.schedule(catchup: catchup)
+                                .then { scheduledCatchup in
+                                    try Database.shared.upsert(catchup: scheduledCatchup)
+                            }
+                            .catch { error in
+                                self.alertMessage = error.localizedDescription
+                                self.showAlert = true
+                            }
+                        } else {
+                            self.showNewCatchupView = true
+                        }
+                    }
+                    .sheet(isPresented: self.$showNewCatchupView) {
+                        NewCatchupView() { catchup in
+                            self.catchup = catchup
+                            self.showNewCatchupView = false
+                        }
+                    }
+                    Button("Show debug list") {
+                        if (self.upcoming.display == .debug) {
+                            self.upcoming.display = .standard
+                        } else {
+                            self.upcoming.display = .debug
+                        }
+                    }
+                    Button("⚠️ Drop catchups table") {
+                        do {
+                            try Database.shared.dropCatchupsTable()
+                        } catch {
+                            self.alertMessage = error.localizedDescription
+                            self.showAlert = true
+                        }
                     }
                 }
-                .sheet(isPresented: $showNewCatchupView) {
-                    NewCatchupView() { catchup in
-                        self.catchup = catchup
-                        self.showNewCatchupView = false
-                    }
-                }
-                Button("Show debug list") {
-                    if (self.upcoming.display == .debug) {
-                        self.upcoming.display = .standard
-                    } else {
-                        self.upcoming.display = .debug
-                    }
-                }
+                #endif
             }
-            Section(header: Text("Danger ⚠️")) {
-                Button("Drop catchups table") {
-                    do {
-                        try Database.shared.dropCatchupsTable()
-                    } catch {
-                        self.alertMessage = error.localizedDescription
-                        self.showAlert = true
-                    }
-                }
+            .navigationBarTitle("Settings")
+            .alert(isPresented: self.$showAlert) { () -> Alert in
+                Alert(title: Text("Something happened"), message: Text(self.alertMessage))
             }
-        }
-        .navigationBarTitle("Settings")
-        .alert(isPresented: $showAlert) { () -> Alert in
-            Alert(title: Text("Something happened"), message: Text(self.alertMessage))
         }
     }
 }
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        NavigationView {
+            SettingsView()
+        }
     }
 }

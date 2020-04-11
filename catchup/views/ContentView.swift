@@ -87,7 +87,7 @@ struct ContentView: View {
                     Button(action: {
                         self.showNewCatchup.toggle()
                     }) {
-                        Text("New CatchUp")
+                        Text("New Ketchup")
                             .padding([Edge.Set.leading, Edge.Set.trailing], 30)
                             .padding([Edge.Set.top, Edge.Set.bottom])
                         .background(Color.accentColor)
@@ -95,12 +95,10 @@ struct ContentView: View {
                         .cornerRadius(12)
                     }
                     .accessibility(identifier: "new catchup")
-                    isDebug()
-                        ? NavigationLink(destination: SettingsView().environmentObject(self.upcoming)) {
-                            Image(systemName: "gear").imageScale(.large)
-                            .padding([Edge.Set.leading], 40)
-                        }
-                        : nil
+                    NavigationLink(destination: SettingsView().environmentObject(self.upcoming)) {
+                        Image(systemName: "gear").imageScale(.large)
+                        .padding([Edge.Set.leading], 40)
+                    }
                 }
                 Spacer()
             }
@@ -124,7 +122,7 @@ struct ContentView: View {
             .alert(isPresented: $errorAlert) {
                 Alert(title: Text(self.errorMessage))
             }
-            .navigationBarTitle("CatchUp")
+            .navigationBarTitle("🥫 Ketchup")
         }
         .onAppear {
             self.upcoming.update()

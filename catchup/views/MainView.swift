@@ -11,7 +11,7 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var state: AppState
-    var accentColor = Color.orange
+    var accentColor = Color(red: 1, green: 91.0/255.0, blue: 91.0/255.0)
     
     var body: some View {
         switch self.state.startView {
