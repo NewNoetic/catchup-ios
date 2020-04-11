@@ -13,25 +13,14 @@ let calendar = Calendar(identifier: .gregorian)
 
 struct SettingsView: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var upcoming: Upcoming
     @ObservedObject var settings = Settings()
     @State private var showAlert: Bool = false
     @State private var alertMessage = ""
     @State private var showNewCatchupView: Bool = false
     @State private var catchup: Catchup? = nil
-
-//    @State private var settingsTimeslotDuration: TimeInterval = UserDefaults.standard.value(forKey: "settings.timeslotDuration") as? TimeInterval ?? 1800 {
-//        didSet {
-//            UserDefaults.standard.setValue(settingsTimeslotDuration, forKey: "settings.timeslotDuration")
-//        }
-//    }
-//
-//    @State private var settingsWeekdayTimeslotStartIndex: Int = UserDefaults.standard.value(forKey: "settings.weekdayTimelslotStartIndex") as? Int ?? 17 {
-//        didSet {
-//            UserDefaults.standard.setValue(settingsWeekdayTimeslotStartIndex, forKey: "settings.weekdayTimelslotStartIndex")
-//        }
-//    }
-        
+    
     func timeslotToHour(timeslot: TimeInterval) -> String {
         guard var today = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) else {
             return "\(timeslot)"
@@ -44,7 +33,7 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
+        NavigationView {
             Form {
                 Section(header: Text("Timeslot duration")) {
                     VStack {
@@ -73,21 +62,6 @@ struct SettingsView: View {
                     Picker("End", selection: self.$settings.weekendTimeslotEndIndex) {
                         ForEach(0 ..< self.settings.timeslotOptions.count) { index in
                             Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
-                        }
-                    }
-                }
-                Section(footer: Text("Re-schedule to use new duration and time slot settings.")) {
-                    Button("Re-schedule Ketchups") {
-                        let allCatchups = (try? Database.shared.allCatchups()) ?? []
-                        Scheduler.shared.reschedule(allCatchups)
-                        .then { scheduledOrError in
-                                try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
-                                scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
-                        }
-                        .catch { error in
-                            print("could not reschedule some or all catchups")
-                            self.alertMessage = "Could not reschedule some or all Ketchups"
-                            self.showAlert = true
                         }
                     }
                 }
@@ -154,8 +128,29 @@ struct SettingsView: View {
                 #endif
             }
             .navigationBarTitle("Settings")
-            .alert(isPresented: self.$showAlert) { () -> Alert in
-                Alert(title: Text("Something happened"), message: Text(self.alertMessage))
+            .navigationBarItems(
+                leading: Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Cancel")
+                },
+                trailing: Button(action: {
+                    let allCatchups = (try? Database.shared.allCatchups()) ?? []
+                    Scheduler.shared.reschedule(allCatchups)
+                        .then { scheduledOrError in
+                            try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
+                            scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
+                    }
+                    .catch { error in
+                        print("could not reschedule some or all catchups")
+                        self.alertMessage = "Could not reschedule some or all Ketchups"
+                        self.showAlert = true
+                    }
+                }) {
+                    Text("Save and re-schedule")
+            })
+                .alert(isPresented: self.$showAlert) { () -> Alert in
+                    Alert(title: Text("Something happened"), message: Text(self.alertMessage))
             }
         }
     }

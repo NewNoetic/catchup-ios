@@ -18,7 +18,7 @@ struct NewCatchupView: View {
     @State private var contact: CNContact?
     @State private var durationIndex: Int = 2
     @State private var methodIndex: Int = 0
-    @State private var showingContactPicker = true // open contact picker immediately
+    @State private var showingContactPicker = false
     @State private var showingDurationPicker = false
     
     init(done: @escaping DoneSignature) {
@@ -61,6 +61,9 @@ struct NewCatchupView: View {
                     self.contact = contact
                 }
             }
+        }
+        .onAppear {
+            self.showingContactPicker = true
         }
     }
 }

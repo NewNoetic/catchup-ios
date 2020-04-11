@@ -20,6 +20,7 @@ struct ContentView: View {
     @State private var errorAlert = false
     @State private var errorMessage = ""
     @State private var showNewCatchup = false
+    @State private var showSettings = false
     
     static var timeFormatter = { () -> DateFormatter in
         let formatter = DateFormatter()
@@ -90,39 +91,45 @@ struct ContentView: View {
                         Text("New Ketchup")
                             .padding([Edge.Set.leading, Edge.Set.trailing], 30)
                             .padding([Edge.Set.top, Edge.Set.bottom])
-                        .background(Color.accentColor)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(12)
+                            .background(Color.accentColor)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(12)
                     }
                     .accessibility(identifier: "new catchup")
-                    NavigationLink(destination: SettingsView().environmentObject(self.upcoming)) {
+                    Button(action: {
+                        self.showSettings.toggle()
+                    }) {
                         Image(systemName: "gear").imageScale(.large)
-                        .padding([Edge.Set.leading], 40)
+                            .padding([Edge.Set.leading], 40)
                     }
                 }
                 Spacer()
             }
-            .sheet(isPresented: $showNewCatchup) {
-                NewCatchupView() { catchup in
-                    self.showNewCatchup = false
-                    guard let catchup = catchup else { return }
-                    Scheduler.shared.schedule([catchup])
-                        .then { scheduledOrError in
-                            try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
-                            scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
-                            
-                            self.upcoming.update()
-                    }
-                    .catch { error in
-                        self.errorMessage = error.localizedDescription
-                        self.errorAlert = true
-                    }
+            .navigationBarTitle("🥫 Ketchup")
+            .sheet(isPresented: $showSettings) {
+                SettingsView().environmentObject(self.upcoming)
+                    .accentColor(MainView.accentColor)
+            }
+        }
+        .sheet(isPresented: $showNewCatchup) {
+            NewCatchupView() { catchup in
+                self.showNewCatchup = false
+                guard let catchup = catchup else { return }
+                Scheduler.shared.schedule([catchup])
+                    .then { scheduledOrError in
+                        try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
+                        scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
+                        
+                        self.upcoming.update()
+                }
+                .catch { error in
+                    self.errorMessage = error.localizedDescription
+                    self.errorAlert = true
                 }
             }
-            .alert(isPresented: $errorAlert) {
-                Alert(title: Text(self.errorMessage))
-            }
-            .navigationBarTitle("🥫 Ketchup")
+        }
+        .alert(isPresented: $errorAlert) {
+            Alert(title: Text(self.errorMessage))
         }
         .onAppear {
             self.upcoming.update()
