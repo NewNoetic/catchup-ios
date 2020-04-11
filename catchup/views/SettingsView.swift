@@ -48,7 +48,7 @@ struct SettingsView: View {
             Form {
                 Section(header: Text("Timeslot duration")) {
                     VStack {
-                        Slider(value: self.$settings.timeslotDuration, in: 900...3600, step: 300)
+                        Slider(value: self.$settings.timeslotDuration, in: 900.0...3600.0, step: 300.0)
                         Text("\(Int(self.settings.timeslotDuration/60)) minutes")
                     }.padding()
                 }

@@ -32,7 +32,7 @@ final class Settings: ObservableObject {
         }
     }
         
-    @UserDefault("settings.timeslotDuration", defaultValue: 30) var timeslotDuration: TimeInterval { willSet { objectWillChange.send() } }
+    @UserDefault("settings.timeslotDuration", defaultValue: TimeInterval(30*60)) var timeslotDuration: TimeInterval { willSet { objectWillChange.send() } }
     
     var timeslotOptions: [TimeInterval] = [3600, 3600*2, 3600*3, 3600*4, 3600*5, 3600*6, 3600*7, 3600*8, 3600*9, 3600*10, 3600*11, 3600*12, 3600*13, 3600*14, 3600*15, 3600*16, 3600*17, 3600*18, 3600*19, 3600*20, 3600*21, 3600*22, 3600*23]
     
