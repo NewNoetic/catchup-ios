@@ -27,6 +27,13 @@ extension CNContact: Value {
     public typealias Datatype = Blob
 }
 
+extension Connection {
+    public var userVersion: Int32 {
+        get { return Int32(((try? scalar("PRAGMA user_version")) ?? 0) as? Int64 ?? 0)}
+        set { try! run("PRAGMA user_version = \(newValue)") }
+    }
+}
+
 let contact = Expression<CNContact>("contact")
 let interval = Expression<TimeInterval>("interval")
 let method = Expression<String>("method")
