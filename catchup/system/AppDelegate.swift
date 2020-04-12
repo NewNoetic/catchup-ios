@@ -20,11 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Migration.run()
         
         UNUserNotificationCenter.current().delegate = self
-        UserNotificationsAsync.authenticate()
-            .then { _ in }
-            .catch { error in
-                print("error authenticating user notifications: \(error.localizedDescription)")
-        }
         
         return true
     }

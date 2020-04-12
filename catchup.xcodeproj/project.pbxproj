@@ -186,13 +186,11 @@
 				DC975B28240B631D000E6D25 /* system */,
 				DCFD088223F4B02500420149 /* views */,
 				DC0D9E5C23E2741A00383CE1 /* model */,
-				DC6B727B23EA38E800607A9D /* Scheduler.swift */,
-				DC139D3E23ECA0350065B138 /* Notifications.swift */,
 				DCABF9A223E602D6002B1727 /* utils */,
+				DC0D9E3423E270F300383CE1 /* Preview Content */,
 				DC0D9E3223E270F300383CE1 /* Assets.xcassets */,
 				DC0D9E3723E270F300383CE1 /* LaunchScreen.storyboard */,
 				DC0D9E3A23E270F300383CE1 /* Info.plist */,
-				DC0D9E3423E270F300383CE1 /* Preview Content */,
 				DC4F16B723EBA13500785223 /* catchupTests-Bridging-Header.h */,
 			);
 			path = catchup;
@@ -267,12 +265,14 @@
 		DCABF9A223E602D6002B1727 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				DC6B727B23EA38E800607A9D /* Scheduler.swift */,
+				DC139D3E23ECA0350065B138 /* Notifications.swift */,
+				DC9CEE82243042EB0015298F /* Settings.swift */,
 				DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */,
 				DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */,
 				DC22532823E5EAAA00A20AF8 /* CombineCompatible.swift */,
 				DC5542A12424502C00119BE9 /* Debug.swift */,
 				DC4BF34424280EE900595CD8 /* Clamp.swift */,
-				DC9CEE82243042EB0015298F /* Settings.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";

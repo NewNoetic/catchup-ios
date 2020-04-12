@@ -115,6 +115,14 @@ struct ContentView: View {
             NewCatchupView() { catchup in
                 self.showNewCatchup = false
                 guard let catchup = catchup else { return }
+                
+                UserNotificationsAsync.authenticate()
+                    .then { _ in }
+                    .catch { error in
+                        self.errorMessage = error.localizedDescription
+                        self.errorAlert = true
+                }
+                
                 Scheduler.shared.schedule([catchup])
                     .then { scheduledOrError in
                         try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
