@@ -46,6 +46,10 @@
 		DC99F68D24429E42000227D1 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CEE82243042EB0015298F /* Settings.swift */; };
 		DC99F6902442A4CB000227D1 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99F68F2442A4CB000227D1 /* Migration.swift */; };
 		DC99F6912442A4CB000227D1 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99F68F2442A4CB000227D1 /* Migration.swift */; };
+		DC99F6942442B17C000227D1 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99F6932442B17C000227D1 /* PageView.swift */; };
+		DC99F6962442B26D000227D1 /* CircleIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99F6952442B26D000227D1 /* CircleIndicator.swift */; };
+		DC99F6982442B2B5000227D1 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99F6972442B2B5000227D1 /* SwipeView.swift */; };
+		DC99F69A2442B347000227D1 /* PageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99F6992442B347000227D1 /* PageContainerView.swift */; };
 		DC9CEE83243042EB0015298F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CEE82243042EB0015298F /* Settings.swift */; };
 		DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABF9A323E603CA002B1727 /* SettingsView.swift */; };
 		DCBD38C2240D03A60027628A /* Appfile in Resources */ = {isa = PBXBuildFile; fileRef = DCBD38BC240D03A50027628A /* Appfile */; };
@@ -117,6 +121,10 @@
 		DC975B26240B6312000E6D25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DC975B29240B647D000E6D25 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DC99F68F2442A4CB000227D1 /* Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
+		DC99F6932442B17C000227D1 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		DC99F6952442B26D000227D1 /* CircleIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIndicator.swift; sourceTree = "<group>"; };
+		DC99F6972442B2B5000227D1 /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		DC99F6992442B347000227D1 /* PageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContainerView.swift; sourceTree = "<group>"; };
 		DC9CEE82243042EB0015298F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		DCABF9A323E603CA002B1727 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		DCBD38BC240D03A50027628A /* Appfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
@@ -262,6 +270,17 @@
 			path = database;
 			sourceTree = "<group>";
 		};
+		DC99F6922442B169000227D1 /* PageView */ = {
+			isa = PBXGroup;
+			children = (
+				DC99F6932442B17C000227D1 /* PageView.swift */,
+				DC99F6952442B26D000227D1 /* CircleIndicator.swift */,
+				DC99F6972442B2B5000227D1 /* SwipeView.swift */,
+				DC99F6992442B347000227D1 /* PageContainerView.swift */,
+			);
+			path = PageView;
+			sourceTree = "<group>";
+		};
 		DCABF9A223E602D6002B1727 /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +321,7 @@
 		DCFD088223F4B02500420149 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				DC99F6922442B169000227D1 /* PageView */,
 				DCABF9A523E603D5002B1727 /* ContactPicker */,
 				DC975B29240B647D000E6D25 /* MainView.swift */,
 				DC0D9E3023E270EC00383CE1 /* ContentView.swift */,
@@ -465,10 +485,13 @@
 				DC0D9E5E23E2745900383CE1 /* Catchup.swift in Sources */,
 				DC139D3F23ECA0350065B138 /* Notifications.swift in Sources */,
 				DC9CEE83243042EB0015298F /* Settings.swift in Sources */,
+				DC99F69A2442B347000227D1 /* PageContainerView.swift in Sources */,
 				DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */,
 				DC8DE665240BAA65009363A6 /* MessageComposeView.swift in Sources */,
 				DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */,
+				DC99F6942442B17C000227D1 /* PageView.swift in Sources */,
 				DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */,
+				DC99F6982442B2B5000227D1 /* SwipeView.swift in Sources */,
 				DC2015F123E8BC410019BCD6 /* CNContactDisplayExtension.swift in Sources */,
 				DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */,
 				DC5542A22424502C00119BE9 /* Debug.swift in Sources */,
@@ -484,6 +507,7 @@
 				DC975B2A240B647D000E6D25 /* MainView.swift in Sources */,
 				DCDE2DE4243176E00036CEED /* Slot.swift in Sources */,
 				DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */,
+				DC99F6962442B26D000227D1 /* CircleIndicator.swift in Sources */,
 				DCF04BA123E3A86A00D433AB /* Database.swift in Sources */,
 				DC4BF3432427E48D00595CD8 /* DoubleSlider.swift in Sources */,
 				DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */,

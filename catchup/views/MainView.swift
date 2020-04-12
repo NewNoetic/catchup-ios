@@ -15,6 +15,10 @@ struct MainView: View {
     
     var body: some View {
         switch self.state.startView {
+        case .intro:
+            print("view intro")
+            return AnyView(PageContainerView())
+                .accentColor(MainView.accentColor)
         case .catchups:
             print("view catchups")
             return AnyView(ContentView().environmentObject(Upcoming()))
@@ -33,6 +37,7 @@ struct MainView: View {
 
 extension MainView {
     enum StartView {
+        case intro
         case catchups
         case text(recipients: [String])
         case email(recipients: [String])

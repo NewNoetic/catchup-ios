@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         UNUserNotificationCenter.current().delegate = self
         
+        // SceneDelegate.appState.startView = .intro
+        
         return true
     }
     
