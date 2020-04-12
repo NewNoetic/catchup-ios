@@ -146,8 +146,12 @@ struct SettingsView: View {
                         self.alertMessage = "Could not reschedule some or all Ketchups"
                         self.showAlert = true
                     }
+                    .always {
+                        self.upcoming.update()
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                 }) {
-                    Text("Save and re-schedule")
+                    Text("Save & re-schedule")
             })
                 .alert(isPresented: self.$showAlert) { () -> Alert in
                     Alert(title: Text("Something happened"), message: Text(self.alertMessage))

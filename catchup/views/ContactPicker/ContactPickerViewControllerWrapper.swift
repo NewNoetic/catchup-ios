@@ -12,10 +12,13 @@ import ContactsUI
 /// We create a wrapper for the contact picker because just presenting it via `UIViewControllerRepresentable`
 /// results in a blank screen. BUG!
 class ContactPickerViewControllerWrapper: UIViewController, CNContactPickerDelegate {
+//    var contactKeys: [CNKeyDescriptor] = [CNContactIdentifierKey as CNKeyDescriptor, CNContactPhoneNumbersKey as CNKeyDescriptor, CNContactEmailAddressesKey as CNKeyDescriptor, CNContactFormatter.descriptorForRequiredKeys(for: .fullName)]
+    
     var delegate: CNContactPickerDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         let contacts = CNContactPickerViewController()
+        contacts.predicateForSelectionOfContact = NSPredicate(format: "phoneNumbers.@count > 0 || emailAddresses.@count > 0")
         contacts.delegate = self.delegate
         self.present(contacts, animated: false, completion: nil)
     }

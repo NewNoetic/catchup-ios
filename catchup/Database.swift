@@ -10,10 +10,24 @@ import Foundation
 import Contacts
 import SQLite
 
-let contactStore = CNContactStore()
-var contactKeys: [CNKeyDescriptor] = [CNContactIdentifierKey as CNKeyDescriptor, CNContactPhoneNumbersKey as CNKeyDescriptor, CNContactEmailAddressesKey as CNKeyDescriptor, CNContactFormatter.descriptorForRequiredKeys(for: .fullName)]
+/// Allows us to store and retreive `CNContact`s from the db
+extension CNContact: Value {
+    public static var declaredDatatype: String {
+        return Blob.declaredDatatype
+    }
+    
+    public static func fromDatatypeValue(_ blobValue: Blob) -> CNContact {
+        return try! NSKeyedUnarchiver.unarchivedObject(ofClasses: [CNContact.self], from: Data.fromDatatypeValue(blobValue)) as! CNContact
+    }
+    
+    public var datatypeValue: Blob {
+        return try! NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: false).datatypeValue
+    }
+    
+    public typealias Datatype = Blob
+}
 
-let contact = Expression<String>("contact_id")
+let contact = Expression<CNContact>("contact")
 let interval = Expression<TimeInterval>("interval")
 let method = Expression<String>("method")
 let nextTouch = Expression<Date?>("next_touch")
@@ -39,18 +53,14 @@ struct Database {
     
     func allCatchups() throws -> [Catchup] {
         return try db.prepare(catchups.order(nextTouch.asc)).compactMap({ (row: Row) -> Catchup? in
-            guard let c = try? contactStore.unifiedContact(withIdentifier: row[contact], keysToFetch: contactKeys)
-                else { return nil }
-            return Catchup(contact: c, interval: row[interval], method: ContactMethod(rawValue: row[method]) ?? ContactMethod.call, nextTouch: row[nextTouch], nextNotification: row[nextNotification])
+            return Catchup(contact: row[contact], interval: row[interval], method: ContactMethod(rawValue: row[method]) ?? ContactMethod.call, nextTouch: row[nextTouch], nextNotification: row[nextNotification])
         })
     }
     
     func catchup(notification: String) -> Catchup? {
         do {
             return try db.prepare(catchups.where(nextNotification == notification)).compactMap({ row -> Catchup? in
-                guard let c = try? contactStore.unifiedContact(withIdentifier: row[contact], keysToFetch: contactKeys)
-                    else { return nil }
-                return Catchup(contact: c, interval: row[interval], method: ContactMethod(rawValue: row[method]) ?? ContactMethod.call, nextTouch: row[nextTouch], nextNotification: row[nextNotification])
+                return Catchup(contact: row[contact], interval: row[interval], method: ContactMethod(rawValue: row[method]) ?? ContactMethod.call, nextTouch: row[nextTouch], nextNotification: row[nextNotification])
             }).first
         } catch {
             return nil
@@ -59,7 +69,7 @@ struct Database {
     
     func upsert(catchup: Catchup) throws {
         var setters = [
-            contact <- catchup.contact.identifier, interval <- catchup.interval, method <- catchup.method.rawValue
+            contact <- catchup.contact, interval <- catchup.interval, method <- catchup.method.rawValue
         ]
         if let nt = catchup.nextTouch {
             setters.append(nextTouch <- nt)
@@ -71,7 +81,7 @@ struct Database {
     }
     
     func remove(catchup: Catchup) throws {
-        let toDelete = catchups.filter(contact == catchup.contact.identifier)
+        let toDelete = catchups.filter(contact == catchup.contact)
         try db.run(toDelete.delete())
     }
     

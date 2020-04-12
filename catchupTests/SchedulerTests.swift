@@ -32,8 +32,8 @@ class SchedulerTests: XCTestCase {
         assert(!calendar.isDateInWeekend(dateOnWhichToExpectOpenSlot), "start date should be monday, but is weekend")
         assert(dateOnWhichToExpectOpenSlot.compare(Date()) == ComparisonResult.orderedDescending, "start date should be after right now, but it's before")
         
-        let weekdayAvailability = [Scheduler.Slot(start: 64800, end: 68400)/* 6pm-7pm */]
-        let weekendAvailability: [Scheduler.Slot] = []
+        let weekdayAvailability = [Slot(start: 64800, end: 68400)/* 6pm-7pm */]
+        let weekendAvailability: [Slot] = []
         let slotDuration = TimeInterval(1800) // 30 mins
         
         guard let startOfDateOnWhichToExpectOpenSlot = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: dateOnWhichToExpectOpenSlot) else {
@@ -68,8 +68,8 @@ class SchedulerTests: XCTestCase {
         assert(calendar.isDateInWeekend(dateOnWhichToExpectOpenSlot), "start date should be saturday, but is not weekend")
         assert(dateOnWhichToExpectOpenSlot.compare(Date()) == ComparisonResult.orderedDescending, "start date should be after right now, but it's before")
         
-        let weekdayAvailability: [Scheduler.Slot] = []
-        let weekendAvailability = [Scheduler.Slot(start: 36000, end: 79200)]
+        let weekdayAvailability: [Slot] = []
+        let weekendAvailability = [Slot(start: 36000, end: 79200)]
         let slotDuration = TimeInterval(1800) // 30 mins
         
         guard let startOfDateOnWhichToExpectOpenSlot = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: dateOnWhichToExpectOpenSlot) else {
@@ -104,8 +104,8 @@ class SchedulerTests: XCTestCase {
         assert(calendar.isDateInWeekend(dateOnWhichToExpectOpenSlot), "start date should be saturday, but is not weekend")
         assert(dateOnWhichToExpectOpenSlot.compare(Date()) == ComparisonResult.orderedDescending, "start date should be after right now, but it's before")
         
-        let weekdayAvailability: [Scheduler.Slot] = []
-        let weekendAvailability = [Scheduler.Slot(start: 36000, end: 79200)] // 10am-10pm
+        let weekdayAvailability: [Slot] = []
+        let weekendAvailability = [Slot(start: 36000, end: 79200)] // 10am-10pm
         let slotDuration = TimeInterval(1800) // 30 mins
         
         guard let startOfDateOnWhichToExpectOpenSlot = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: dateOnWhichToExpectOpenSlot) else {

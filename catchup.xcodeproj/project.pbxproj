@@ -20,7 +20,6 @@
 		DC139D4023ECA0430065B138 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139D3E23ECA0350065B138 /* Notifications.swift */; };
 		DC139D4223ECA0630065B138 /* NotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139D4123ECA0630065B138 /* NotificationsTests.swift */; };
 		DC153CC523EBE1FB004533AD /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
-		DC153CC823EBE22D004533AD /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DC153CC723EBE22D004533AD /* SQLite */; };
 		DC153CC923EBE242004533AD /* Catchup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E5D23E2745900383CE1 /* Catchup.swift */; };
 		DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DC153CCB23EBE257004533AD /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
@@ -43,6 +42,8 @@
 		DC8DE665240BAA65009363A6 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DE664240BAA64009363A6 /* MessageComposeView.swift */; };
 		DC975B27240B6312000E6D25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC975B26240B6312000E6D25 /* SceneDelegate.swift */; };
 		DC975B2A240B647D000E6D25 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC975B29240B647D000E6D25 /* MainView.swift */; };
+		DC99F68C24429D6B000227D1 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE2DE3243176E00036CEED /* Slot.swift */; };
+		DC99F68D24429E42000227D1 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CEE82243042EB0015298F /* Settings.swift */; };
 		DC9CEE83243042EB0015298F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CEE82243042EB0015298F /* Settings.swift */; };
 		DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABF9A323E603CA002B1727 /* SettingsView.swift */; };
 		DCBD38C2240D03A60027628A /* Appfile in Resources */ = {isa = PBXBuildFile; fileRef = DCBD38BC240D03A50027628A /* Appfile */; };
@@ -60,14 +61,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DC0D9E4023E270F300383CE1 /* PBXContainerItemProxy */ = {
+		DC0D9E4B23E270F300383CE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DC0D9E2123E270EC00383CE1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DC0D9E2823E270EC00383CE1;
 			remoteInfo = catchup;
 		};
-		DC0D9E4B23E270F300383CE1 /* PBXContainerItemProxy */ = {
+		DC99F68A24429C93000227D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DC0D9E2123E270EC00383CE1 /* Project object */;
 			proxyType = 1;
@@ -140,7 +141,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCFF5EA123F22654008F48CA /* PromisesTestHelpers in Frameworks */,
-				DC153CC823EBE22D004533AD /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,11 +337,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				DC0D9E4123E270F300383CE1 /* PBXTargetDependency */,
+				DC99F68B24429C93000227D1 /* PBXTargetDependency */,
 			);
 			name = catchupTests;
 			packageProductDependencies = (
-				DC153CC723EBE22D004533AD /* SQLite */,
 				DCFF5EA023F22654008F48CA /* PromisesTestHelpers */,
 			);
 			productName = catchupTests;
@@ -488,11 +487,13 @@
 				DC139D4223ECA0630065B138 /* NotificationsTests.swift in Sources */,
 				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
 				DC139D4023ECA0430065B138 /* Notifications.swift in Sources */,
+				DC99F68C24429D6B000227D1 /* Slot.swift in Sources */,
 				DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */,
 				DC153CCB23EBE257004533AD /* Intervals.swift in Sources */,
 				DC153CC523EBE1FB004533AD /* Database.swift in Sources */,
 				DC4F16B923EBA13600785223 /* SchedulerTests.swift in Sources */,
 				DC153CCC23ED351E004533AD /* CNContactDisplayExtension.swift in Sources */,
+				DC99F68D24429E42000227D1 /* Settings.swift in Sources */,
 				DC4F16BA23EBA19700785223 /* Scheduler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,15 +510,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DC0D9E4123E270F300383CE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DC0D9E2823E270EC00383CE1 /* catchup */;
-			targetProxy = DC0D9E4023E270F300383CE1 /* PBXContainerItemProxy */;
-		};
 		DC0D9E4C23E270F300383CE1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DC0D9E2823E270EC00383CE1 /* catchup */;
 			targetProxy = DC0D9E4B23E270F300383CE1 /* PBXContainerItemProxy */;
+		};
+		DC99F68B24429C93000227D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC0D9E2823E270EC00383CE1 /* catchup */;
+			targetProxy = DC99F68A24429C93000227D1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -720,7 +721,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/catchup.app/catchup";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/🥫 Ketchup.app/🥫 Ketchup";
 			};
 			name = Debug;
 		};
@@ -744,7 +745,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "catchup/catchupTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/catchup.app/catchup";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/🥫 Ketchup.app/🥫 Ketchup";
 			};
 			name = Release;
 		};
@@ -849,11 +850,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DC153CC723EBE22D004533AD /* SQLite */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */;
-			productName = SQLite;
-		};
 		DCF04B9E23E3A7AE00D433AB /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DCF04B9D23E3A7AE00D433AB /* XCRemoteSwiftPackageReference "SQLite" */;
