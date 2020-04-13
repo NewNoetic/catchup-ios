@@ -129,6 +129,7 @@ class SchedulerTests: XCTestCase {
         assert(calendar.compare(nextOpenSlot.start, to: alreadyScheduled[1].end.addingTimeInterval(alreadyScheduledSecondSlotGap), toGranularity: .minute) == .orderedSame, "open slot does not fall right after second already scheduled block (and added gap)")
     }
     
+    /// Disabled for now because we need to mock Notifications, Settings and Database before we can do this.
     func testTwoScheduledCatchups() {
         let expectation = XCTestExpectation(description: "schedule two catchups")
         

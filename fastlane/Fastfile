@@ -21,6 +21,13 @@ platform :ios do
     # Ensure that your git status is not dirty
     ensure_git_status_clean
 
+    run_tests(
+        scheme: "catchupTests",
+        device: "iPhone 11",
+        derived_data_path: "./build/test_derived_data",
+        output_directory: "./build/test_output"
+    )
+
     get_certificates(
         output_path: "./build"
     )
@@ -30,10 +37,10 @@ platform :ios do
 
     # Increment the build number (not the version number)
     # Providing the xcodeproj is optional
-    increment_build_number
+    increment_build_number(xcodeproj: "catchup.xcodeproj")
 
     # Commit the version bump
-    commit_version_bump
+    commit_version_bump(xcodeproj: "catchup.xcodeproj")
 
     # Add a git tag for this build. This will automatically
     # use an appropriate git tag name
@@ -46,12 +53,16 @@ platform :ios do
         scheme: "catchup",
         output_directory: "./build"
     )
-    upload_to_testflight
+    upload_to_testflight(
+        ipa: "./build/CatchUp.ipa"
+    )
   end
   
   lane :release do
       # Ensure that your git status is not dirty
       ensure_git_status_clean
+
+      run_tests(scheme: "catchupTests")
 
       get_certificates(
           output_path: "./build"
