@@ -105,40 +105,42 @@ struct ContentView: View {
                 }
                 Spacer()
             }
-            .navigationBarTitle("🥫 Ketchup")
-            .sheet(isPresented: $showSettings) {
-                SettingsView().environmentObject(self.upcoming)
-                    .accentColor(MainView.accentColor)
-            }
-        }
-        .sheet(isPresented: $showNewCatchup) {
-            NewCatchupView() { catchup in
-                self.showNewCatchup = false
-                guard let catchup = catchup else { return }
-                
-                UserNotificationsAsync.authenticate()
-                    .then { _ in }
+            .sheet(isPresented: $showNewCatchup) {
+                NewCatchupView() { catchup in
+                    self.showNewCatchup = false
+                    guard let catchup = catchup else { return }
+                    
+                    UserNotificationsAsync.authenticate()
+                        .then { _ in }
+                        .catch { error in
+                            self.errorMessage = error.localizedDescription
+                            self.errorAlert = true
+                    }
+                    
+                    Scheduler.shared.schedule([catchup])
+                        .then { scheduledOrError in
+                            try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
+                            scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
+                            
+                            self.upcoming.update()
+                    }
                     .catch { error in
                         self.errorMessage = error.localizedDescription
                         self.errorAlert = true
-                }
-                
-                Scheduler.shared.schedule([catchup])
-                    .then { scheduledOrError in
-                        try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
-                        scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
-                        
-                        self.upcoming.update()
-                }
-                .catch { error in
-                    self.errorMessage = error.localizedDescription
-                    self.errorAlert = true
+                    }
                 }
             }
+            .alert(isPresented: $errorAlert) {
+                Alert(title: Text(self.errorMessage))
+            }
+            .navigationBarTitle("🥫 Ketchup")
+            
         }
-        .alert(isPresented: $errorAlert) {
-            Alert(title: Text(self.errorMessage))
+        .sheet(isPresented: $showSettings) {
+            SettingsView().environmentObject(self.upcoming)
+                .accentColor(MainView.accentColor)
         }
+            
         .onAppear {
             self.upcoming.update()
         }
