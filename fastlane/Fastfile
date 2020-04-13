@@ -54,7 +54,7 @@ platform :ios do
         output_directory: "./build"
     )
     upload_to_testflight(
-        ipa: "./build/CatchUp.ipa"
+        ipa: "./build/🥫 Ketchup.ipa"
     )
   end
   
