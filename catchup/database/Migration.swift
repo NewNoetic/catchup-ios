@@ -19,6 +19,7 @@ struct Migration {
             do {
                 try db.transaction {
                     try db.run(catchupsTable.drop(ifExists: true))
+                    try Database.shared.createCatchupsTable()
                 }
             } catch {
                 print("error running migration \(error.localizedDescription)")

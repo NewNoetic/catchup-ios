@@ -49,6 +49,10 @@ struct Database {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         db = try Connection("\(path)/db.sqlite3")
         catchups = Table("catchups")
+        try createCatchupsTable()
+    }
+    
+    func createCatchupsTable() throws {
         try db.run(catchups.create(ifNotExists: true) { t in
             t.column(contact, primaryKey: true)
             t.column(interval)
