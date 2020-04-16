@@ -36,6 +36,7 @@
 		DC57110D23E3F31200FFA866 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */; };
 		DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111023E3FB9D00FFA866 /* Upcoming.swift */; };
 		DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57111623E40AAF00FFA866 /* NewCatchupView.swift */; };
+		DC677FC92448068500809FA7 /* DebugNotificationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC677FC82448068500809FA7 /* DebugNotificationsList.swift */; };
 		DC6B727C23EA38E800607A9D /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B727B23EA38E800607A9D /* Scheduler.swift */; };
 		DC8DE663240BA0A6009363A6 /* MailComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DE662240BA0A6009363A6 /* MailComposeView.swift */; };
 		DC8DE665240BAA65009363A6 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DE664240BAA64009363A6 /* MessageComposeView.swift */; };
@@ -113,6 +114,7 @@
 		DC57110C23E3F31200FFA866 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
 		DC57111023E3FB9D00FFA866 /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
 		DC57111623E40AAF00FFA866 /* NewCatchupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatchupView.swift; sourceTree = "<group>"; };
+		DC677FC82448068500809FA7 /* DebugNotificationsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugNotificationsList.swift; sourceTree = "<group>"; };
 		DC6B727B23EA38E800607A9D /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		DC8DE662240BA0A6009363A6 /* MailComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailComposeView.swift; sourceTree = "<group>"; };
 		DC8DE664240BAA64009363A6 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				DC22532823E5EAAA00A20AF8 /* CombineCompatible.swift */,
 				DC5542A12424502C00119BE9 /* Debug.swift */,
 				DC4BF34424280EE900595CD8 /* Clamp.swift */,
+				DC677FC82448068500809FA7 /* DebugNotificationsList.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC677FC92448068500809FA7 /* DebugNotificationsList.swift in Sources */,
 				DC0D9E5E23E2745900383CE1 /* Catchup.swift in Sources */,
 				DC139D3F23ECA0350065B138 /* Notifications.swift in Sources */,
 				DC9CEE83243042EB0015298F /* Settings.swift in Sources */,

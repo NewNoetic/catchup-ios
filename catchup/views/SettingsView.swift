@@ -67,18 +67,6 @@ struct SettingsView: View {
                 }
                 #if DEBUG
                 Section(header: Text("Development")) {
-                    Button("Clear all Ketchups") {
-                        do {
-                            try Database.shared.deleteAll()
-                        } catch {
-                            self.alertMessage = error.localizedDescription
-                            self.showAlert = true
-                        }
-                        self.upcoming.update()
-                    }
-                    Button("Clear all scheduled notifications") {
-                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-                    }
                     Button("Create test local notification (5s)") {
                         let content = UNMutableNotificationContent()
                         content.title = "Test notification"
@@ -109,12 +97,25 @@ struct SettingsView: View {
                             self.showNewCatchupView = false
                         }
                     }
-                    Button("Show debug list") {
-                        if (self.upcoming.display == .debug) {
-                            self.upcoming.display = .standard
-                        } else {
-                            self.upcoming.display = .debug
+                    Toggle("Show debug list", isOn: Binding(get: {
+                        self.upcoming.display == .debug
+                    }, set: { newVal in
+                        self.upcoming.display = newVal ? .debug : .standard
+                    }))
+                    NavigationLink(destination: DebugNotificationsList()) {
+                        Text("View scheduled system notifications")
+                    }
+                    Button("⚠️ Clear all Ketchups") {
+                        do {
+                            try Database.shared.deleteAll()
+                        } catch {
+                            self.alertMessage = error.localizedDescription
+                            self.showAlert = true
                         }
+                        self.upcoming.update()
+                    }
+                    Button("⚠️ Clear all scheduled notifications") {
+                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                     }
                     Button("⚠️ Drop catchups table") {
                         do {
