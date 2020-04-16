@@ -9,6 +9,7 @@
 import Foundation
 import Promises
 import SwiftUI
+import UserNotifications
 
 struct Scheduler {
     
@@ -77,6 +78,9 @@ struct Scheduler {
     func reschedule(_ ctr: [Catchup]) -> Promise<[Maybe<Catchup>]> {
         let catchupsToReschedule = ctr.map { (c: Catchup) -> Catchup in
             var catchup = c
+            if let notificationId = catchup.nextNotification {
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationId])
+            }
             catchup.nextNotification = nil
             catchup.nextTouch = nil
             return catchup

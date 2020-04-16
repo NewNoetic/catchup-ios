@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 struct Migration {
     static func run() {
@@ -19,6 +20,8 @@ struct Migration {
             do {
                 try db.transaction {
                     try db.run(catchupsTable.drop(ifExists: true))
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                     try Database.shared.createCatchupsTable()
                 }
             } catch {
