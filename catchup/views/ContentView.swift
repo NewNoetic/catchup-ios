@@ -60,7 +60,7 @@ struct ContentView: View {
                         ForEach(upcoming.catchups) { up -> Text in
                             switch self.upcoming.display {
                             case .standard:
-                                var finalText = Text("\(up.method.display.capitalized) \(up.contact.displayName)") // .capitalized produces wrong string for WhatsApp because it sets everything except first character to lowercase (https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized)
+                                var finalText = Text("\(up.method.rawValue.capitalized) \(up.contact.displayName)") // .capitalized produces wrong string for WhatsApp because it sets everything except first character to lowercase (https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized)
                                     .fontWeight(.bold)
                                 if let nextTouch = up.nextTouch {
                                     finalText += Text(" \(Self.relativeDateFormatter().localizedString(for: nextTouch, relativeTo: Date())), \(Self.timeFormatter().string(from: nextTouch))")
@@ -102,6 +102,7 @@ struct ContentView: View {
                         Image(systemName: "gear").imageScale(.large)
                             .padding([Edge.Set.leading], 40)
                     }
+                    .accessibility(identifier: "settings")
                 }
                 Spacer()
             }

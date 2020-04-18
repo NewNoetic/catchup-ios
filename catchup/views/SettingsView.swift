@@ -113,18 +113,10 @@ struct SettingsView: View {
                             self.showAlert = true
                         }
                         self.upcoming.update()
-                    }
+                    }.accessibility(identifier: "clear catchups")
                     Button("⚠️ Clear all scheduled notifications") {
                         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-                    }
-                    Button("⚠️ Drop catchups table") {
-                        do {
-                            try Database.shared.dropCatchupsTable()
-                        } catch {
-                            self.alertMessage = error.localizedDescription
-                            self.showAlert = true
-                        }
-                    }
+                    }.accessibility(identifier: "clear notifications")
                 }
                 #endif
             }

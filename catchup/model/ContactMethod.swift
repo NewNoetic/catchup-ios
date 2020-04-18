@@ -10,19 +10,8 @@ enum ContactMethod: String, CaseIterable, Identifiable {
     case call
     case text
     case email
-    case whatsapp
-    case facetime
-    
-    var display: String {
-        switch self {
-        case .whatsapp:
-            return "WhatsApp"
-        case .facetime:
-            return "FaceTime"
-        default:
-            return self.rawValue
-        }
-    }
+    case whatsapp = "WhatsApp"
+    case facetime = "FaceTime"
     
     var id: String {
         self.rawValue

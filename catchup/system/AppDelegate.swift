@@ -17,6 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let arguments = CommandLine.arguments
+        if arguments.contains("--disableAnimation") {
+            UIView.setAnimationsEnabled(false)
+        }
+        
+        if arguments.contains("--resetData") {
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            do {
+                try Database.shared.deleteAll()
+            } catch {
+                print("Could not reset catchups: \(error.localizedDescription)")
+            }
+        }
+        
         Migration.run()
         
         UNUserNotificationCenter.current().delegate = self

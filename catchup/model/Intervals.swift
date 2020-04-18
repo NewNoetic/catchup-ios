@@ -9,23 +9,10 @@
 import Foundation
 
 enum Intervals: String, CaseIterable, Identifiable {
-    case day
-    case week
-    case biweek
-    case month
-    
-    var display: String {
-        switch self {
-        case .day:
-            return "day"
-        case .week:
-            return "week"
-        case .biweek:
-            return "2 weeks"
-        case .month:
-            return "month"
-        }
-    }
+    case day = "day"
+    case week = "week"
+    case biweek = "2 weeks"
+    case month = "month"
     
     var value: TimeInterval {
         switch self {

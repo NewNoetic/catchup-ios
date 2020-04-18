@@ -19,7 +19,11 @@ struct NewCatchupView: View {
     @State private var contact: CNContact?
     @State private var durationIndex: Int = 2
     @State private var methodIndex: Int = 0
-    @State private var showingContactPicker = true // show immidiately
+    #if targetEnvironment(simulator) // working around a bug in simulator that doesn't automatically present the contact picker
+    @State private var showingContactPicker = false
+    #else
+    @State private var showingContactPicker = true
+    #endif
     
     init(done: @escaping DoneSignature) {
         self.done = done
@@ -40,14 +44,14 @@ struct NewCatchupView: View {
                     Section {
                         Picker("How often?", selection: $durationIndex) {
                             ForEach(0 ..< durationCases.count ) { index in
-                                Text("every \(self.durationCases[index].display)")
+                                Text("every \(self.durationCases[index].rawValue)")
                                     .tag(index)
                             }
                         }
                         .accessibility(identifier: "duration")
                         Picker("Method?", selection: $methodIndex) {
                             ForEach(0 ..< methodCases.count ) { index in
-                                Text(self.methodCases[index].display)
+                                Text(self.methodCases[index].rawValue)
                                     .tag(index)
                             }
                         }
@@ -60,6 +64,7 @@ struct NewCatchupView: View {
                         .foregroundColor(Color.init(UIColor.systemGray))
                         .multilineTextAlignment(.center)
                         .padding(.top, 20)
+                        .padding()
                     Button(action: {
                         guard let contact = self.contact else { return }
                         self.done(Catchup(contact: contact, interval: self.durationCases[self.durationIndex].value, method: self.methodCases[self.methodIndex]))
@@ -70,8 +75,9 @@ struct NewCatchupView: View {
                             .background(Color.accentColor)
                             .foregroundColor(Color.white)
                             .cornerRadius(12)
-                            .accessibility(identifier: "create")
                     }
+                    .accessibility(identifier: "create")
+
                 }
             }
             .sheet(isPresented: $showingContactPicker) {
@@ -83,6 +89,11 @@ struct NewCatchupView: View {
         .navigationBarItems(trailing: Button("Cancel") { self.presentationMode.wrappedValue.dismiss() })
         }
         .accentColor(MainView.accentColor)
+        .onAppear {
+            #if targetEnvironment(simulator)
+            self.showingContactPicker = true
+            #endif
+        }
     }
 }
 

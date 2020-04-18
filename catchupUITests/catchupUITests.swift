@@ -9,44 +9,79 @@
 import XCTest
 
 class catchupUITests: XCTestCase {
-
+    var app: XCUIApplication!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launchArguments.append("--disableAnimation")
+        app.launchArguments.append("--resetData")
+        addUIInterruptionMonitor(withDescription: "allow notification alert") { alert in
+            alert.buttons["Allow"].tap()
+            return true
+        }
+        setupSnapshot(app)
+        app.launch()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testRecord() {
-        XCUIApplication()/*@START_MENU_TOKEN@*/.buttons["new catchup"]/*[[".buttons[\"New CatchUp\"]",".buttons[\"new catchup\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        XCUIApplication()/*@START_MENU_TOKEN@*/.buttons["new catchup"].press(forDuration: 0.7);/*[[".buttons[\"New CatchUp\"]",".tap()",".press(forDuration: 0.7);",".buttons[\"new catchup\"]"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/
-
-                
+    struct ContactsCatchup {
+        var name: String
+        var duration: Intervals
+        var method: ContactMethod
+    }
+    
+    func testNewCatchups() {
+        snapshot("main")
+        let newCatchupButton = app/*@START_MENU_TOKEN@*/.buttons["new catchup"]/*[[".buttons[\"New CatchUp\"]",".buttons[\"new catchup\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let contacts: [ContactsCatchup] = [
+            ContactsCatchup(name: "John Appleseed", duration: .day, method: .call),
+            ContactsCatchup(name: "Kate Bell", duration: .week, method: .text),
+            ContactsCatchup(name: "Anna Haro", duration: .biweek, method: .email),
+            ContactsCatchup(name: "Daniel Higgins Jr.", duration: .month, method: .facetime),
+        ]
         
-    }
-
-    func testTakeScreenshots() {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        setupSnapshot(app)
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
+        for (index, contact) in contacts.enumerated() {
+            waitTap(on: newCatchupButton)
+            waitTap(on: app.tables.cells[contact.name])
+            waitTap(on: app.buttons["How often?"])
+            
+            if (index == 0) {
+                snapshot("duration options")
             }
+            
+            waitTap(on: app.buttons["every \(contact.duration.rawValue)"])
+            waitTap(on: app.buttons["method"])
+            
+            if (index == 0) {
+                snapshot("method options")
+            }
+            
+            waitTap(on: app.buttons[contact.method.rawValue])
+            
+            if (index == 0) {
+                snapshot("new contact")
+            }
+            
+            waitTap(on: app.buttons["create"])
         }
+        
+        snapshot("all contacts")
+        
+        waitTap(on: app.buttons["settings"])
     }
+
+//    func testLaunchPerformance() {
+//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
 }

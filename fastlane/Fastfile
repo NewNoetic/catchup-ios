@@ -62,7 +62,12 @@ platform :ios do
       # Ensure that your git status is not dirty
       ensure_git_status_clean
 
-      run_tests(scheme: "catchupTests")
+      run_tests(
+          scheme: "catchupTests",
+          device: "iPhone 11",
+          derived_data_path: "./build/test_derived_data",
+          output_directory: "./build/test_output"
+      )
 
       get_certificates(
           output_path: "./build"
@@ -73,10 +78,10 @@ platform :ios do
 
       # Increment the build number (not the version number)
       # Providing the xcodeproj is optional
-      increment_build_number
+      increment_build_number(xcodeproj: "catchup.xcodeproj")
 
       # Commit the version bump
-      commit_version_bump
+      commit_version_bump(xcodeproj: "catchup.xcodeproj")
 
       # Add a git tag for this build. This will automatically
       # use an appropriate git tag name
@@ -85,12 +90,19 @@ platform :ios do
       # Push the new commit and tag back to your git remote
       push_to_git_remote
     
+     # See ./Snapfile for config
+     capture_screenshots
+    
       build_app(
           scheme: "catchup",
           output_directory: "./build",
           include_bitcode: true
       )
       
-      upload_to_app_store
+      upload_to_app_store(
+          ipa: "./build/🥫 Ketchup.ipa",
+          screenshots_path: "./build/screenshots",
+          overwrite_screenshots: true
+      )
   end
 end
