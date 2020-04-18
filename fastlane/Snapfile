@@ -2,7 +2,7 @@
  devices([
     "iPhone 8",
 #   "iPhone 8 Plus",
-    "iPhone SE",
+#   "iPhone SE",
 #   "iPhone X",
 #   "iPhone 11"
     "iPhone 11 Pro",
