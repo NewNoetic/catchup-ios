@@ -66,7 +66,10 @@ struct NewCatchupView: View {
                         .padding(.top, 20)
                         .padding()
                     Button(action: {
-                        guard let contact = self.contact else { return }
+                        guard let contact = self.contact else {
+                            self.showingContactPicker = true
+                            return
+                        }
                         self.done(Catchup(contact: contact, interval: self.durationCases[self.durationIndex].value, method: self.methodCases[self.methodIndex]))
                     }) {
                         Text("Create Ketchup")
