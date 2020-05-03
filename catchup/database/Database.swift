@@ -68,6 +68,14 @@ struct Database {
         })
     }
     
+    func catchupsCount() -> Int {
+        do {
+            return try db.scalar(catchups.count)
+        } catch {
+            return -1
+        }
+    }
+    
     func catchup(notification: String) -> Catchup? {
         do {
             return try db.prepare(catchups.where(nextNotification == notification)).compactMap({ row -> Catchup? in

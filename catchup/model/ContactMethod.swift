@@ -16,5 +16,13 @@ enum ContactMethod: String, CaseIterable, Identifiable {
     var id: String {
         self.rawValue
     }
+    
+    var capitalized: String {
+        switch self {
+        case .whatsapp: return "WhatsApp"
+        case .facetime: return "FaceTime"
+        default: return self.rawValue.capitalized
+        }
+    }
 }
 

@@ -56,11 +56,11 @@ struct ContentView: View {
         let nav = NavigationView {
             VStack {
                 List {
-                    Section(header: Text("upcoming")) {
+                    Section(header: Text("upcoming (\(upcoming.catchups.count))")) {
                         ForEach(upcoming.catchups) { up -> Text in
                             switch self.upcoming.display {
                             case .standard:
-                                var finalText = Text("\(up.method.rawValue.capitalized) \(up.contact.displayName)") // .capitalized produces wrong string for WhatsApp because it sets everything except first character to lowercase (https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized)
+                                var finalText = Text("\(up.method.capitalized) \(up.contact.displayName)") // .capitalized produces wrong string for WhatsApp because it sets everything except first character to lowercase (https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized)
                                     .fontWeight(.bold)
                                 if let nextTouch = up.nextTouch {
                                     finalText += Text(" \(Self.relativeDateFormatter().localizedString(for: nextTouch, relativeTo: Date())), \(Self.timeFormatter().string(from: nextTouch))")
@@ -86,6 +86,11 @@ struct ContentView: View {
                             .padding([Edge.Set.trailing], 40)
                     }
                     Button(action: {
+                        guard (0..<60 ~= Database.shared.catchupsCount()) else {
+                            self.errorMessage = "You can only create a maximum of 60 Ketchups due to iOS notification limits."
+                            self.errorAlert = true
+                            return
+                        }
                         self.showNewCatchup.toggle()
                     }) {
                         Text("New Ketchup")

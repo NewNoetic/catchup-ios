@@ -22,6 +22,11 @@
                BlueprintName = "catchupUITests"
                ReferencedContainer = "container:catchup.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "catchupUITests/testMaxCatchups()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

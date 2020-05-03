@@ -19,7 +19,11 @@ class catchupUITests: XCTestCase {
         app.launchArguments.append("--disableAnimation")
         app.launchArguments.append("--resetData")
         addUIInterruptionMonitor(withDescription: "allow notification alert") { alert in
-            alert.buttons["Allow"].tap()
+            if alert.staticTexts["Allow"].exists {
+                alert.buttons["Allow"].tap()
+            } else if alert.staticTexts["OK"].exists {
+                alert.buttons["OK"].tap()
+            }
             return true
         }
         setupSnapshot(app)
@@ -74,6 +78,24 @@ class catchupUITests: XCTestCase {
         snapshot("all contacts")
         
         waitTap(on: app.buttons["settings"])
+        
+        snapshot("settings")
+    }
+    
+    func testMaxCatchups() {
+        for n in 0...61 {
+            print("NEW CATCHUP \(n)")
+            waitTap(on: app/*@START_MENU_TOKEN@*/.buttons["new catchup"]/*[[".buttons[\"New CatchUp\"]",".buttons[\"new catchup\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/)
+            if (n >= 60) {
+                XCTAssertFalse(app.buttons["create"].exists)
+                XCTAssertTrue(app.staticTexts["You can only create a maximum of 60 Ketchups due to iOS notification limits."].waitForExistence(timeout: 3000))
+                continue
+            } else {
+                XCTAssertTrue(app.buttons["create"].exists)
+            }
+            waitTap(on: app.tables["ContactsListView"].cells.element(boundBy: n))
+            waitTap(on: app.buttons["create"])
+        }
     }
 
 //    func testLaunchPerformance() {
