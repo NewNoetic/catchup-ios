@@ -18,7 +18,6 @@ class ContactPickerViewControllerWrapper: UIViewController, CNContactPickerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         let contacts = CNContactPickerViewController()
-        contacts.predicateForSelectionOfContact = NSPredicate(format: "phoneNumbers.@count > 0 || emailAddresses.@count > 0")
         contacts.delegate = self.delegate
         self.present(contacts, animated: false, completion: nil)
     }
