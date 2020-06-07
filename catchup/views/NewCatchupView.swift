@@ -78,6 +78,7 @@ struct NewCatchupView: View {
                     .accessibility(identifier: "create")
 
                 }
+                Spacer()
             }
             .sheet(isPresented: $showingContactPicker) {
                 ContactPickerViewController() { contact in
