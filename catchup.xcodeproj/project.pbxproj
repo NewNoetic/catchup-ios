@@ -55,11 +55,6 @@
 		DCA9D658244B7D030071DE47 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
 		DCA9D65A244B90EF0071DE47 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9D659244B90EF0071DE47 /* TestHelpers.swift */; };
 		DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABF9A323E603CA002B1727 /* SettingsView.swift */; };
-		DCBD38C2240D03A60027628A /* Appfile in Resources */ = {isa = PBXBuildFile; fileRef = DCBD38BC240D03A50027628A /* Appfile */; };
-		DCBD38C4240D03A60027628A /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = DCBD38BE240D03A50027628A /* Fastfile */; };
-		DCBD38C5240D03A60027628A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DCBD38BF240D03A50027628A /* README.md */; };
-		DCBD38C6240D03A60027628A /* report.xml in Resources */ = {isa = PBXBuildFile; fileRef = DCBD38C0240D03A50027628A /* report.xml */; };
-		DCBD38C7240D03A60027628A /* Snapfile in Resources */ = {isa = PBXBuildFile; fileRef = DCBD38C1240D03A50027628A /* Snapfile */; };
 		DCBD38C8240D03BB0027628A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBD38BD240D03A50027628A /* SnapshotHelper.swift */; };
 		DCBD38C9240D04F20027628A /* catchupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E4E23E270F300383CE1 /* catchupUITests.swift */; };
 		DCDE2DE4243176E00036CEED /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE2DE3243176E00036CEED /* Slot.swift */; };
@@ -455,12 +450,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCBD38C5240D03A60027628A /* README.md in Resources */,
-				DCBD38C4240D03A60027628A /* Fastfile in Resources */,
-				DCBD38C7240D03A60027628A /* Snapfile in Resources */,
-				DCBD38C2240D03A60027628A /* Appfile in Resources */,
 				DC0D9E3923E270F300383CE1 /* LaunchScreen.storyboard in Resources */,
-				DCBD38C6240D03A60027628A /* report.xml in Resources */,
 				DC0D9E3623E270F300383CE1 /* Preview Assets.xcassets in Resources */,
 				DC0D9E3323E270F300383CE1 /* Assets.xcassets in Resources */,
 			);
