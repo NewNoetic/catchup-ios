@@ -19,11 +19,7 @@ struct NewCatchupView: View {
     @State private var contact: CNContact?
     @State private var durationIndex: Int = 2
     @State private var methodIndex: Int = 0
-    #if targetEnvironment(simulator) // working around a bug in simulator that doesn't automatically present the contact picker
-    @State private var showingContactPicker = false
-    #else
-    @State private var showingContactPicker = true
-    #endif
+    @State private var showingContactPicker = ProcessInfo().isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion: 13, minorVersion: 4, patchVersion: 0)) ? false : true
     
     init(done: @escaping DoneSignature) {
         self.done = done
@@ -93,9 +89,7 @@ struct NewCatchupView: View {
         }
         .accentColor(MainView.accentColor)
         .onAppear {
-            #if targetEnvironment(simulator)
             self.showingContactPicker = true
-            #endif
         }
     }
 }
