@@ -36,7 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         UNUserNotificationCenter.current().delegate = self
         
-        // SceneDelegate.appState.startView = .intro
+        // Gives us callback for 'dismissed' notifications
+        let notificationCategory = UNNotificationCategory(identifier: Notifications.defaultCategoryIdentifier, actions: [], intentIdentifiers: [], options: .customDismissAction)
+        UNUserNotificationCenter.current().setNotificationCategories([notificationCategory])
+        
+        //SceneDelegate.appState.startView = .intro
         
         return true
     }
@@ -59,10 +63,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
             }
             .catch { error in
-                print("could not reschedule some or all catchups")
+                print("could not reschedule some or all catchups, error: \(error.localizedDescription)")
             }
             .always {
-                UIApplication.shared.applicationIconBadgeNumber = 0
+                UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
+                    DispatchQueue.main.async {
+                        UIApplication.shared.applicationIconBadgeNumber = notifications.count
+                    }
+                }
                 completionHandler()
             }
         }

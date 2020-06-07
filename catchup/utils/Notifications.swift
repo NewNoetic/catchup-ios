@@ -12,6 +12,7 @@ import Promises
 
 struct Notifications {
     static let shared = Notifications()
+    static let defaultCategoryIdentifier = "com.newnoetic.catchup.customDismissNotification"
     func schedule(catchup: Catchup) -> Promise<Catchup> {
         UserNotificationsAsync.authenticaticated()
             .then { _ in
@@ -23,6 +24,7 @@ struct Notifications {
                 let notification = UNMutableNotificationContent()
                 notification.title = "Catch up with \(catchup.contact.displayName)"
                 notification.body = "Tap to \(catchup.method.rawValue)"
+                    notification.categoryIdentifier = Notifications.defaultCategoryIdentifier
                 let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.day, .hour, .minute, .second], from: date), repeats: false)
                 let uuid = UUID().uuidString
                 let request = UNNotificationRequest(identifier: uuid, content: notification, trigger: trigger)
