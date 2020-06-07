@@ -38,6 +38,7 @@ final class Upcoming: ObservableObject {
                 // remove the pending notification
                 if let notificationIdentifier = element.nextNotification {
                     UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
+                    UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notificationIdentifier])
                 }
             }
         }
