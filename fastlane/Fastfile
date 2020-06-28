@@ -91,7 +91,7 @@ platform :ios do
       push_to_git_remote
     
      # See ./Snapfile for config
-     capture_screenshots
+     #capture_screenshots
     
       build_app(
           scheme: "catchup",
