@@ -125,13 +125,22 @@ struct ContentView: View {
                             self.upcoming.update()
                     }
                     .catch { error in
-                        self.errorMessage = error.localizedDescription
+                        self.errorMessage = {
+                            switch (error) {
+                            case is NotificationsError:
+                                return "You must enable notifications for Ketchup to work."
+                            default:
+                                return "There was an error creating the Ketchup."
+                            }
+                        }()
                         self.errorAlert = true
                     }
                 }
             }
             .alert(isPresented: $errorAlert) {
-                Alert(title: Text(self.errorMessage))
+                Alert(title: Text(self.errorMessage), primaryButton: .default(Text("Open Settings"), action: {
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                }), secondaryButton: .cancel())
             }
             .navigationBarTitle("🥫 Ketchup")
             
