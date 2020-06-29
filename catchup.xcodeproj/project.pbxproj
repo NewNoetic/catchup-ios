@@ -61,7 +61,6 @@
 		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
 		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
 		DCFF5E9F23F22654008F48CA /* Promises in Frameworks */ = {isa = PBXBuildFile; productRef = DCFF5E9E23F22654008F48CA /* Promises */; };
-		DCFF5EA123F22654008F48CA /* PromisesTestHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = DCFF5EA023F22654008F48CA /* PromisesTestHelpers */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,7 +149,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCFF5EA123F22654008F48CA /* PromisesTestHelpers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,7 +371,6 @@
 			);
 			name = catchupTests;
 			packageProductDependencies = (
-				DCFF5EA023F22654008F48CA /* PromisesTestHelpers */,
 			);
 			productName = catchupTests;
 			productReference = DC0D9E3F23E270F300383CE1 /* catchupTests.xctest */;
@@ -895,11 +892,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DCFF5E9D23F22654008F48CA /* XCRemoteSwiftPackageReference "promises" */;
 			productName = Promises;
-		};
-		DCFF5EA023F22654008F48CA /* PromisesTestHelpers */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DCFF5E9D23F22654008F48CA /* XCRemoteSwiftPackageReference "promises" */;
-			productName = PromisesTestHelpers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
