@@ -4,3 +4,4 @@ fastlane/*.html
 build/
 *.ipa
 *.DSYM.zip
+catchup.xcodeproj/xcuserdata/
