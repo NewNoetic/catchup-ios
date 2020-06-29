@@ -31,6 +31,16 @@
       systemAttachmentLifetime = "keepNever"
       codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DC0D9E3E23E270F300383CE1"
+               BuildableName = "catchupTests.xctest"
+               BlueprintName = "catchupTests"
+               ReferencedContainer = "container:catchup.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
