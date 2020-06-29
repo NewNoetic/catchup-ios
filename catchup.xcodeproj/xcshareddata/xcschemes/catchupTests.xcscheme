@@ -41,6 +41,11 @@
                BlueprintName = "catchupTests"
                ReferencedContainer = "container:catchup.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "SchedulerTests/testTwoScheduledCatchups()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
