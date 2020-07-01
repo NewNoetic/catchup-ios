@@ -14,22 +14,26 @@ class catchupUITests: XCTestCase {
     override func setUp() {
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
+        
         app = XCUIApplication()
         app.launchArguments.append("--disableAnimation")
         app.launchArguments.append("--resetData")
         addUIInterruptionMonitor(withDescription: "allow notification alert") { alert in
-            if alert.staticTexts["Allow"].exists {
-                alert.buttons["Allow"].tap()
-            } else if alert.staticTexts["OK"].exists {
-                alert.buttons["OK"].tap()
+            let button = alert.buttons.element(boundBy: 1)
+            if button.exists {
+                button.tap()
             }
+            //            if alert.staticTexts["Allow"].exists {
+            //                alert.buttons["Allow"].tap()
+            //            } else if alert.staticTexts["OK"].exists {
+            //                alert.buttons["OK"].tap()
+            //            }
             return true
         }
         setupSnapshot(app)
         app.launch()
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -97,13 +101,13 @@ class catchupUITests: XCTestCase {
             waitTap(on: app.buttons["create"])
         }
     }
-
-//    func testLaunchPerformance() {
-//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-//            // This measures how long it takes to launch your application.
-//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-//                XCUIApplication().launch()
-//            }
-//        }
-//    }
+    
+    //    func testLaunchPerformance() {
+    //        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+    //            // This measures how long it takes to launch your application.
+    //            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+    //                XCUIApplication().launch()
+    //            }
+    //        }
+    //    }
 }
