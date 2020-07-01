@@ -19,3 +19,9 @@ func waitTap<T>(on element: T, for timeout: TimeInterval = 5, action: WaitComple
         element.tap()
     }
 }
+
+struct ContactsCatchup {
+    var name: String
+    var duration: Intervals
+    var method: ContactMethod
+}

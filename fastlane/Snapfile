@@ -1,12 +1,12 @@
 # A list of devices you want to take the screenshots from
  devices([
-    "iPhone 8",
-    "iPhone 8 Plus",
+#   "iPhone 8",
+    "iPhone 7 Plus",
 #   "iPhone SE",
 #   "iPhone X",
 #   "iPhone 11"
-    "iPhone 11 Pro",
-    "iPhone 11 Pro Max"
+#   "iPhone 11 Pro",
+    "iPhone Xs Max"
 #   "iPad Pro (12.9-inch)",
 #   "iPad Pro (9.7-inch)",
 #   "Apple TV 1080p"
@@ -20,7 +20,7 @@ languages([
 ])
 
 # The name of the scheme which contains the UI Tests
-scheme("catchupUITests")
+scheme("catchupSnapshotTests")
 
 # Where should the resulting screenshots be stored?
 output_directory("./build/screenshots")

@@ -1,6 +1,6 @@
 //
-//  catchupUITests.swift
-//  catchupUITests
+//  catchupSnapshotTests.swift
+//  catchupSnapshotTests
 //
 //  Created by Sidhant Gandhi on 1/29/20.
 //  Copyright © 2020 newnoetic. All rights reserved.
@@ -8,37 +8,32 @@
 
 import XCTest
 
-class catchupUITests: XCTestCase {
+class catchupSnapshotTests: XCTestCase {
     var app: XCUIApplication!
-    
+
     override func setUp() {
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
+        
         app = XCUIApplication()
         app.launchArguments.append("--disableAnimation")
         app.launchArguments.append("--resetData")
         addUIInterruptionMonitor(withDescription: "allow notification alert") { alert in
-            if alert.staticTexts["Allow"].exists {
-                alert.buttons["Allow"].tap()
-            } else if alert.staticTexts["OK"].exists {
-                alert.buttons["OK"].tap()
+            let button = alert.buttons.element(boundBy: 1)
+            if button.exists {
+                button.tap()
             }
             return true
         }
         setupSnapshot(app)
         app.launch()
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    struct ContactsCatchup {
-        var name: String
-        var duration: Intervals
-        var method: ContactMethod
-    }
+
     
     func testNewCatchups() {
         snapshot("main")
@@ -81,29 +76,4 @@ class catchupUITests: XCTestCase {
         
         snapshot("settings")
     }
-    
-    func testMaxCatchups() {
-        for n in 0...61 {
-            print("NEW CATCHUP \(n)")
-            waitTap(on: app/*@START_MENU_TOKEN@*/.buttons["new catchup"]/*[[".buttons[\"New CatchUp\"]",".buttons[\"new catchup\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/)
-            if (n >= 60) {
-                XCTAssertFalse(app.buttons["create"].exists)
-                XCTAssertTrue(app.staticTexts["You can only create a maximum of 60 Ketchups due to iOS notification limits."].waitForExistence(timeout: 3000))
-                continue
-            } else {
-                XCTAssertTrue(app.buttons["create"].exists)
-            }
-            waitTap(on: app.tables["ContactsListView"].cells.element(boundBy: n))
-            waitTap(on: app.buttons["create"])
-        }
-    }
-
-//    func testLaunchPerformance() {
-//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-//            // This measures how long it takes to launch your application.
-//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-//                XCUIApplication().launch()
-//            }
-//        }
-//    }
 }
