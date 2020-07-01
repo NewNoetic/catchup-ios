@@ -697,7 +697,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.newnoetic.catchup;
 				PRODUCT_NAME = "🥫 Ketchup";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -723,7 +723,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.newnoetic.catchup;
 				PRODUCT_NAME = "🥫 Ketchup";
 				PROVISIONING_PROFILE_SPECIFIER = "";
