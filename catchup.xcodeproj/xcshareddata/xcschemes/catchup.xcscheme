@@ -48,6 +48,16 @@
                ReferencedContainer = "container:catchup.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DCDC615F24AC554900BD4337"
+               BuildableName = "catchupSnapshotTests.xctest"
+               BlueprintName = "catchupSnapshotTests"
+               ReferencedContainer = "container:catchup.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

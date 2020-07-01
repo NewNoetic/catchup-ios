@@ -53,10 +53,14 @@
 		DC9CEE83243042EB0015298F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CEE82243042EB0015298F /* Settings.swift */; };
 		DCA9D657244B7CED0071DE47 /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DCA9D658244B7D030071DE47 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
-		DCA9D65A244B90EF0071DE47 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9D659244B90EF0071DE47 /* TestHelpers.swift */; };
 		DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABF9A323E603CA002B1727 /* SettingsView.swift */; };
-		DCBD38C8240D03BB0027628A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBD38BD240D03A50027628A /* SnapshotHelper.swift */; };
-		DCBD38C9240D04F20027628A /* catchupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E4E23E270F300383CE1 /* catchupUITests.swift */; };
+		DCDC615B24AC51A300BD4337 /* maxCatchupsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC615A24AC51A300BD4337 /* maxCatchupsTest.swift */; };
+		DCDC616A24AC554F00BD4337 /* catchupSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E4E23E270F300383CE1 /* catchupSnapshotTests.swift */; };
+		DCDC616B24AC555200BD4337 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBD38BD240D03A50027628A /* SnapshotHelper.swift */; };
+		DCDC616D24AC555C00BD4337 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9D659244B90EF0071DE47 /* TestHelpers.swift */; };
+		DCDC616E24AC555E00BD4337 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9D659244B90EF0071DE47 /* TestHelpers.swift */; };
+		DCDC616F24AC564D00BD4337 /* Intervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6923E27D7100383CE1 /* Intervals.swift */; };
+		DCDC617024AC565400BD4337 /* ContactMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E6123E2758600383CE1 /* ContactMethod.swift */; };
 		DCDE2DE4243176E00036CEED /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE2DE3243176E00036CEED /* Slot.swift */; };
 		DCF04B9F23E3A7AE00D433AB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DCF04B9E23E3A7AE00D433AB /* SQLite */; };
 		DCF04BA123E3A86A00D433AB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
@@ -78,6 +82,13 @@
 			remoteGlobalIDString = DC0D9E2823E270EC00383CE1;
 			remoteInfo = catchup;
 		};
+		DCDC616524AC554900BD4337 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC0D9E2123E270EC00383CE1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC0D9E2823E270EC00383CE1;
+			remoteInfo = catchup;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -91,7 +102,7 @@
 		DC0D9E3F23E270F300383CE1 /* catchupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = catchupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0D9E4523E270F300383CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC0D9E4A23E270F300383CE1 /* catchupUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = catchupUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC0D9E4E23E270F300383CE1 /* catchupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catchupUITests.swift; sourceTree = "<group>"; };
+		DC0D9E4E23E270F300383CE1 /* catchupSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catchupSnapshotTests.swift; sourceTree = "<group>"; };
 		DC0D9E5023E270F300383CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC0D9E5D23E2745900383CE1 /* Catchup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catchup.swift; sourceTree = "<group>"; };
 		DC0D9E6123E2758600383CE1 /* ContactMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethod.swift; sourceTree = "<group>"; };
@@ -131,6 +142,9 @@
 		DCBD38BF240D03A50027628A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCBD38C0240D03A50027628A /* report.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
 		DCBD38C1240D03A50027628A /* Snapfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Snapfile; sourceTree = "<group>"; };
+		DCDC615A24AC51A300BD4337 /* maxCatchupsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maxCatchupsTest.swift; sourceTree = "<group>"; };
+		DCDC616024AC554900BD4337 /* catchupSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = catchupSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCDC616424AC554900BD4337 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCDE2DE3243176E00036CEED /* Slot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		DCF04BA023E3A86A00D433AB /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +173,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DCDC615D24AC554900BD4337 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -168,6 +189,7 @@
 				DC0D9E2B23E270EC00383CE1 /* catchup */,
 				DC0D9E4223E270F300383CE1 /* catchupTests */,
 				DC0D9E4D23E270F300383CE1 /* catchupUITests */,
+				DCDC616124AC554900BD4337 /* catchupSnapshotTests */,
 				DC0D9E2A23E270EC00383CE1 /* Products */,
 				DC153CC623EBE22D004533AD /* Frameworks */,
 				DCBD38BB240D03A50027628A /* fastlane */,
@@ -180,6 +202,7 @@
 				DC0D9E2923E270EC00383CE1 /* 🥫 Ketchup.app */,
 				DC0D9E3F23E270F300383CE1 /* catchupTests.xctest */,
 				DC0D9E4A23E270F300383CE1 /* catchupUITests.xctest */,
+				DCDC616024AC554900BD4337 /* catchupSnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,10 +244,9 @@
 		DC0D9E4D23E270F300383CE1 /* catchupUITests */ = {
 			isa = PBXGroup;
 			children = (
-				DCBD38BD240D03A50027628A /* SnapshotHelper.swift */,
-				DC0D9E4E23E270F300383CE1 /* catchupUITests.swift */,
-				DC0D9E5023E270F300383CE1 /* Info.plist */,
+				DCDC615A24AC51A300BD4337 /* maxCatchupsTest.swift */,
 				DCA9D659244B90EF0071DE47 /* TestHelpers.swift */,
+				DC0D9E5023E270F300383CE1 /* Info.plist */,
 			);
 			path = catchupUITests;
 			sourceTree = "<group>";
@@ -316,6 +338,16 @@
 			path = fastlane;
 			sourceTree = "<group>";
 		};
+		DCDC616124AC554900BD4337 /* catchupSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC0D9E4E23E270F300383CE1 /* catchupSnapshotTests.swift */,
+				DCBD38BD240D03A50027628A /* SnapshotHelper.swift */,
+				DCDC616424AC554900BD4337 /* Info.plist */,
+			);
+			path = catchupSnapshotTests;
+			sourceTree = "<group>";
+		};
 		DCFD088223F4B02500420149 /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,13 +426,31 @@
 			productReference = DC0D9E4A23E270F300383CE1 /* catchupUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		DCDC615F24AC554900BD4337 /* catchupSnapshotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCDC616724AC554900BD4337 /* Build configuration list for PBXNativeTarget "catchupSnapshotTests" */;
+			buildPhases = (
+				DCDC615C24AC554900BD4337 /* Sources */,
+				DCDC615D24AC554900BD4337 /* Frameworks */,
+				DCDC615E24AC554900BD4337 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCDC616624AC554900BD4337 /* PBXTargetDependency */,
+			);
+			name = catchupSnapshotTests;
+			productName = catchupSnapshotTests;
+			productReference = DCDC616024AC554900BD4337 /* catchupSnapshotTests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		DC0D9E2123E270EC00383CE1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = newnoetic;
 				TargetAttributes = {
@@ -414,6 +464,10 @@
 					};
 					DC0D9E4923E270F300383CE1 = {
 						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = DC0D9E2823E270EC00383CE1;
+					};
+					DCDC615F24AC554900BD4337 = {
+						CreatedOnToolsVersion = 11.5;
 						TestTargetID = DC0D9E2823E270EC00383CE1;
 					};
 				};
@@ -438,6 +492,7 @@
 				DC0D9E2823E270EC00383CE1 /* catchup */,
 				DC0D9E3E23E270F300383CE1 /* catchupTests */,
 				DC0D9E4923E270F300383CE1 /* catchupUITests */,
+				DCDC615F24AC554900BD4337 /* catchupSnapshotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -461,6 +516,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DC0D9E4823E270F300383CE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCDC615E24AC554900BD4337 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -532,11 +594,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCBD38C9240D04F20027628A /* catchupUITests.swift in Sources */,
-				DCA9D65A244B90EF0071DE47 /* TestHelpers.swift in Sources */,
-				DCBD38C8240D03BB0027628A /* SnapshotHelper.swift in Sources */,
 				DCA9D658244B7D030071DE47 /* Intervals.swift in Sources */,
 				DCA9D657244B7CED0071DE47 /* ContactMethod.swift in Sources */,
+				DCDC615B24AC51A300BD4337 /* maxCatchupsTest.swift in Sources */,
+				DCDC616D24AC555C00BD4337 /* TestHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCDC615C24AC554900BD4337 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCDC616A24AC554F00BD4337 /* catchupSnapshotTests.swift in Sources */,
+				DCDC617024AC565400BD4337 /* ContactMethod.swift in Sources */,
+				DCDC616B24AC555200BD4337 /* SnapshotHelper.swift in Sources */,
+				DCDC616F24AC564D00BD4337 /* Intervals.swift in Sources */,
+				DCDC616E24AC555E00BD4337 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +625,11 @@
 			isa = PBXTargetDependency;
 			target = DC0D9E2823E270EC00383CE1 /* catchup */;
 			targetProxy = DC99F68A24429C93000227D1 /* PBXContainerItemProxy */;
+		};
+		DCDC616624AC554900BD4337 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC0D9E2823E270EC00383CE1 /* catchup */;
+			targetProxy = DCDC616524AC554900BD4337 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -822,6 +900,46 @@
 			};
 			name = Release;
 		};
+		DCDC616824AC554900BD4337 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CUCB33MFQZ;
+				INFOPLIST_FILE = catchupSnapshotTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.newnoetic.catchupSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = catchup;
+			};
+			name = Debug;
+		};
+		DCDC616924AC554900BD4337 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CUCB33MFQZ;
+				INFOPLIST_FILE = catchupSnapshotTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.newnoetic.catchupSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = catchup;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -857,6 +975,15 @@
 			buildConfigurations = (
 				DC0D9E5A23E270F300383CE1 /* Debug */,
 				DC0D9E5B23E270F300383CE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCDC616724AC554900BD4337 /* Build configuration list for PBXNativeTarget "catchupSnapshotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCDC616824AC554900BD4337 /* Debug */,
+				DCDC616924AC554900BD4337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
