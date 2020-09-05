@@ -27,6 +27,9 @@
 		DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532423E5E7B200A20AF8 /* ViewControllerSubscription.swift */; };
 		DC22532723E5E9BB00A20AF8 /* ViewControllerPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532623E5E9BB00A20AF8 /* ViewControllerPublisher.swift */; };
 		DC22532923E5EAAA00A20AF8 /* CombineCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22532823E5EAAA00A20AF8 /* CombineCompatible.swift */; };
+		DC281EFD250450A100E1826A /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDBC28825042EA10016EDDA /* Analytics.swift */; };
+		DC281EFE250450A300E1826A /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDBC28825042EA10016EDDA /* Analytics.swift */; };
+		DC281EFF250450A300E1826A /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDBC28825042EA10016EDDA /* Analytics.swift */; };
 		DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4043C423E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift */; };
 		DC4BF3432427E48D00595CD8 /* DoubleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4BF3422427E48D00595CD8 /* DoubleSlider.swift */; };
 		DC4BF34524280EE900595CD8 /* Clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4BF34424280EE900595CD8 /* Clamp.swift */; };
@@ -636,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
+				DC281EFD250450A100E1826A /* Analytics.swift in Sources */,
 				DC139D4023ECA0430065B138 /* Notifications.swift in Sources */,
 				DC99F68C24429D6B000227D1 /* Slot.swift in Sources */,
 				DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */,
@@ -657,6 +661,7 @@
 				DCA9D658244B7D030071DE47 /* Intervals.swift in Sources */,
 				DCA9D657244B7CED0071DE47 /* ContactMethod.swift in Sources */,
 				DCDC615B24AC51A300BD4337 /* maxCatchupsTest.swift in Sources */,
+				DC281EFE250450A300E1826A /* Analytics.swift in Sources */,
 				DCDC616D24AC555C00BD4337 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,6 +672,7 @@
 			files = (
 				DCDC616A24AC554F00BD4337 /* catchupSnapshotTests.swift in Sources */,
 				DCDC617024AC565400BD4337 /* ContactMethod.swift in Sources */,
+				DC281EFF250450A300E1826A /* Analytics.swift in Sources */,
 				DCDC616B24AC555200BD4337 /* SnapshotHelper.swift in Sources */,
 				DCDC616F24AC564D00BD4337 /* Intervals.swift in Sources */,
 				DCDC616E24AC555E00BD4337 /* TestHelpers.swift in Sources */,
@@ -891,6 +897,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CUCB33MFQZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/firebase",
+				);
 				INFOPLIST_FILE = catchupTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -916,6 +926,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CUCB33MFQZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/firebase",
+				);
 				INFOPLIST_FILE = catchupTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -938,6 +952,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CUCB33MFQZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/firebase",
+				);
 				INFOPLIST_FILE = catchupUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -958,6 +976,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CUCB33MFQZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/firebase",
+				);
 				INFOPLIST_FILE = catchupUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -977,6 +999,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CUCB33MFQZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/firebase",
+				);
 				INFOPLIST_FILE = catchupSnapshotTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -997,6 +1023,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CUCB33MFQZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/firebase",
+				);
 				INFOPLIST_FILE = catchupSnapshotTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (

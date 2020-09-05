@@ -7,8 +7,18 @@
 //
 
 import Foundation
+#if canImport(FirebaseAnalytics)
 import FirebaseAnalytics
+#endif
 
+func captureError(_ error: Error? = nil, message: String? = nil) {
+    let errorMessage = "\(message ?? "generic error") - \(error?.localizedDescription ?? "no description")"
+    print(errorMessage)
+    #if canImport(FirebaseAnalytics)
+    Analytics.logEvent(AnalyticsEvent.Error.rawValue, parameters: [AnalyticsParameter.ErrorMessage.rawValue: errorMessage])
+    #endif
+
+}
 enum AnalyticsEvent: String {
     case Error
     case NewCatchupCreated
@@ -32,11 +42,4 @@ enum AnalyticsParameter: String {
     case SettingsWeekdayTimeslots
     case SettingsWeekendTimeslots
     case Timezone
-}
-
-func captureError(_ error: Error? = nil, message: String? = nil) {
-    let errorMessage = "\(message ?? "generic error") - \(error?.localizedDescription ?? "no description")"
-    print(errorMessage)
-    Analytics.logEvent(AnalyticsEvent.Error.rawValue, parameters: [AnalyticsParameter.ErrorMessage.rawValue: errorMessage])
-
 }
