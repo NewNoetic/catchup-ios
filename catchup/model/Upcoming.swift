@@ -20,9 +20,17 @@ final class Upcoming: ObservableObject {
     @Published var display: Display = .standard
     
     func update() {
-        guard let c = try? Database.shared.allCatchups()
-            else { return }
-        self.catchups = c
+        // When updating, also grab any exprired catchups and reschedule them
+        let expiredCatchups = (try? Database.shared.expiredCatchups()) ?? []
+        Scheduler.shared.reschedule(expiredCatchups)
+            .then { scheduledOrError in
+                try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
+                scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
+                guard let c = try? Database.shared.allCatchups() else { return }
+                self.catchups = c
+        }.catch { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     func remove(at offsets: IndexSet) {

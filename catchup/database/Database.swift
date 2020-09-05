@@ -68,6 +68,12 @@ struct Database {
         })
     }
     
+    func expiredCatchups() throws -> [Catchup] {
+        return try db.prepare(catchups.filter(nextTouch <= Date())).compactMap({ (row: Row) -> Catchup? in
+            return Catchup(contact: row[contact], interval: row[interval], method: ContactMethod(rawValue: row[method]) ?? ContactMethod.call, nextTouch: row[nextTouch], nextNotification: row[nextNotification])
+        })
+    }
+    
     func catchupsCount() -> Int {
         do {
             return try db.scalar(catchups.count)

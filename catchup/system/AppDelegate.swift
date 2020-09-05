@@ -57,7 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         defer {
-            Scheduler.shared.reschedule([catchup])
+            let expiredCatchups = (try? Database.shared.expiredCatchups()) ?? []
+            Scheduler.shared.reschedule([catchup] + expiredCatchups)
             .then { scheduledOrError in
                     try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
                     scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
