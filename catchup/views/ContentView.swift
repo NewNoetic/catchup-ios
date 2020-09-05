@@ -59,7 +59,7 @@ struct ContentView: View {
         let nav = NavigationView {
             VStack {
                 List {
-                    Section(header: Text("upcoming (\(upcoming.catchups.count))")) {
+                    Section(header: Text("Upcoming (\(upcoming.catchups.count))")) {
                         ForEach(upcoming.catchups) { up -> Text in
                             switch self.upcoming.display {
                             case .standard:
