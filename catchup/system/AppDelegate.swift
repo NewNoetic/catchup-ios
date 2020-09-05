@@ -11,6 +11,7 @@ import SwiftUI
 import Promises
 import UserNotifications
 import MessageUI
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, UIWindowSceneDelegate {
@@ -31,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("Could not reset catchups: \(error.localizedDescription)")
             }
         }
+        
+        FirebaseApp.configure()
+        Analytics.logEvent(AnalyticsEventAppOpen, parameters: [:])
         
         Migration.run()
         
