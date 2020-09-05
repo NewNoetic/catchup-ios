@@ -30,6 +30,7 @@ enum AnalyticsEvent: String {
     case SettingsTapped
     case SettingsCancelTapped
     case SettingsSaveTapped
+    case NotificationTapped
 }
 
 enum AnalyticsParameter: String {
@@ -42,4 +43,5 @@ enum AnalyticsParameter: String {
     case SettingsWeekdayTimeslots
     case SettingsWeekendTimeslots
     case Timezone
+    case NotificationAction
 }

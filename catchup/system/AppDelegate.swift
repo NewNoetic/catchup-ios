@@ -85,7 +85,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if response.actionIdentifier == UNNotificationDismissActionIdentifier {
             // TODO: Snooze?
+            Analytics.logEvent(AnalyticsEvent.NotificationTapped.rawValue, parameters: [
+                AnalyticsParameter.NotificationAction.rawValue: "dismiss",
+                AnalyticsParameter.CatchupMethod.rawValue: catchup.method.rawValue,
+                AnalyticsParameter.CatchupInterval.rawValue: "\(catchup.interval)",
+                AnalyticsParameter.CatchupDate.rawValue: catchup.nextTouch?.debugDescription ?? ""
+            ])
         } else if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            Analytics.logEvent(AnalyticsEvent.NotificationTapped.rawValue, parameters: [
+                AnalyticsParameter.NotificationAction.rawValue: "default",
+                AnalyticsParameter.CatchupMethod.rawValue: catchup.method.rawValue,
+                AnalyticsParameter.CatchupInterval.rawValue: "\(catchup.interval)",
+                AnalyticsParameter.CatchupDate.rawValue: catchup.nextTouch?.debugDescription ?? ""
+            ])
+
             switch catchup.method {
             case .call:
                 guard let number = catchup.phoneNumber else {
