@@ -29,11 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             do {
                 try Database.shared.deleteAll()
             } catch {
-                print("Could not reset catchups: \(error.localizedDescription)")
+                captureError(error, message: "Could not reset catchups")
             }
         }
         
         FirebaseApp.configure()
+        
+        Analytics.setUserID("\(UIDevice.current.name)_\(UIDevice.current.identifierForVendor?.uuidString ?? "")")
+        Analytics.setUserProperty(TimeZone.current.identifier, forName:AnalyticsParameter.Timezone.rawValue)
         Analytics.logEvent(AnalyticsEventAppOpen, parameters: [:])
         
         Migration.run()
@@ -56,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let identifier = response.notification.request.identifier
         guard let catchup = Database.shared.catchup(notification: identifier) else {
-            print("could not find saved catchup with that identifier")
+            captureError(message: "could not find saved catchup with that identifier")
             return
         }
         
@@ -68,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
             }
             .catch { error in
-                print("could not reschedule some or all catchups, error: \(error.localizedDescription)")
+                captureError(error, message:"could not reschedule some or all catchups")
             }
             .always {
                 UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
@@ -86,55 +89,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             switch catchup.method {
             case .call:
                 guard let number = catchup.phoneNumber else {
-                    print("trying to call, but phone number doesn't exist")
+                    captureError(message: "trying to call, but phone number doesn't exist")
                     return
                 }
                 guard let url = URL(string: "tel://\(number)") else {
-                    print("trying to call, but can't create phone number url")
+                    captureError(message: "trying to call, but can't create phone number url")
                     return
                 }
                 UIApplication.shared.open(url)
                 break
             case .text:
                 guard let number = catchup.phoneNumber else {
-                    print("trying to text, but phone number doesn't exist")
+                    captureError(message: "trying to text, but phone number doesn't exist")
                     return
                 }
                 guard MFMessageComposeViewController.canSendText() else {
-                    print("trying to text, but not allowed")
+                    captureError(message: "trying to text, but not allowed")
                     return
                 }
                 SceneDelegate.appState.startView = .text(recipients: [number])
                 break
             case .email:
                 guard let email = catchup.email else {
-                    print("trying to email, but email doesn't exist")
+                    captureError(message: "trying to email, but email doesn't exist")
                     return
                 }
                 guard MFMailComposeViewController.canSendMail() else {
-                    print("trying to email, but not allowed")
+                    captureError(message: "trying to email, but not allowed")
                     return
                 }
                 SceneDelegate.appState.startView = .email(recipients: [email])
                 break
             case .whatsapp:
                 guard let number = catchup.phoneNumber else {
-                    print("trying to whatsapp, but phone number doesn't exist")
+                    captureError(message: "trying to whatsapp, but phone number doesn't exist")
                     return
                 }
                 guard let whatsappUrl = URL(string: "https://wa.me/\(number)") else {
-                    print("could not create whatsapp url from phone number")
+                    captureError(message: "could not create whatsapp url from phone number")
                     return
                 }
                 UIApplication.shared.open(whatsappUrl, options: [:], completionHandler: nil)
                 break
             case .facetime:
                 guard let number = catchup.phoneNumber else {
-                    print("trying to facetime, but phone number doesn't exist")
+                    captureError(message: "trying to facetime, but phone number doesn't exist")
                     return
                 }
                 guard let facetimeUrl = URL(string: "facetime://\(number)") else {
-                    print("could not create facetime url from phone number")
+                    captureError(message: "could not create facetime url from phone number")
                     return
                 }
                 UIApplication.shared.open(facetimeUrl, options: [:], completionHandler: nil)

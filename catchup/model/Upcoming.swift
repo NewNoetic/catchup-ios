@@ -40,7 +40,7 @@ final class Upcoming: ObservableObject {
                 do {
                     try Database.shared.remove(catchup: element)
                 } catch {
-                    print("could not delete catchup: \(error.localizedDescription)")
+                    captureError(error, message: "could not delete catchup: \(error.localizedDescription)")
                 }
                 
                 // remove the pending notification

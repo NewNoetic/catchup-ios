@@ -8,6 +8,7 @@
 
 import SwiftUI
 import ContactsUI
+import FirebaseAnalytics
 
 let calendar = Calendar(identifier: .gregorian)
 
@@ -123,11 +124,13 @@ struct SettingsView: View {
             .navigationBarTitle("Settings")
             .navigationBarItems(
                 leading: Button(action: {
+                    Analytics.logEvent(AnalyticsEvent.SettingsCancelTapped.rawValue, parameters: [:])
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Cancel")
                 },
                 trailing: Button(action: {
+                    Analytics.logEvent(AnalyticsEvent.SettingsSaveTapped.rawValue, parameters: [AnalyticsParameter.CatchupsCount.rawValue: self.upcoming.catchups.count])
                     let allCatchups = (try? Database.shared.allCatchups()) ?? []
                     Scheduler.shared.reschedule(allCatchups)
                         .then { scheduledOrError in
@@ -135,7 +138,7 @@ struct SettingsView: View {
                             scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
                     }
                     .catch { error in
-                        print("could not reschedule some or all catchups")
+                        captureError(error, message: "could not reschedule some or all catchups")
                         self.alertMessage = "Could not reschedule some or all Ketchups"
                         self.showAlert = true
                     }

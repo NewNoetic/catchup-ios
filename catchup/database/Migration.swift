@@ -25,7 +25,7 @@ struct Migration {
                     try Database.shared.createCatchupsTable()
                 }
             } catch {
-                print("error running migration \(error.localizedDescription)")
+                captureError(error, message: "error running migration")
             }
         }
 //        if db.userVersion == 1 {

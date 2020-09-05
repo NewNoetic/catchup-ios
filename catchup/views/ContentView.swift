@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Contacts
+import FirebaseAnalytics
 
 extension Text {
     static func +=(lhs: inout Text, rhs: Text) {
@@ -17,6 +18,8 @@ extension Text {
 
 struct ContentView: View {
     @EnvironmentObject var upcoming: Upcoming
+    @ObservedObject var settings = Settings()
+
     @State private var errorAlert = false
     @State private var errorMessage = ""
     @State private var showNewCatchup = false
@@ -74,19 +77,25 @@ struct ContentView: View {
                                 return Text("name: \(up.contact.displayName)\ninterval: \(up.interval)\nmethod: \(up.method.rawValue)\nnextTouch: \(Self.dateFormatter().string(from: up.nextTouch!))\nnextNotification: \(up.nextNotification?.description ?? "x")")
                             }
                         }
-                        .onDelete(perform: upcoming.remove(at:))
+                        .onDelete { (offset) in
+                            Analytics.logEvent(AnalyticsEvent.CatchupDeleteSwipe.rawValue, parameters: [:])
+                            self.upcoming.remove(at: offset)
+                        }
                     }
                 }
                 Spacer()
                 HStack {
                     Button(action: {
+                        Analytics.logEvent(AnalyticsEvent.UpdateTapped.rawValue, parameters: [AnalyticsParameter.CatchupsCount.rawValue: self.upcoming.catchups.count])
                         self.upcoming.update()
                     }) {
                         Image(systemName: "arrow.clockwise").imageScale(.large)
                             .padding([Edge.Set.trailing], 40)
                     }
                     Button(action: {
+                        Analytics.logEvent(AnalyticsEvent.NewCatchupTapped.rawValue, parameters: [AnalyticsParameter.CatchupsCount.rawValue: self.upcoming.catchups.count])
                         guard (0..<60 ~= Database.shared.catchupsCount()) else {
+                            Analytics.logEvent(AnalyticsEvent.MaxCatchupsReached.rawValue, parameters: [:])
                             self.errorMessage = "You can only create a maximum of 60 Ketchups due to iOS notification limits."
                             self.errorAlert = true
                             return
@@ -102,6 +111,7 @@ struct ContentView: View {
                     }
                     .accessibility(identifier: "new catchup")
                     Button(action: {
+                        Analytics.logEvent(AnalyticsEvent.SettingsTapped.rawValue, parameters: [:])
                         self.showSettings.toggle()
                     }) {
                         Image(systemName: "gear").imageScale(.large)
@@ -121,7 +131,16 @@ struct ContentView: View {
                         .then { scheduledOrError in
                             try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
                             scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
-                            
+                            if let scheduledCatchup = scheduledOrError.first?.value {
+                                guard let date = scheduledCatchup.nextTouch else { return }
+                                Analytics.logEvent(AnalyticsEvent.NewCatchupCreated.rawValue, parameters: [
+                                    AnalyticsParameter.CatchupInterval.rawValue: scheduledCatchup.interval,
+                                    AnalyticsParameter.CatchupMethod.rawValue: scheduledCatchup.method.rawValue,
+                                    AnalyticsParameter.CatchupDate.rawValue: date.debugDescription,
+                                    AnalyticsParameter.Timezone.rawValue: TimeZone.current.identifier,
+                                    AnalyticsParameter.SettingsDuration.rawValue: self.settings.timeslotDuration
+                                ])
+                            }
                             self.upcoming.update()
                     }
                     .catch { error in
@@ -152,6 +171,17 @@ struct ContentView: View {
             
         .onAppear {
             self.upcoming.update()
+            // after delay to let catchups load from database
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                Analytics.setUserProperty("\(self.upcoming.catchups.count)", forName: AnalyticsParameter.CatchupsCount.rawValue)
+            }
+            Analytics.setUserProperty(self.settings.weekdayTimeslots().reduce(into: "", { (result, slot) in
+                result += "s:\(slot.start)|e:\(slot.end),"
+            }), forName: AnalyticsParameter.SettingsWeekdayTimeslots.rawValue)
+            Analytics.setUserProperty(self.settings.weekendTimeslots().reduce(into: "", { (result, slot) in
+                result += "s:\(slot.start)|e:\(slot.end),"
+            }), forName: AnalyticsParameter.SettingsWeekendTimeslots.rawValue)
+            Analytics.setUserProperty("\(self.settings.timeslotDuration)", forName: AnalyticsParameter.SettingsDuration.rawValue)
         }
         
         return nav

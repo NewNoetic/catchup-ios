@@ -8,11 +8,13 @@
 
 import SwiftUI
 import Contacts
+import FirebaseAnalytics
 
 struct NewCatchupView: View {
     typealias DoneSignature = (Catchup?) -> Void
     var done: DoneSignature
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var settings = Settings()
 
     var durationCases: [Intervals] = Intervals.allCases
     var methodCases: [ContactMethod] = ContactMethod.allCases
@@ -86,7 +88,10 @@ struct NewCatchupView: View {
                     self.contact = contact
                 }
             }
-        .navigationBarItems(trailing: Button("Cancel") { self.presentationMode.wrappedValue.dismiss() })
+        .navigationBarItems(trailing: Button("Cancel") {
+            Analytics.logEvent(AnalyticsEvent.NewCatchupCancelTapped.rawValue, parameters: [:])
+            self.presentationMode.wrappedValue.dismiss()
+        })
         }
         .accentColor(MainView.accentColor)
         .onAppear {
