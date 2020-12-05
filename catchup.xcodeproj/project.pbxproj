@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D200182A257C0AE300640118 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001827257C0AE300640118 /* MotionManager.swift */; };
+		D200182B257C0AE300640118 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001827257C0AE300640118 /* MotionManager.swift */; };
+		D200182C257C0AE300640118 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001827257C0AE300640118 /* MotionManager.swift */; };
+		D200182D257C0AE300640118 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001827257C0AE300640118 /* MotionManager.swift */; };
+		D200182E257C0AE300640118 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001828257C0AE300640118 /* Gradient.swift */; };
+		D200182F257C0AE300640118 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001828257C0AE300640118 /* Gradient.swift */; };
+		D2001830257C0AE300640118 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001828257C0AE300640118 /* Gradient.swift */; };
+		D2001831257C0AE300640118 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001828257C0AE300640118 /* Gradient.swift */; };
+		D2001832257C0AE300640118 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001829257C0AE300640118 /* ShinyView.swift */; };
+		D2001833257C0AE300640118 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001829257C0AE300640118 /* ShinyView.swift */; };
+		D2001834257C0AE300640118 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001829257C0AE300640118 /* ShinyView.swift */; };
+		D2001835257C0AE300640118 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001829257C0AE300640118 /* ShinyView.swift */; };
 		DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */; };
 		DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E3023E270EC00383CE1 /* ContentView.swift */; };
 		DC0D9E3323E270F300383CE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0D9E3223E270F300383CE1 /* Assets.xcassets */; };
@@ -107,6 +119,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2001827257C0AE300640118 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		D2001828257C0AE300640118 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
+		D2001829257C0AE300640118 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
 		DC0D9E2923E270EC00383CE1 /* 🥫 Ketchup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "🥫 Ketchup.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC0D9E3023E270EC00383CE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -221,6 +236,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D2001826257C0ACB00640118 /* Shiny */ = {
+			isa = PBXGroup;
+			children = (
+				D2001828257C0AE300640118 /* Gradient.swift */,
+				D2001827257C0AE300640118 /* MotionManager.swift */,
+				D2001829257C0AE300640118 /* ShinyView.swift */,
+			);
+			path = Shiny;
+			sourceTree = "<group>";
+		};
 		DC0D9E2023E270EC00383CE1 = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +436,7 @@
 		DCFD088223F4B02500420149 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				D2001826257C0ACB00640118 /* Shiny */,
 				DC99F6922442B169000227D1 /* PageView */,
 				DCABF9A523E603D5002B1727 /* ContactPicker */,
 				DC975B29240B647D000E6D25 /* MainView.swift */,
@@ -598,7 +624,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC677FC92448068500809FA7 /* DebugNotificationsList.swift in Sources */,
+				D200182A257C0AE300640118 /* MotionManager.swift in Sources */,
 				DC0D9E5E23E2745900383CE1 /* Catchup.swift in Sources */,
+				D2001832257C0AE300640118 /* ShinyView.swift in Sources */,
 				DC139D3F23ECA0350065B138 /* Notifications.swift in Sources */,
 				DC9CEE83243042EB0015298F /* Settings.swift in Sources */,
 				DC99F69A2442B347000227D1 /* PageContainerView.swift in Sources */,
@@ -631,6 +659,7 @@
 				DC975B27240B6312000E6D25 /* SceneDelegate.swift in Sources */,
 				DC0D9E6A23E27D7100383CE1 /* Intervals.swift in Sources */,
 				DC22532723E5E9BB00A20AF8 /* ViewControllerPublisher.swift in Sources */,
+				D200182E257C0AE300640118 /* Gradient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,10 +667,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2001833257C0AE300640118 /* ShinyView.swift in Sources */,
 				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
+				D200182B257C0AE300640118 /* MotionManager.swift in Sources */,
 				DC281EFD250450A100E1826A /* Analytics.swift in Sources */,
 				DC139D4023ECA0430065B138 /* Notifications.swift in Sources */,
 				DC99F68C24429D6B000227D1 /* Slot.swift in Sources */,
+				D200182F257C0AE300640118 /* Gradient.swift in Sources */,
 				DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */,
 				DC153CCB23EBE257004533AD /* Intervals.swift in Sources */,
 				DC153CC523EBE1FB004533AD /* Database.swift in Sources */,
@@ -658,8 +690,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2001834257C0AE300640118 /* ShinyView.swift in Sources */,
 				DCA9D658244B7D030071DE47 /* Intervals.swift in Sources */,
+				D200182C257C0AE300640118 /* MotionManager.swift in Sources */,
 				DCA9D657244B7CED0071DE47 /* ContactMethod.swift in Sources */,
+				D2001830257C0AE300640118 /* Gradient.swift in Sources */,
 				DCDC615B24AC51A300BD4337 /* maxCatchupsTest.swift in Sources */,
 				DC281EFE250450A300E1826A /* Analytics.swift in Sources */,
 				DCDC616D24AC555C00BD4337 /* TestHelpers.swift in Sources */,
@@ -671,11 +706,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCDC616A24AC554F00BD4337 /* catchupSnapshotTests.swift in Sources */,
+				D200182D257C0AE300640118 /* MotionManager.swift in Sources */,
 				DCDC617024AC565400BD4337 /* ContactMethod.swift in Sources */,
 				DC281EFF250450A300E1826A /* Analytics.swift in Sources */,
 				DCDC616B24AC555200BD4337 /* SnapshotHelper.swift in Sources */,
 				DCDC616F24AC564D00BD4337 /* Intervals.swift in Sources */,
 				DCDC616E24AC555E00BD4337 /* TestHelpers.swift in Sources */,
+				D2001831257C0AE300640118 /* Gradient.swift in Sources */,
+				D2001835257C0AE300640118 /* ShinyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

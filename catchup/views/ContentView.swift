@@ -109,6 +109,7 @@ struct ContentView: View {
                             .foregroundColor(Color.white)
                             .cornerRadius(12)
                     }
+                    .shiny()
                     .accessibility(identifier: "new catchup")
                     Button(action: {
                         Analytics.logEvent(AnalyticsEvent.SettingsTapped.rawValue, parameters: [:])
