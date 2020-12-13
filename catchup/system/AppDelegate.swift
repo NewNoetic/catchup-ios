@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         FirebaseApp.configure()
         
-        Analytics.setUserID("\(UIDevice.current.name)_\(UIDevice.current.identifierForVendor?.uuidString ?? "")")
+        Analytics.setUserID(UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString)
         Analytics.setUserProperty(TimeZone.current.identifier, forName:AnalyticsParameter.Timezone.rawValue)
         Analytics.logEvent(AnalyticsEventAppOpen, parameters: [:])
         
