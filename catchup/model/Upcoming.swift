@@ -19,6 +19,10 @@ final class Upcoming: ObservableObject {
     @Published var catchups: [Catchup] = []
     @Published var display: Display = .standard
     
+    init(catchups: [Catchup] = []) {
+        self.catchups = catchups
+    }
+    
     func update() {
         // When updating, also grab any exprired catchups and reschedule them
         let expiredCatchups = (try? Database.shared.expiredCatchups()) ?? []

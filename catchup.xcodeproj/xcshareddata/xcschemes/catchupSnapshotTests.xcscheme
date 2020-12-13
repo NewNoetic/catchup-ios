@@ -40,7 +40,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC0D9E2823E270EC00383CE1"
-            BuildableName = "&#x1f96b; Ketchup.app"
+            BuildableName = "Ketchup.app"
             BlueprintName = "catchup"
             ReferencedContainer = "container:catchup.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC0D9E2823E270EC00383CE1"
-            BuildableName = "&#x1f96b; Ketchup.app"
+            BuildableName = "Ketchup.app"
             BlueprintName = "catchup"
             ReferencedContainer = "container:catchup.xcodeproj">
          </BuildableReference>

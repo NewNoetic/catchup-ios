@@ -9,6 +9,7 @@
 import SwiftUI
 import Contacts
 import FirebaseAnalytics
+import Introspect
 
 extension Text {
     static func +=(lhs: inout Text, rhs: Text) {
@@ -25,64 +26,22 @@ struct ContentView: View {
     @State private var showNewCatchup = false
     @State private var showSettings = false
     
-    static var timeFormatter = { () -> DateFormatter in
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
-        return formatter
-    }
-    
-    static var dateFormatter = { () -> DateFormatter in
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        return formatter
-    }
-    
-    static var relativeDateFormatter = { () -> RelativeDateTimeFormatter in
-        let formatter = RelativeDateTimeFormatter()
-        formatter.dateTimeStyle = .numeric
-        formatter.formattingContext = .middleOfSentence
-        return formatter
-    }
-    
-    static var dateComponentsFormatter = { () -> DateComponentsFormatter in
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.day]
-        formatter.allowsFractionalUnits = false
-        formatter.formattingContext = .beginningOfSentence
-        formatter.unitsStyle = .full
-        return formatter
-    }
+
     
     var body: some View {
         let nav = NavigationView {
             VStack {
                 List {
-                    Section(header: Text("Upcoming (\(upcoming.catchups.count))")) {
-                        ForEach(upcoming.catchups) { up -> Text in
-                            switch self.upcoming.display {
-                            case .standard:
-                                var finalText = Text("\(up.method.capitalized) \(up.contact.displayName)") // .capitalized produces wrong string for WhatsApp because it sets everything except first character to lowercase (https://developer.apple.com/documentation/foundation/nsstring/1416784-capitalized)
-                                    .fontWeight(.bold)
-                                if let nextTouch = up.nextTouch {
-                                    finalText += Text(" \(Self.relativeDateFormatter().localizedString(for: nextTouch, relativeTo: Date())), \(Self.timeFormatter().string(from: nextTouch))")
-                                        .fontWeight(.regular)
-                                }
-                                if let interval = Self.dateComponentsFormatter().string(from: up.interval) {
-                                    finalText += Text("\nEvery \(interval)").foregroundColor(.gray)
-                                }
-                                return finalText
-                            case .debug:
-                                return Text("name: \(up.contact.displayName)\ninterval: \(up.interval)\nmethod: \(up.method.rawValue)\nnextTouch: \(Self.dateFormatter().string(from: up.nextTouch!))\nnextNotification: \(up.nextNotification?.description ?? "x")")
-                            }
-                        }
-                        .onDelete { (offset) in
-                            Analytics.logEvent(AnalyticsEvent.CatchupDeleteSwipe.rawValue, parameters: [:])
-                            self.upcoming.remove(at: offset)
-                        }
+                    ForEach(upcoming.catchups) { up in
+                        CatchupCell(up: up)
+                    }
+                    .onDelete { (offset) in
+                        Analytics.logEvent(AnalyticsEvent.CatchupDeleteSwipe.rawValue, parameters: [:])
+                        self.upcoming.remove(at: offset)
                     }
                 }
+                .listStyle(PlainListStyle())
+                
                 Spacer()
                 HStack {
                     Button(action: {
@@ -162,8 +121,7 @@ struct ContentView: View {
                     UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                 }), secondaryButton: .cancel())
             }
-            .navigationBarTitle("🥫 Ketchup")
-            
+            .navigationBarTitle("Ketchup")
         }
         .sheet(isPresented: $showSettings) {
             SettingsView().environmentObject(self.upcoming)
@@ -190,7 +148,14 @@ struct ContentView: View {
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(Upcoming())
+        let upcoming = Upcoming(catchups: [Catchup.generateRandom(name: "Anna Haro"), Catchup.generateRandom(name: "Jon Appleseed")])
+        Group {
+            ContentView()
+                .preferredColorScheme(.dark)
+                .environmentObject(upcoming)
+            ContentView()
+                .preferredColorScheme(.light)
+                .environmentObject(upcoming)
+        }
     }
 }
