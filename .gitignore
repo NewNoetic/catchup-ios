@@ -5,3 +5,4 @@ build/
 *.ipa
 *.DSYM.zip
 catchup.xcodeproj/xcuserdata/
+.DS_Store
