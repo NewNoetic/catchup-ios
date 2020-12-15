@@ -15,7 +15,10 @@ struct Migration {
         let catchupsTable = Database.shared.catchups
         
         if db.userVersion == 0 {
-            defer { db.userVersion = 1 }
+            defer {
+                db.userVersion = 1
+                SceneDelegate.appState.startView = .intro1
+            }
             print("running db migration from 0 to 1")
             do {
                 try db.transaction {

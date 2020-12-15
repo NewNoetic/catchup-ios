@@ -22,26 +22,29 @@ struct ContentView: View {
     @ObservedObject var settings = Settings()
 
     @State private var errorAlert = false
+    @State private var notificationsErrorAlert = false
     @State private var errorMessage = ""
     @State private var showNewCatchup = false
     @State private var showSettings = false
     
-
-    
     var body: some View {
         let nav = NavigationView {
             VStack {
-                List {
-                    ForEach(upcoming.catchups) { up in
-                        CatchupCell(up: up)
-                    }
-                    .onDelete { (offset) in
-                        Analytics.logEvent(AnalyticsEvent.CatchupDeleteSwipe.rawValue, parameters: [:])
-                        self.upcoming.remove(at: offset)
-                    }
-                }
-                .listStyle(PlainListStyle())
-                
+                self.upcoming.catchups.count > 0 ?
+                    AnyView(Group {
+                        List {
+                            ForEach(upcoming.catchups) { up in
+                                CatchupCell(up: up)
+                            }
+                            .onDelete { (offset) in
+                                Analytics.logEvent(AnalyticsEvent.CatchupDeleteSwipe.rawValue, parameters: [:])
+                                self.upcoming.remove(at: offset)
+                            }
+                        }
+                        .listStyle(PlainListStyle())
+                    }) : AnyView(
+                        EmptyUpcomingView()
+                    )
                 Spacer()
                 HStack {
                     Button(action: {
@@ -70,6 +73,43 @@ struct ContentView: View {
                     }
                     .shiny()
                     .accessibility(identifier: "new catchup")
+                    .sheet(isPresented: $showNewCatchup) {
+                        NewCatchupView() { catchup in
+                            self.showNewCatchup = false
+                            guard let catchup = catchup else { return }
+                            
+                            UserNotificationsAsync.authenticate()
+                                .then { Scheduler.shared.schedule([catchup]) }
+                                .then { scheduledOrError in
+                                    try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
+                                    scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
+                                    if let scheduledCatchup = scheduledOrError.first?.value {
+                                        guard let date = scheduledCatchup.nextTouch else { return }
+                                        Analytics.logEvent(AnalyticsEvent.NewCatchupCreated.rawValue, parameters: [
+                                            AnalyticsParameter.CatchupInterval.rawValue: scheduledCatchup.interval,
+                                            AnalyticsParameter.CatchupMethod.rawValue: scheduledCatchup.method.rawValue,
+                                            AnalyticsParameter.CatchupDate.rawValue: date.debugDescription,
+                                            AnalyticsParameter.Timezone.rawValue: TimeZone.current.identifier,
+                                            AnalyticsParameter.SettingsDuration.rawValue: self.settings.timeslotDuration
+                                        ])
+                                    }
+                                    self.upcoming.update()
+                            }
+                            .catch { error in
+                                self.errorMessage = {
+                                    switch (error) {
+                                    case is NotificationsError:
+                                        defer { self.notificationsErrorAlert = true }
+                                        return "Can't create Ketchup. You must enable notifications for Ketchup to work."
+                                    default:
+                                        defer { self.errorAlert = true }
+                                        return "There was an error creating the Ketchup."
+                                    }
+                                }()
+                                
+                            }
+                        }
+                    }
                     Button(action: {
                         Analytics.logEvent(AnalyticsEvent.SettingsTapped.rawValue, parameters: [:])
                         self.showSettings.toggle()
@@ -78,56 +118,23 @@ struct ContentView: View {
                             .padding([Edge.Set.leading], 40)
                     }
                     .accessibility(identifier: "settings")
+                    .sheet(isPresented: $showSettings) {
+                        SettingsView().environmentObject(self.upcoming)
+                            .accentColor(MainView.accentColor)
+                    }
                 }
                 Spacer()
             }
-            .sheet(isPresented: $showNewCatchup) {
-                NewCatchupView() { catchup in
-                    self.showNewCatchup = false
-                    guard let catchup = catchup else { return }
-                    
-                    UserNotificationsAsync.authenticate()
-                        .then { Scheduler.shared.schedule([catchup]) }
-                        .then { scheduledOrError in
-                            try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
-                            scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
-                            if let scheduledCatchup = scheduledOrError.first?.value {
-                                guard let date = scheduledCatchup.nextTouch else { return }
-                                Analytics.logEvent(AnalyticsEvent.NewCatchupCreated.rawValue, parameters: [
-                                    AnalyticsParameter.CatchupInterval.rawValue: scheduledCatchup.interval,
-                                    AnalyticsParameter.CatchupMethod.rawValue: scheduledCatchup.method.rawValue,
-                                    AnalyticsParameter.CatchupDate.rawValue: date.debugDescription,
-                                    AnalyticsParameter.Timezone.rawValue: TimeZone.current.identifier,
-                                    AnalyticsParameter.SettingsDuration.rawValue: self.settings.timeslotDuration
-                                ])
-                            }
-                            self.upcoming.update()
-                    }
-                    .catch { error in
-                        self.errorMessage = {
-                            switch (error) {
-                            case is NotificationsError:
-                                return "You must enable notifications for Ketchup to work."
-                            default:
-                                return "There was an error creating the Ketchup."
-                            }
-                        }()
-                        self.errorAlert = true
-                    }
-                }
-            }
             .alert(isPresented: $errorAlert) {
+                Alert(title: Text(self.errorMessage), primaryButton: .default(Text("Okay")), secondaryButton: .cancel())
+            }
+            .alert(isPresented: $notificationsErrorAlert) {
                 Alert(title: Text(self.errorMessage), primaryButton: .default(Text("Open Settings"), action: {
                     UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                 }), secondaryButton: .cancel())
             }
             .navigationBarTitle("Ketchup")
         }
-        .sheet(isPresented: $showSettings) {
-            SettingsView().environmentObject(self.upcoming)
-                .accentColor(MainView.accentColor)
-        }
-            
         .onAppear {
             self.upcoming.update()
             // after delay to let catchups load from database
@@ -151,11 +158,11 @@ struct ContentView_Previews: PreviewProvider {
         let upcoming = Upcoming(catchups: [Catchup.generateRandom(name: "Anna Haro"), Catchup.generateRandom(name: "Jon Appleseed")])
         Group {
             ContentView()
-                .preferredColorScheme(.dark)
-                .environmentObject(upcoming)
-            ContentView()
                 .preferredColorScheme(.light)
                 .environmentObject(upcoming)
+            ContentView()
+                .preferredColorScheme(.dark)
+                .environmentObject(Upcoming(catchups: []))
         }
     }
 }

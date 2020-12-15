@@ -47,8 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let notificationCategory = UNNotificationCategory(identifier: Notifications.defaultCategoryIdentifier, actions: [], intentIdentifiers: [], options: .customDismissAction)
         UNUserNotificationCenter.current().setNotificationCategories([notificationCategory])
         
-        //SceneDelegate.appState.startView = .intro
-        
         return true
     }
     
