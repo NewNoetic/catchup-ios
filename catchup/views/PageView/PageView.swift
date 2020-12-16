@@ -21,20 +21,20 @@ struct PageView: View {
     var body: some View {
         ZStack {
             viewData.background.edgesIgnoringSafeArea(.all)
-            VStack(spacing: 12) {
+            VStack(spacing: 36) {
                 Text(viewData.emoji)
                     .font(.system(size: 100))
-                    .padding()
-                    .padding(.top, 64)
+                    .padding(.top, 50)
                 Text(viewData.title)
                     .font(Font.largeTitle)
                     .bold()
-                    .padding()
+                    .multilineTextAlignment(.center)
                 Text(viewData.subtitle)
-                    .bold()
-                    .padding()
+                    .font(.system(size: 24))
+                    .multilineTextAlignment(.center)
                 Spacer()
             }
+            .padding(.horizontal)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .foregroundColor(viewData.color)
         }
