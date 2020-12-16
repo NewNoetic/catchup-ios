@@ -23,7 +23,8 @@ struct ContentView: View {
 
     @State private var errorAlert = false
     @State private var notificationsErrorAlert = false
-    @State private var errorMessage = ""
+    @State private var catchupTapAlert = false
+    @State private var alertMessage = ""
     @State private var showNewCatchup = false
     @State private var showSettings = false
     
@@ -34,7 +35,18 @@ struct ContentView: View {
                     AnyView(Group {
                         List {
                             ForEach(upcoming.catchups) { up in
-                                CatchupCell(up: up)
+                                Button(action: {
+                                    self.alertMessage = "Ketchup will send you a notification when it's time to catch up with \(up.contact.displayName)"
+                                    self.catchupTapAlert = true
+                                }) {
+                                    CatchupCell(up: up)
+                                }
+                                .alert(isPresented: $catchupTapAlert) {
+                                    Alert(title: Text(self.alertMessage), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("\(up.method.capitalized) now"), action: {
+                                        Analytics.logEvent(AnalyticsEvent.CatchupNowTapped.rawValue, parameters: [AnalyticsParameter.CatchupMethod.rawValue: up.method.rawValue])
+                                        up.perform()
+                                    }))
+                                }
                             }
                             .onDelete { (offset) in
                                 Analytics.logEvent(AnalyticsEvent.CatchupDeleteSwipe.rawValue, parameters: [:])
@@ -58,7 +70,7 @@ struct ContentView: View {
                         Analytics.logEvent(AnalyticsEvent.NewCatchupTapped.rawValue, parameters: [AnalyticsParameter.CatchupsCount.rawValue: self.upcoming.catchups.count])
                         guard (0..<60 ~= Database.shared.catchupsCount()) else {
                             Analytics.logEvent(AnalyticsEvent.MaxCatchupsReached.rawValue, parameters: [:])
-                            self.errorMessage = "You can only create a maximum of 60 Ketchups due to iOS notification limits."
+                            self.alertMessage = "You can only create a maximum of 60 Ketchups due to iOS notification limits."
                             self.errorAlert = true
                             return
                         }
@@ -94,21 +106,26 @@ struct ContentView: View {
                                         ])
                                     }
                                     self.upcoming.update()
-                            }
-                            .catch { error in
-                                self.errorMessage = {
-                                    switch (error) {
-                                    case is NotificationsError:
-                                        defer { self.notificationsErrorAlert = true }
-                                        return "Can't create Ketchup. You must enable notifications for Ketchup to work."
-                                    default:
-                                        defer { self.errorAlert = true }
-                                        return "There was an error creating the Ketchup."
-                                    }
-                                }()
-                                
-                            }
+                                }
+                                .catch { error in
+                                    self.alertMessage = {
+                                        switch (error) {
+                                        case is NotificationsError:
+                                            defer { self.notificationsErrorAlert = true }
+                                            return "Can't create Ketchup. You must enable notifications for Ketchup to work."
+                                        default:
+                                            defer { self.errorAlert = true }
+                                            return "There was an error creating the Ketchup."
+                                        }
+                                    }()
+                                    
+                                }
                         }
+                    }
+                    .alert(isPresented: $notificationsErrorAlert) {
+                        Alert(title: Text(self.alertMessage), primaryButton: .default(Text("Open Settings"), action: {
+                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                        }), secondaryButton: .cancel())
                     }
                     Button(action: {
                         Analytics.logEvent(AnalyticsEvent.SettingsTapped.rawValue, parameters: [:])
@@ -125,14 +142,7 @@ struct ContentView: View {
                 }
                 Spacer()
             }
-            .alert(isPresented: $errorAlert) {
-                Alert(title: Text(self.errorMessage), primaryButton: .default(Text("Okay")), secondaryButton: .cancel())
-            }
-            .alert(isPresented: $notificationsErrorAlert) {
-                Alert(title: Text(self.errorMessage), primaryButton: .default(Text("Open Settings"), action: {
-                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-                }), secondaryButton: .cancel())
-            }
+            .alert(isPresented: $errorAlert) { Alert(title: Text(self.alertMessage)) }
             .navigationBarTitle("Ketchup")
         }
         .onAppear {

@@ -29,7 +29,7 @@ struct CatchupCell: View {
                         .fontWeight(.regular)
                 }
             }
-            .padding(.vertical)
+            .padding(.vertical, 4)
             .listRowInsets(.none)
     }
 }

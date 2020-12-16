@@ -31,6 +31,7 @@ enum AnalyticsEvent: String {
     case SettingsCancelTapped
     case SettingsSaveTapped
     case NotificationTapped
+    case CatchupNowTapped
 }
 
 enum AnalyticsParameter: String {

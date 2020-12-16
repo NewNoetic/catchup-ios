@@ -33,6 +33,10 @@
 		D207FC7B258973230029B9C6 /* EmptyUpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC7A258973230029B9C6 /* EmptyUpcomingView.swift */; };
 		D207FC7C258973230029B9C6 /* EmptyUpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC7A258973230029B9C6 /* EmptyUpcomingView.swift */; };
 		D207FC7D258973230029B9C6 /* EmptyUpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC7A258973230029B9C6 /* EmptyUpcomingView.swift */; };
+		D207FC8325898F690029B9C6 /* CatchupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC8225898F690029B9C6 /* CatchupAction.swift */; };
+		D207FC8425898F690029B9C6 /* CatchupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC8225898F690029B9C6 /* CatchupAction.swift */; };
+		D207FC8525898F690029B9C6 /* CatchupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC8225898F690029B9C6 /* CatchupAction.swift */; };
+		D207FC8625898F690029B9C6 /* CatchupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC8225898F690029B9C6 /* CatchupAction.swift */; };
 		DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */; };
 		DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E3023E270EC00383CE1 /* ContentView.swift */; };
 		DC0D9E3323E270F300383CE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0D9E3223E270F300383CE1 /* Assets.xcassets */; };
@@ -140,6 +144,7 @@
 		D207FC62258616F90029B9C6 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		D207FC72258947E80029B9C6 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		D207FC7A258973230029B9C6 /* EmptyUpcomingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyUpcomingView.swift; sourceTree = "<group>"; };
+		D207FC8225898F690029B9C6 /* CatchupAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchupAction.swift; sourceTree = "<group>"; };
 		DC0D9E2923E270EC00383CE1 /* Ketchup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ketchup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC0D9E3023E270EC00383CE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -417,6 +422,7 @@
 				DC4BF34424280EE900595CD8 /* Clamp.swift */,
 				DC677FC82448068500809FA7 /* DebugNotificationsList.swift */,
 				D207FC62258616F90029B9C6 /* Formatter.swift */,
+				D207FC8225898F690029B9C6 /* CatchupAction.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -648,6 +654,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D207FC8325898F690029B9C6 /* CatchupAction.swift in Sources */,
 				DC677FC92448068500809FA7 /* DebugNotificationsList.swift in Sources */,
 				D200182A257C0AE300640118 /* MotionManager.swift in Sources */,
 				DC0D9E5E23E2745900383CE1 /* Catchup.swift in Sources */,
@@ -696,6 +703,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D207FC8425898F690029B9C6 /* CatchupAction.swift in Sources */,
 				D2001833257C0AE300640118 /* ShinyView.swift in Sources */,
 				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
 				D200182B257C0AE300640118 /* MotionManager.swift in Sources */,
@@ -730,6 +738,7 @@
 				D207FC5C258616740029B9C6 /* CatchupCell.swift in Sources */,
 				DCDC615B24AC51A300BD4337 /* maxCatchupsTest.swift in Sources */,
 				DC281EFE250450A300E1826A /* Analytics.swift in Sources */,
+				D207FC8525898F690029B9C6 /* CatchupAction.swift in Sources */,
 				D207FC74258947E80029B9C6 /* IntroView.swift in Sources */,
 				DCDC616D24AC555C00BD4337 /* TestHelpers.swift in Sources */,
 			);
@@ -739,6 +748,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D207FC8625898F690029B9C6 /* CatchupAction.swift in Sources */,
 				D207FC66258616F90029B9C6 /* Formatter.swift in Sources */,
 				DCDC616A24AC554F00BD4337 /* catchupSnapshotTests.swift in Sources */,
 				D200182D257C0AE300640118 /* MotionManager.swift in Sources */,
