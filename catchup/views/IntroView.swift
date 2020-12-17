@@ -22,7 +22,7 @@ struct IntroView: View {
             PageContainerView(pages: pages, index: $pageIndex)
             if (self.pageIndex + 1 >= pages.count) {
                 Button(action: {
-                    SceneDelegate.appState.startView = .catchups
+                    AppState.shared.startView = .catchups
                 }) {
                     Text("Done")
                 }

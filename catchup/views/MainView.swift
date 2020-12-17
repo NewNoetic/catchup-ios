@@ -30,12 +30,3 @@ struct MainView: View {
         }
     }
 }
-
-extension MainView {
-    enum StartView {
-        case intro1
-        case catchups
-        case text(recipients: [String])
-        case email(recipients: [String])
-    }
-}

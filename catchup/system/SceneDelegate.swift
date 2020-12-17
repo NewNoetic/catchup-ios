@@ -9,13 +9,8 @@
 import Foundation
 import SwiftUI
 
-class AppState: ObservableObject {
-    @Published var startView: MainView.StartView = .catchups
-}
-
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    public static var appState = AppState()
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         print(#function)
@@ -44,7 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         // Create the SwiftUI view that provides the window contents.
-        let mainView = MainView().environmentObject(SceneDelegate.appState)
+        let mainView = MainView().environmentObject(AppState.shared)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

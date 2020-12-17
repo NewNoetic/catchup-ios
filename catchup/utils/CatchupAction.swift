@@ -32,7 +32,7 @@ extension Catchup {
                 captureError(message: "trying to text, but not allowed")
                 return
             }
-            SceneDelegate.appState.startView = .text(recipients: [number])
+            AppState.shared.startView = .text(recipients: [number])
             break
         case .email:
             guard let email = self.email else {
@@ -43,7 +43,7 @@ extension Catchup {
                 captureError(message: "trying to email, but not allowed")
                 return
             }
-            SceneDelegate.appState.startView = .email(recipients: [email])
+            AppState.shared.startView = .email(recipients: [email])
             break
         case .whatsapp:
             guard let number = self.phoneNumber else {

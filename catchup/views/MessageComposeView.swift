@@ -37,7 +37,7 @@ struct MessageComposeView: UIViewControllerRepresentable {
         
         func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
             controller.dismiss(animated: true) {
-                SceneDelegate.appState.startView = .catchups
+                AppState.shared.startView = .catchups
             }
         }
     }
