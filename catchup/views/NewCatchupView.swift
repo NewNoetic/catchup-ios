@@ -14,7 +14,7 @@ struct NewCatchupView: View {
     typealias DoneSignature = (Catchup?) -> Void
     var done: DoneSignature
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var settings = Settings()
+    @ObservedObject var settings = AppSettings()
 
     var durationCases: [Intervals] = Intervals.allCases
     var methodCases: [ContactMethod] = ContactMethod.allCases

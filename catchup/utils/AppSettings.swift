@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-final class Settings: ObservableObject {
+final class AppSettings: ObservableObject {
     let objectWillChange = PassthroughSubject<Void, Never>()
     
     @propertyWrapper

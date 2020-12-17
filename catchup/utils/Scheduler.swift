@@ -13,7 +13,7 @@ import UserNotifications
 
 struct Scheduler {
     
-    @ObservedObject var settings = Settings()
+    @ObservedObject var settings = AppSettings()
     static let shared = Scheduler()
     
     enum SchedulerError: Error {

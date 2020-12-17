@@ -16,7 +16,7 @@ struct SettingsView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var upcoming: Upcoming
-    @ObservedObject var settings = Settings()
+    @ObservedObject var settings = AppSettings()
     @State private var showAlert: Bool = false
     @State private var alertMessage = ""
     @State private var showNewCatchupView: Bool = false

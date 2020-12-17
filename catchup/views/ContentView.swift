@@ -19,7 +19,7 @@ extension Text {
 
 struct ContentView: View {
     @EnvironmentObject var upcoming: Upcoming
-    @ObservedObject var settings = Settings()
+    @ObservedObject var settings = AppSettings()
 
     @State private var errorAlert = false
     @State private var notificationsErrorAlert = false

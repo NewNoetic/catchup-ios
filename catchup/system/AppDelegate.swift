@@ -32,6 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
+        if arguments.contains("-testing") {
+            print("detected testing env: disabling analytics collection")
+            Analytics.setAnalyticsCollectionEnabled(false)
+        }
+        
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
         
         Analytics.setUserID(UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString)
