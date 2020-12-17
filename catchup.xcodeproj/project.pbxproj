@@ -131,6 +131,10 @@
 		D29A886F258BCD3E00B2CC14 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC79829325041ACB00D260F5 /* FirebaseAnalytics.framework */; };
 		D29A8870258BCD4300B2CC14 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC79829125041ACB00D260F5 /* GoogleAppMeasurement.framework */; };
 		D29A8871258BCD4300B2CC14 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC79829125041ACB00D260F5 /* GoogleAppMeasurement.framework */; };
+		D29A887C258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */; };
+		D29A887D258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */; };
+		D29A887E258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */; };
+		D29A887F258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */; };
 		DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */; };
 		DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E3023E270EC00383CE1 /* ContentView.swift */; };
 		DC0D9E3323E270F300383CE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0D9E3223E270F300383CE1 /* Assets.xcassets */; };
@@ -241,6 +245,8 @@
 		D2088E52258BC992009E7A9B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D2088E5B258BC9CE009E7A9B /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		D2088E68258BCA24009E7A9B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		D29A8876258BCFA200B2CC14 /* test_contacts.vcf */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_contacts.vcf; sourceTree = "<group>"; };
+		D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchupLimit.swift; sourceTree = "<group>"; };
 		DC0D9E2923E270EC00383CE1 /* Ketchup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ketchup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC0D9E3023E270EC00383CE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -453,6 +459,7 @@
 			children = (
 				DCDC615A24AC51A300BD4337 /* maxCatchupsTest.swift */,
 				DCA9D659244B90EF0071DE47 /* TestHelpers.swift */,
+				D29A8876258BCFA200B2CC14 /* test_contacts.vcf */,
 				DC0D9E5023E270F300383CE1 /* Info.plist */,
 			);
 			path = catchupUITests;
@@ -503,6 +510,7 @@
 				DC975B26240B6312000E6D25 /* SceneDelegate.swift */,
 				D2088E52258BC992009E7A9B /* AppState.swift */,
 				D2088E68258BCA24009E7A9B /* StartView.swift */,
+				D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */,
 			);
 			path = system;
 			sourceTree = "<group>";
@@ -790,6 +798,7 @@
 				DC139D3F23ECA0350065B138 /* Notifications.swift in Sources */,
 				DC99F69A2442B347000227D1 /* PageContainerView.swift in Sources */,
 				DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */,
+				D29A887C258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */,
 				DC8DE665240BAA65009363A6 /* MessageComposeView.swift in Sources */,
 				DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */,
 				DC99F6942442B17C000227D1 /* PageView.swift in Sources */,
@@ -848,6 +857,7 @@
 				DC153CC523EBE1FB004533AD /* Database.swift in Sources */,
 				D2088E54258BC992009E7A9B /* AppState.swift in Sources */,
 				DC93AC1E2503FF2000B0BDB1 /* DatabaseTests.swift in Sources */,
+				D29A887D258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */,
 				D207FC64258616F90029B9C6 /* Formatter.swift in Sources */,
 				DC4F16B923EBA13600785223 /* SchedulerTests.swift in Sources */,
 				DC99F6912442A4CB000227D1 /* Migration.swift in Sources */,
@@ -870,6 +880,7 @@
 				D2001834257C0AE300640118 /* ShinyView.swift in Sources */,
 				D2088EB0258BCA99009E7A9B /* Upcoming.swift in Sources */,
 				DCA9D658244B7D030071DE47 /* Intervals.swift in Sources */,
+				D29A887E258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */,
 				D2088E73258BCA8C009E7A9B /* CircleIndicator.swift in Sources */,
 				D207FC65258616F90029B9C6 /* Formatter.swift in Sources */,
 				D2088E72258BCA8C009E7A9B /* SwipeView.swift in Sources */,
@@ -929,6 +940,7 @@
 				D2088EC5258BCAA0009E7A9B /* Database.swift in Sources */,
 				D207FC66258616F90029B9C6 /* Formatter.swift in Sources */,
 				DCDC616A24AC554F00BD4337 /* catchupSnapshotTests.swift in Sources */,
+				D29A887F258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */,
 				D200182D257C0AE300640118 /* MotionManager.swift in Sources */,
 				DCDC617024AC565400BD4337 /* ContactMethod.swift in Sources */,
 				DC281EFF250450A300E1826A /* Analytics.swift in Sources */,

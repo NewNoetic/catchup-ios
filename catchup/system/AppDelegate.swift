@@ -16,13 +16,21 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, UIWindowSceneDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Analytics
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
+        FirebaseApp.configure()
+        Analytics.setUserID(UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString)
+        Analytics.setUserProperty(TimeZone.current.identifier, forName:AnalyticsParameter.Timezone.rawValue)
+        Analytics.logEvent(AnalyticsEventAppOpen, parameters: [:])
         
+        // Database and user defaults migration
+        Migration.run()
+        
+        // Arguments
         let arguments = CommandLine.arguments
         if arguments.contains("--disableAnimation") {
             UIView.setAnimationsEnabled(false)
         }
-        
         if arguments.contains("--resetData") {
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             do {
@@ -31,23 +39,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 captureError(error, message: "Could not reset catchups")
             }
         }
-        
         if arguments.contains("-testing") {
             print("detected testing env: disabling analytics collection")
             Analytics.setAnalyticsCollectionEnabled(false)
         }
+        if arguments.contains("--disableIntro") {
+            AppState.shared.startView = .catchups
+        }
         
-        FirebaseConfiguration.shared.setLoggerLevel(.min)
-        FirebaseApp.configure()
-        
-        Analytics.setUserID(UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString)
-        Analytics.setUserProperty(TimeZone.current.identifier, forName:AnalyticsParameter.Timezone.rawValue)
-        Analytics.logEvent(AnalyticsEventAppOpen, parameters: [:])
-        
-        Migration.run()
-        
+        // Notifications
         UNUserNotificationCenter.current().delegate = self
-        
         // Gives us callback for 'dismissed' notifications
         let notificationCategory = UNNotificationCategory(identifier: Notifications.defaultCategoryIdentifier, actions: [], intentIdentifiers: [], options: .customDismissAction)
         UNUserNotificationCenter.current().setNotificationCategories([notificationCategory])

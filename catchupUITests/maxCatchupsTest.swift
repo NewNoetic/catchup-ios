@@ -18,14 +18,16 @@ class maxCatchupsTest: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--disableAnimation")
         app.launchArguments.append("--resetData")
+        app.launchArguments.append("--disableIntro")
         addUIInterruptionMonitor(withDescription: "allow notification alert") { alert in
-            let button = alert.buttons.element(boundBy: 1)
-            if button.exists {
-                button.tap()
+            if alert.label.lowercased().contains("would like to send you notifications") {
+                alert.buttons["Allow"].tap()
+                return true
             }
-            return true
+            
+            return false
         }
-        app.launch()
+        app.activate()
     }
     
     override func tearDown() {
@@ -33,12 +35,11 @@ class maxCatchupsTest: XCTestCase {
     }
     
     func testMaxCatchups() {
-        for n in 0...61 {
-            print("NEW CATCHUP \(n)")
+        for n in 0...(CatchupLimit+1) {
             waitTap(on: app/*@START_MENU_TOKEN@*/.buttons["new catchup"]/*[[".buttons[\"New CatchUp\"]",".buttons[\"new catchup\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/)
-            if (n >= 60) {
+            if (n >= CatchupLimit) {
                 XCTAssertFalse(app.buttons["create"].exists)
-                XCTAssertTrue(app.staticTexts["You can only create a maximum of 60 Ketchups due to iOS notification limits."].waitForExistence(timeout: 3000))
+                XCTAssertTrue(app.staticTexts["You can only create a maximum of \(CatchupLimit) Ketchups due to iOS notification limits."].waitForExistence(timeout: 3000))
                 continue
             } else {
                 XCTAssertTrue(app.buttons["create"].exists)

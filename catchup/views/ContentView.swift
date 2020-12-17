@@ -68,9 +68,9 @@ struct ContentView: View {
                     }
                     Button(action: {
                         Analytics.logEvent(AnalyticsEvent.NewCatchupTapped.rawValue, parameters: [AnalyticsParameter.CatchupsCount.rawValue: self.upcoming.catchups.count])
-                        guard (0..<60 ~= Database.shared.catchupsCount()) else {
+                        guard (0..<CatchupLimit ~= Database.shared.catchupsCount()) else {
                             Analytics.logEvent(AnalyticsEvent.MaxCatchupsReached.rawValue, parameters: [:])
-                            self.alertMessage = "You can only create a maximum of 60 Ketchups due to iOS notification limits."
+                            self.alertMessage = "You can only create a maximum of \(CatchupLimit) Ketchups due to iOS notification limits."
                             self.errorAlert = true
                             return
                         }
