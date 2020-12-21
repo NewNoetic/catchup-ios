@@ -101,8 +101,11 @@ platform :ios do
       # Push the new commit and tag back to your git remote
       push_to_git_remote
     
-     # See ./Snapfile for config
-     capture_screenshots
+      # See ./Snapfile for config
+      capture_screenshots
+    
+      # See ./screenshots/Framefile.json for config
+      frame_screenshots(path: "./screenshots")
     
       build_app(
           scheme: "catchup",
