@@ -1,4 +1,6 @@
 *.xcuserdatad
+screenshots/en-US/
+screenshots/screenshots.html
 fastlane/report.xml
 fastlane/*.html
 build/

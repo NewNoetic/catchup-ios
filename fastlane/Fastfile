@@ -16,6 +16,17 @@
 default_platform(:ios)
 
 platform :ios do
+
+  lane :test_screenshot do
+    # See ./Snapfile for config
+    capture_screenshots
+  end
+
+  lane :test_frame do
+    # See ./screenshots/Framefile.json for config
+    frame_screenshots(path: "./screenshots")
+  end
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
     # Ensure that your git status is not dirty
@@ -102,7 +113,7 @@ platform :ios do
       upload_to_app_store(
           force: true, # skips HTML report generation
           ipa: "./build/Ketchup.ipa",
-          screenshots_path: "./build/screenshots",
+          screenshots_path: "./screenshots",
           overwrite_screenshots: true
       )
   end

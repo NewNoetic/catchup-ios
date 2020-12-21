@@ -19,6 +19,7 @@ class maxCatchupsTest: XCTestCase {
         app.launchArguments.append("--disableAnimation")
         app.launchArguments.append("--resetData")
         app.launchArguments.append("--disableIntro")
+        app.launchArguments.append("-testing")
         addUIInterruptionMonitor(withDescription: "allow notification alert") { alert in
             if alert.label.lowercased().contains("would like to send you notifications") {
                 alert.buttons["Allow"].tap()

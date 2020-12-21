@@ -66,60 +66,60 @@ struct SettingsView: View {
                         }
                     }
                 }
-                #if DEBUG
-                Section(header: Text("Development")) {
-                    Button("Create test local notification (5s)") {
-                        let content = UNMutableNotificationContent()
-                        content.title = "Test notification"
-                        content.body = "This is a test notification!"
-                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                        let request = UNNotificationRequest(identifier: "test-\(UUID().uuidString)", content: content, trigger: trigger)
-                        UNUserNotificationCenter.current().add(request)
-                    }
-                    Button("Create test Ketchup (5s). First tap, select contact. Second tap create Ketchup.") {
-                        if var catchup = self.catchup {
-                            catchup.nextTouch = Date(timeIntervalSinceNow: 5)
-                            catchup.nextNotification = nil
-                            Notifications.shared.schedule(catchup: catchup)
-                                .then { scheduledCatchup in
-                                    try Database.shared.upsert(catchup: scheduledCatchup)
+                if (CommandLine.arguments.contains("-debug")) {
+                    Section(header: Text("Development")) {
+                        Button("Create test local notification (5s)") {
+                            let content = UNMutableNotificationContent()
+                            content.title = "Test notification"
+                            content.body = "This is a test notification!"
+                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                            let request = UNNotificationRequest(identifier: "test-\(UUID().uuidString)", content: content, trigger: trigger)
+                            UNUserNotificationCenter.current().add(request)
+                        }
+                        Button("Create test Ketchup (5s). First tap, select contact. Second tap create Ketchup.") {
+                            if var catchup = self.catchup {
+                                catchup.nextTouch = Date(timeIntervalSinceNow: 5)
+                                catchup.nextNotification = nil
+                                Notifications.shared.schedule(catchup: catchup)
+                                    .then { scheduledCatchup in
+                                        try Database.shared.upsert(catchup: scheduledCatchup)
+                                }
+                                .catch { error in
+                                    self.alertMessage = error.localizedDescription
+                                    self.showAlert = true
+                                }
+                            } else {
+                                self.showNewCatchupView = true
                             }
-                            .catch { error in
+                        }
+                        .sheet(isPresented: self.$showNewCatchupView) {
+                            NewCatchupView() { catchup in
+                                self.catchup = catchup
+                                self.showNewCatchupView = false
+                            }
+                        }
+                        Toggle("Show debug list", isOn: Binding(get: {
+                            self.upcoming.display == .debug
+                        }, set: { newVal in
+                            self.upcoming.display = newVal ? .debug : .standard
+                        }))
+                        NavigationLink(destination: DebugNotificationsList()) {
+                            Text("View scheduled system notifications")
+                        }
+                        Button("⚠️ Clear all Ketchups") {
+                            do {
+                                try Database.shared.deleteAll()
+                            } catch {
                                 self.alertMessage = error.localizedDescription
                                 self.showAlert = true
                             }
-                        } else {
-                            self.showNewCatchupView = true
-                        }
+                            self.upcoming.update()
+                        }.accessibility(identifier: "clear catchups")
+                        Button("⚠️ Clear all scheduled notifications") {
+                            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                        }.accessibility(identifier: "clear notifications")
                     }
-                    .sheet(isPresented: self.$showNewCatchupView) {
-                        NewCatchupView() { catchup in
-                            self.catchup = catchup
-                            self.showNewCatchupView = false
-                        }
-                    }
-                    Toggle("Show debug list", isOn: Binding(get: {
-                        self.upcoming.display == .debug
-                    }, set: { newVal in
-                        self.upcoming.display = newVal ? .debug : .standard
-                    }))
-                    NavigationLink(destination: DebugNotificationsList()) {
-                        Text("View scheduled system notifications")
-                    }
-                    Button("⚠️ Clear all Ketchups") {
-                        do {
-                            try Database.shared.deleteAll()
-                        } catch {
-                            self.alertMessage = error.localizedDescription
-                            self.showAlert = true
-                        }
-                        self.upcoming.update()
-                    }.accessibility(identifier: "clear catchups")
-                    Button("⚠️ Clear all scheduled notifications") {
-                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-                    }.accessibility(identifier: "clear notifications")
                 }
-                #endif
             }
             .navigationBarTitle("Settings")
             .navigationBarItems(

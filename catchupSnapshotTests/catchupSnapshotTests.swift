@@ -18,25 +18,25 @@ class catchupSnapshotTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--disableAnimation")
         app.launchArguments.append("--resetData")
+        app.launchArguments.append("--disableIntro")
+        app.launchArguments.append("-testing")
         addUIInterruptionMonitor(withDescription: "allow notification alert") { alert in
-            let button = alert.buttons.element(boundBy: 1)
-            if button.exists {
-                button.tap()
+            if alert.label.lowercased().contains("would like to send you notifications") {
+                alert.buttons["Allow"].tap()
+                return true
             }
-            return true
+            
+            return false
         }
         setupSnapshot(app)
-        app.launch()
+        app.activate()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-
-    
     func testNewCatchups() {
-        snapshot("main")
         let newCatchupButton = app/*@START_MENU_TOKEN@*/.buttons["new catchup"]/*[[".buttons[\"New CatchUp\"]",".buttons[\"new catchup\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         let contacts: [ContactsCatchup] = [
             ContactsCatchup(name: "John Appleseed", duration: .day, method: .call),
@@ -48,32 +48,23 @@ class catchupSnapshotTests: XCTestCase {
         for (index, contact) in contacts.enumerated() {
             waitTap(on: newCatchupButton)
             waitTap(on: app.tables.cells[contact.name])
-            waitTap(on: app.buttons["How often?"])
             
             if (index == 0) {
-                snapshot("duration options")
+                snapshot("02_new_contact")
             }
             
+            waitTap(on: app.buttons["How often?"])
             waitTap(on: app.buttons["every \(contact.duration.rawValue)"])
             waitTap(on: app.buttons["method"])
-            
-            if (index == 0) {
-                snapshot("method options")
-            }
-            
             waitTap(on: app.buttons[contact.method.rawValue])
-            
-            if (index == 0) {
-                snapshot("new contact")
-            }
             
             waitTap(on: app.buttons["create"])
         }
         
-        snapshot("all contacts")
+        snapshot("01_all_contacts")
         
         waitTap(on: app.buttons["settings"])
         
-        snapshot("settings")
+        snapshot("03_settings")
     }
 }

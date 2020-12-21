@@ -247,6 +247,7 @@
 		D2088E68258BCA24009E7A9B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		D29A8876258BCFA200B2CC14 /* test_contacts.vcf */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_contacts.vcf; sourceTree = "<group>"; };
 		D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchupLimit.swift; sourceTree = "<group>"; };
+		D29A889C258EEC1900B2CC14 /* Framefile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Framefile.json; path = screenshots/Framefile.json; sourceTree = SOURCE_ROOT; };
 		DC0D9E2923E270EC00383CE1 /* Ketchup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ketchup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC0D9E3023E270EC00383CE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -567,6 +568,7 @@
 		DCBD38BB240D03A50027628A /* fastlane */ = {
 			isa = PBXGroup;
 			children = (
+				D29A889C258EEC1900B2CC14 /* Framefile.json */,
 				DCBD38BC240D03A50027628A /* Appfile */,
 				DCBD38BE240D03A50027628A /* Fastfile */,
 				DCBD38BF240D03A50027628A /* README.md */,
@@ -1301,6 +1303,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/firebase",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
 				INFOPLIST_FILE = catchupSnapshotTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1311,6 +1314,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.newnoetic.catchupSnapshotTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = catchup;
