@@ -16,9 +16,9 @@ class catchupSnapshotTests: XCTestCase {
         continueAfterFailure = false
         
         app = XCUIApplication()
-        app.launchArguments.append("--disableAnimation")
         app.launchArguments.append("--resetData")
         app.launchArguments.append("--disableIntro")
+        app.launchArguments.append("--showTaps")
         app.launchArguments.append("-testing")
         addUIInterruptionMonitor(withDescription: "allow notification alert") { alert in
             if alert.label.lowercased().contains("would like to send you notifications") {
@@ -66,5 +66,9 @@ class catchupSnapshotTests: XCTestCase {
         waitTap(on: app.buttons["settings"])
         
         snapshot("03_settings")
+        
+        waitTap(on: app.buttons["Cancel"])
+        
+        sleep(2)
     }
 }

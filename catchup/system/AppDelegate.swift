@@ -46,12 +46,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if arguments.contains("--disableIntro") {
             AppState.shared.startView = .catchups
         }
+        if arguments.contains("--showTaps") {
+            ShowTaps.enabled = .debugOnly
+        } else {
+            ShowTaps.enabled = .never
+        }
         
         // Notifications
         UNUserNotificationCenter.current().delegate = self
         // Gives us callback for 'dismissed' notifications
         let notificationCategory = UNNotificationCategory(identifier: Notifications.defaultCategoryIdentifier, actions: [], intentIdentifiers: [], options: .customDismissAction)
         UNUserNotificationCenter.current().setNotificationCategories([notificationCategory])
+        
+
         
         return true
     }

@@ -20,6 +20,48 @@
                ReferencedContainer = "container:catchup.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DC0D9E3E23E270F300383CE1"
+               BuildableName = "catchupTests.xctest"
+               BlueprintName = "catchupTests"
+               ReferencedContainer = "container:catchup.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DC0D9E4923E270F300383CE1"
+               BuildableName = "catchupUITests.xctest"
+               BlueprintName = "catchupUITests"
+               ReferencedContainer = "container:catchup.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DCDC615F24AC554900BD4337"
+               BuildableName = "catchupSnapshotTests.xctest"
+               BlueprintName = "catchupSnapshotTests"
+               ReferencedContainer = "container:catchup.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,36 +70,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DC0D9E3E23E270F300383CE1"
-               BuildableName = "catchupTests.xctest"
-               BlueprintName = "catchupTests"
-               ReferencedContainer = "container:catchup.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DC0D9E4923E270F300383CE1"
-               BuildableName = "catchupUITests.xctest"
-               BlueprintName = "catchupUITests"
-               ReferencedContainer = "container:catchup.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DCDC615F24AC554900BD4337"
-               BuildableName = "catchupSnapshotTests.xctest"
-               BlueprintName = "catchupSnapshotTests"
-               ReferencedContainer = "container:catchup.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

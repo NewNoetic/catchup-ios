@@ -135,6 +135,9 @@
 		D29A887D258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */; };
 		D29A887E258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */; };
 		D29A887F258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */; };
+		D29A88B42591641200B2CC14 /* ShowTaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A88B32591641200B2CC14 /* ShowTaps.swift */; };
+		D29A88B52591641200B2CC14 /* ShowTaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A88B32591641200B2CC14 /* ShowTaps.swift */; };
+		D29A88B62591641200B2CC14 /* ShowTaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A88B32591641200B2CC14 /* ShowTaps.swift */; };
 		DC0D9E2D23E270EC00383CE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */; };
 		DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D9E3023E270EC00383CE1 /* ContentView.swift */; };
 		DC0D9E3323E270F300383CE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0D9E3223E270F300383CE1 /* Assets.xcassets */; };
@@ -248,6 +251,7 @@
 		D29A8876258BCFA200B2CC14 /* test_contacts.vcf */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_contacts.vcf; sourceTree = "<group>"; };
 		D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchupLimit.swift; sourceTree = "<group>"; };
 		D29A889C258EEC1900B2CC14 /* Framefile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Framefile.json; path = screenshots/Framefile.json; sourceTree = SOURCE_ROOT; };
+		D29A88B32591641200B2CC14 /* ShowTaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTaps.swift; sourceTree = "<group>"; };
 		DC0D9E2923E270EC00383CE1 /* Ketchup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ketchup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0D9E2C23E270EC00383CE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC0D9E3023E270EC00383CE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -551,6 +555,7 @@
 				DC677FC82448068500809FA7 /* DebugNotificationsList.swift */,
 				D207FC62258616F90029B9C6 /* Formatter.swift */,
 				D207FC8225898F690029B9C6 /* CatchupAction.swift */,
+				D29A88B32591641200B2CC14 /* ShowTaps.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -802,6 +807,7 @@
 				DC57111123E3FB9D00FFA866 /* Upcoming.swift in Sources */,
 				D29A887C258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */,
 				DC8DE665240BAA65009363A6 /* MessageComposeView.swift in Sources */,
+				D29A88B42591641200B2CC14 /* ShowTaps.swift in Sources */,
 				DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */,
 				DC99F6942442B17C000227D1 /* PageView.swift in Sources */,
 				DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */,
@@ -884,6 +890,7 @@
 				DCA9D658244B7D030071DE47 /* Intervals.swift in Sources */,
 				D29A887E258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */,
 				D2088E73258BCA8C009E7A9B /* CircleIndicator.swift in Sources */,
+				D29A88B52591641200B2CC14 /* ShowTaps.swift in Sources */,
 				D207FC65258616F90029B9C6 /* Formatter.swift in Sources */,
 				D2088E72258BCA8C009E7A9B /* SwipeView.swift in Sources */,
 				D2088E9A258BCA95009E7A9B /* Scheduler.swift in Sources */,
@@ -961,6 +968,7 @@
 				D29A881A258BCB7400B2CC14 /* CNContactDisplayExtension.swift in Sources */,
 				D2088E91258BCA90009E7A9B /* NewCatchupView.swift in Sources */,
 				D2088EA9258BCA96009E7A9B /* ViewControllerSubscription.swift in Sources */,
+				D29A88B62591641200B2CC14 /* ShowTaps.swift in Sources */,
 				D2088E8C258BCA90009E7A9B /* ContentView.swift in Sources */,
 				D29A882A258BCB7D00B2CC14 /* ContactPickerViewControllerWrapper.swift in Sources */,
 				D2088EC6258BCAA0009E7A9B /* Migration.swift in Sources */,
