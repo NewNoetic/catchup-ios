@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import Promises
 import UserNotifications
+import FirebaseCore
 import Firebase
 
 @UIApplicationMain
@@ -17,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Analytics
-        FirebaseConfiguration.shared.setLoggerLevel(.min)
+        FirebaseConfiguration.shared.setLoggerLevel(.error)
         FirebaseApp.configure()
         Analytics.setUserID(UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString)
         Analytics.setUserProperty(TimeZone.current.identifier, forName:AnalyticsParameter.Timezone.rawValue)

@@ -8,9 +8,14 @@
 
 import Foundation
 
-enum StartView {
+enum StartView: Equatable {
     case intro1
     case catchups
     case text(recipients: [String])
     case email(recipients: [String])
+}
+
+enum EmailApp: String {
+    case iOSMail
+    case Gmail
 }

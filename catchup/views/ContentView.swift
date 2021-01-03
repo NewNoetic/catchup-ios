@@ -49,8 +49,9 @@ struct ContentView: View {
                                     }
                                     return Alert(title: Text(self.alertMessage), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("\(catchup.method.capitalized) now"), action: {
                                         Analytics.logEvent(AnalyticsEvent.CatchupNowTapped.rawValue, parameters: [AnalyticsParameter.CatchupMethod.rawValue: catchup.method.rawValue])
-                                        catchup.perform()
                                         self.alertCatchup = nil
+                                        self.catchupTapAlert = false
+                                        catchup.perform()
                                     }))
                                 }
                             }

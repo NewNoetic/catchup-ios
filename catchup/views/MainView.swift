@@ -14,19 +14,21 @@ struct MainView: View {
     public static var accentColor = Color(red: 1, green: 91.0/255.0, blue: 91.0/255.0)
     
     var body: some View {
-        switch self.state.startView {
-        case .intro1:
-            return AnyView(IntroView())
-                .accentColor(MainView.accentColor)
-        case .catchups:
-            return AnyView(ContentView().environmentObject(Upcoming()))
-                .accentColor(MainView.accentColor)
-        case let .text(recipients):
-            return AnyView(MessageComposeView(recipients: recipients))
-                .accentColor(MainView.accentColor)
-        case let .email(recipients):
-            return AnyView(MailComposeView(recipients: recipients))
-                .accentColor(MainView.accentColor)
+        Group { () -> AnyView in
+            switch self.state.startView {
+            case .intro1:
+                return AnyView(IntroView()
+                    .accentColor(MainView.accentColor))
+            case .catchups:
+                return AnyView(ContentView().environmentObject(Upcoming())
+                    .accentColor(MainView.accentColor))
+            case let .text(recipients):
+                return AnyView(MessageComposeView(recipients: recipients)
+                    .accentColor(MainView.accentColor))
+            case let .email(recipients):
+                return AnyView(MailComposeView(recipients: recipients)
+                    .accentColor(MainView.accentColor))
+            }
         }
     }
 }

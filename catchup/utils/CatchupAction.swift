@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MessageUI
+import FirebaseAnalytics
 
 extension Catchup {
     func perform() {
@@ -39,11 +40,21 @@ extension Catchup {
                 captureError(message: "trying to email, but email doesn't exist")
                 return
             }
-            guard MFMailComposeViewController.canSendMail() else {
-                captureError(message: "trying to email, but not allowed")
+            guard let gmailUrl = URL(string: "googlegmail:///co?to=\(email)") else {
+                captureError(message: "couldn't get gmail app url")
                 return
             }
-            AppState.shared.startView = .email(recipients: [email])
+            if UIApplication.shared.canOpenURL(gmailUrl) {
+                Analytics.logEvent(AnalyticsEvent.CatchupEmailAppChosen.rawValue, parameters: [AnalyticsParameter.EmailApp.rawValue: EmailApp.Gmail.rawValue])
+                UIApplication.shared.open(gmailUrl)
+            } else {
+                guard MFMailComposeViewController.canSendMail() else {
+                    captureError(message: "trying to email, but not allowed")
+                    return
+                }
+                Analytics.logEvent(AnalyticsEvent.CatchupEmailAppChosen.rawValue, parameters: [AnalyticsParameter.EmailApp.rawValue: EmailApp.iOSMail.rawValue])
+                AppState.shared.startView = .email(recipients: [email])
+            }
             break
         case .whatsapp:
             guard let number = self.phoneNumber else {
