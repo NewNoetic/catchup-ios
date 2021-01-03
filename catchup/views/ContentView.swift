@@ -25,6 +25,7 @@ struct ContentView: View {
     @State private var notificationsErrorAlert = false
     @State private var catchupTapAlert = false
     @State private var alertMessage = ""
+    @State private var alertCatchup: Catchup?
     @State private var showNewCatchup = false
     @State private var showSettings = false
     
@@ -37,14 +38,19 @@ struct ContentView: View {
                             ForEach(upcoming.catchups) { up in
                                 Button(action: {
                                     self.alertMessage = "Ketchup will send you a notification when it's time to catch up with \(up.contact.displayName)"
+                                    self.alertCatchup = up
                                     self.catchupTapAlert = true
                                 }) {
                                     CatchupCell(up: up)
                                 }
                                 .alert(isPresented: $catchupTapAlert) {
-                                    Alert(title: Text(self.alertMessage), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("\(up.method.capitalized) now"), action: {
-                                        Analytics.logEvent(AnalyticsEvent.CatchupNowTapped.rawValue, parameters: [AnalyticsParameter.CatchupMethod.rawValue: up.method.rawValue])
-                                        up.perform()
+                                    guard let catchup = self.alertCatchup else {
+                                        return Alert(title: Text(self.alertMessage))
+                                    }
+                                    return Alert(title: Text(self.alertMessage), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("\(catchup.method.capitalized) now"), action: {
+                                        Analytics.logEvent(AnalyticsEvent.CatchupNowTapped.rawValue, parameters: [AnalyticsParameter.CatchupMethod.rawValue: catchup.method.rawValue])
+                                        catchup.perform()
+                                        self.alertCatchup = nil
                                     }))
                                 }
                             }
