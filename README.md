@@ -7,6 +7,11 @@ For all user-facing concerns, use "Ketchup".
 
 ## Deploy
 
+```bash
+export GEM_HOME=/Users/sg/.gem
+export PATH="$GEM_HOME/bin:$PATH"
+```
+
 `bundle install`
 
 Beta:
