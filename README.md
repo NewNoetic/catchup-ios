@@ -12,6 +12,7 @@ export GEM_HOME=/Users/sg/.gem
 export PATH="$GEM_HOME/bin:$PATH"
 ```
 
+`gem install bundler:2.2.0`
 `bundle install`
 
 Beta:

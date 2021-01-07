@@ -13,6 +13,9 @@ enum Intervals: String, CaseIterable, Identifiable {
     case week = "week"
     case biweek = "2 weeks"
     case month = "month"
+    case threeMonths = "3 months"
+    case sixMonths = "6 months"
+    case year = "year"
     
     var value: TimeInterval {
         switch self {
@@ -24,6 +27,12 @@ enum Intervals: String, CaseIterable, Identifiable {
             return 1209600
         case .month:
             return 2419200
+        case .threeMonths:
+            return 7257600
+        case .sixMonths:
+            return 14515200
+        case .year:
+            return 29030400
         }
     }
     
