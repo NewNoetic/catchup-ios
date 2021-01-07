@@ -44,3 +44,17 @@ struct MessageComposeView: UIViewControllerRepresentable {
     
     typealias UIViewControllerType = MFMessageComposeViewController
 }
+
+class MessageComposerDelegate: NSObject, MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        AppState.shared.startView = .catchups
+        controller.dismiss(animated: true)
+    }
+}
+
+class MailComposerDelegate: NSObject, MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        AppState.shared.startView = .catchups
+        controller.dismiss(animated: true)
+    }
+}

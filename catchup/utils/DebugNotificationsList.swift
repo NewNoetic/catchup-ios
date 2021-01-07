@@ -21,6 +21,7 @@ struct DebugNotificationsList: View {
     var body: some View {
         VStack {
             List {
+                Text("Total: \(notifications.count)").bold()
                 ForEach(notifications, id: \.identifier) { note in
                     VStack {
                         Text("ID: \(note.identifier)")

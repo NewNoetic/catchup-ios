@@ -106,6 +106,9 @@ struct SettingsView: View {
                         NavigationLink(destination: DebugNotificationsList()) {
                             Text("View scheduled system notifications")
                         }
+                        NavigationLink(destination: DebugDatabaseView()) {
+                            Text("View raw database")
+                        }
                         Button("⚠️ Clear all Ketchups") {
                             do {
                                 try Database.shared.deleteAll()

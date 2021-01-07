@@ -103,6 +103,18 @@
 		D2088EC0258BCAA0009E7A9B /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99F68F2442A4CB000227D1 /* Migration.swift */; };
 		D2088EC5258BCAA0009E7A9B /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF04BA023E3A86A00D433AB /* Database.swift */; };
 		D2088EC6258BCAA0009E7A9B /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99F68F2442A4CB000227D1 /* Migration.swift */; };
+		D25BF50025A62E4300051CEE /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF4FF25A62E4300051CEE /* TopViewController.swift */; };
+		D25BF50125A62E4300051CEE /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF4FF25A62E4300051CEE /* TopViewController.swift */; };
+		D25BF50225A62E4300051CEE /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF4FF25A62E4300051CEE /* TopViewController.swift */; };
+		D25BF50325A62E4300051CEE /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF4FF25A62E4300051CEE /* TopViewController.swift */; };
+		D25BF50925A6594B00051CEE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF50825A6594B00051CEE /* ActivityIndicator.swift */; };
+		D25BF50A25A6594B00051CEE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF50825A6594B00051CEE /* ActivityIndicator.swift */; };
+		D25BF50B25A6594B00051CEE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF50825A6594B00051CEE /* ActivityIndicator.swift */; };
+		D25BF50C25A6594C00051CEE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF50825A6594B00051CEE /* ActivityIndicator.swift */; };
+		D25BF51225A6760700051CEE /* DebugDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51125A6760700051CEE /* DebugDatabaseView.swift */; };
+		D25BF51325A6760700051CEE /* DebugDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51125A6760700051CEE /* DebugDatabaseView.swift */; };
+		D25BF51425A6760700051CEE /* DebugDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51125A6760700051CEE /* DebugDatabaseView.swift */; };
+		D25BF51525A6760700051CEE /* DebugDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51125A6760700051CEE /* DebugDatabaseView.swift */; };
 		D29A8815258BCB4E00B2CC14 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D29A8814258BCB4E00B2CC14 /* SQLite */; };
 		D29A881A258BCB7400B2CC14 /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
 		D29A881F258BCB7400B2CC14 /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
@@ -248,6 +260,9 @@
 		D2088E52258BC992009E7A9B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D2088E5B258BC9CE009E7A9B /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		D2088E68258BCA24009E7A9B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		D25BF4FF25A62E4300051CEE /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = catchup/views/TopViewController.swift; sourceTree = SOURCE_ROOT; };
+		D25BF50825A6594B00051CEE /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		D25BF51125A6760700051CEE /* DebugDatabaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDatabaseView.swift; sourceTree = "<group>"; };
 		D29A8876258BCFA200B2CC14 /* test_contacts.vcf */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_contacts.vcf; sourceTree = "<group>"; };
 		D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchupLimit.swift; sourceTree = "<group>"; };
 		D29A889C258EEC1900B2CC14 /* Framefile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Framefile.json; path = screenshots/Framefile.json; sourceTree = SOURCE_ROOT; };
@@ -543,6 +558,7 @@
 		DCABF9A223E602D6002B1727 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				D25BF4FF25A62E4300051CEE /* TopViewController.swift */,
 				D2088E5B258BC9CE009E7A9B /* AppSettings.swift */,
 				DCDBC28825042EA10016EDDA /* Analytics.swift */,
 				DC6B727B23EA38E800607A9D /* Scheduler.swift */,
@@ -556,6 +572,7 @@
 				D207FC62258616F90029B9C6 /* Formatter.swift */,
 				D207FC8225898F690029B9C6 /* CatchupAction.swift */,
 				D29A88B32591641200B2CC14 /* ShowTaps.swift */,
+				D25BF51125A6760700051CEE /* DebugDatabaseView.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -610,6 +627,7 @@
 				D207FC72258947E80029B9C6 /* IntroView.swift */,
 				D207FC7A258973230029B9C6 /* EmptyUpcomingView.swift */,
 				D207FC8B2589D90B0029B9C6 /* Buttons.swift */,
+				D25BF50825A6594B00051CEE /* ActivityIndicator.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -808,6 +826,7 @@
 				D29A887C258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */,
 				DC8DE665240BAA65009363A6 /* MessageComposeView.swift in Sources */,
 				D29A88B42591641200B2CC14 /* ShowTaps.swift in Sources */,
+				D25BF51225A6760700051CEE /* DebugDatabaseView.swift in Sources */,
 				DC0D9E6223E2758600383CE1 /* ContactMethod.swift in Sources */,
 				DC99F6942442B17C000227D1 /* PageView.swift in Sources */,
 				DCABF9A423E603CA002B1727 /* SettingsView.swift in Sources */,
@@ -815,6 +834,7 @@
 				DC2015F123E8BC410019BCD6 /* CNContactDisplayExtension.swift in Sources */,
 				DC57111723E40AAF00FFA866 /* NewCatchupView.swift in Sources */,
 				DC5542A22424502C00119BE9 /* Debug.swift in Sources */,
+				D25BF50925A6594B00051CEE /* ActivityIndicator.swift in Sources */,
 				DC22532923E5EAAA00A20AF8 /* CombineCompatible.swift in Sources */,
 				D207FC73258947E80029B9C6 /* IntroView.swift in Sources */,
 				D2088E5C258BC9CE009E7A9B /* AppSettings.swift in Sources */,
@@ -833,6 +853,7 @@
 				DCDE2DE4243176E00036CEED /* Slot.swift in Sources */,
 				D207FC7B258973230029B9C6 /* EmptyUpcomingView.swift in Sources */,
 				DC4043C523E4B520007D4BD1 /* ContactPickerViewControllerWrapper.swift in Sources */,
+				D25BF50025A62E4300051CEE /* TopViewController.swift in Sources */,
 				DC99F6962442B26D000227D1 /* CircleIndicator.swift in Sources */,
 				D207FC5B258616740029B9C6 /* CatchupCell.swift in Sources */,
 				D2088E69258BCA24009E7A9B /* StartView.swift in Sources */,
@@ -852,14 +873,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D207FC8425898F690029B9C6 /* CatchupAction.swift in Sources */,
+				D25BF50125A62E4300051CEE /* TopViewController.swift in Sources */,
 				D2001833257C0AE300640118 /* ShinyView.swift in Sources */,
 				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
+				D25BF50A25A6594B00051CEE /* ActivityIndicator.swift in Sources */,
 				D200182B257C0AE300640118 /* MotionManager.swift in Sources */,
 				DC281EFD250450A100E1826A /* Analytics.swift in Sources */,
 				DC139D4023ECA0430065B138 /* Notifications.swift in Sources */,
 				D2088E6A258BCA24009E7A9B /* StartView.swift in Sources */,
 				DC99F68C24429D6B000227D1 /* Slot.swift in Sources */,
 				D200182F257C0AE300640118 /* Gradient.swift in Sources */,
+				D25BF51325A6760700051CEE /* DebugDatabaseView.swift in Sources */,
 				DC153CCA23EBE24C004533AD /* ContactMethod.swift in Sources */,
 				DC153CCB23EBE257004533AD /* Intervals.swift in Sources */,
 				DC153CC523EBE1FB004533AD /* Database.swift in Sources */,
@@ -891,6 +915,7 @@
 				D29A887E258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */,
 				D2088E73258BCA8C009E7A9B /* CircleIndicator.swift in Sources */,
 				D29A88B52591641200B2CC14 /* ShowTaps.swift in Sources */,
+				D25BF51425A6760700051CEE /* DebugDatabaseView.swift in Sources */,
 				D207FC65258616F90029B9C6 /* Formatter.swift in Sources */,
 				D2088E72258BCA8C009E7A9B /* SwipeView.swift in Sources */,
 				D2088E9A258BCA95009E7A9B /* Scheduler.swift in Sources */,
@@ -898,6 +923,7 @@
 				DCA9D657244B7CED0071DE47 /* ContactMethod.swift in Sources */,
 				D2088E9E258BCA95009E7A9B /* Notifications.swift in Sources */,
 				D29A8825258BCB7C00B2CC14 /* ContactPickerViewController.swift in Sources */,
+				D25BF50B25A6594B00051CEE /* ActivityIndicator.swift in Sources */,
 				D2001830257C0AE300640118 /* Gradient.swift in Sources */,
 				D2088E9B258BCA95009E7A9B /* Debug.swift in Sources */,
 				D2088E85258BCA90009E7A9B /* DoubleSlider.swift in Sources */,
@@ -916,6 +942,7 @@
 				D207FC7C258973230029B9C6 /* EmptyUpcomingView.swift in Sources */,
 				D207FC8E2589D90B0029B9C6 /* Buttons.swift in Sources */,
 				D207FC5C258616740029B9C6 /* CatchupCell.swift in Sources */,
+				D25BF50225A62E4300051CEE /* TopViewController.swift in Sources */,
 				D29A8824258BCB7C00B2CC14 /* ContactPickerViewControllerWrapper.swift in Sources */,
 				D2088E83258BCA90009E7A9B /* MessageComposeView.swift in Sources */,
 				DCDC615B24AC51A300BD4337 /* maxCatchupsTest.swift in Sources */,
@@ -934,6 +961,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25BF51525A6760700051CEE /* DebugDatabaseView.swift in Sources */,
 				D2088EB9258BCA9A009E7A9B /* Catchup.swift in Sources */,
 				D2088EA6258BCA96009E7A9B /* Scheduler.swift in Sources */,
 				D2088E8E258BCA90009E7A9B /* MessageComposeView.swift in Sources */,
@@ -950,6 +978,7 @@
 				D207FC66258616F90029B9C6 /* Formatter.swift in Sources */,
 				DCDC616A24AC554F00BD4337 /* catchupSnapshotTests.swift in Sources */,
 				D29A887F258BD5CA00B2CC14 /* CatchupLimit.swift in Sources */,
+				D25BF50C25A6594C00051CEE /* ActivityIndicator.swift in Sources */,
 				D200182D257C0AE300640118 /* MotionManager.swift in Sources */,
 				DCDC617024AC565400BD4337 /* ContactMethod.swift in Sources */,
 				DC281EFF250450A300E1826A /* Analytics.swift in Sources */,
@@ -975,6 +1004,7 @@
 				D207FC7D258973230029B9C6 /* EmptyUpcomingView.swift in Sources */,
 				D2088E92258BCA90009E7A9B /* MailComposeView.swift in Sources */,
 				D2088EB7258BCA9A009E7A9B /* Touch.swift in Sources */,
+				D25BF50325A62E4300051CEE /* TopViewController.swift in Sources */,
 				D2001831257C0AE300640118 /* Gradient.swift in Sources */,
 				D2001835257C0AE300640118 /* ShinyView.swift in Sources */,
 				D29A882B258BCB7D00B2CC14 /* ContactPickerViewController.swift in Sources */,

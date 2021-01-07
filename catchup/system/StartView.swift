@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum StartView: Equatable {
+enum StartView {
     case intro1
     case catchups
     case text(recipients: [String])

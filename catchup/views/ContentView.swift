@@ -30,12 +30,13 @@ struct ContentView: View {
     @State private var showSettings = false
     
     var body: some View {
+        let catchups = self.upcoming.catchups
         let nav = NavigationView {
             VStack {
-                self.upcoming.catchups.count > 0 ?
+                catchups.count > 0 ?
                     AnyView(Group {
                         List {
-                            ForEach(upcoming.catchups) { up in
+                            ForEach(catchups) { up in
                                 Button(action: {
                                     self.alertMessage = "Ketchup will send you a notification when it's time to catch up with \(up.contact.displayName)"
                                     self.alertCatchup = up
@@ -66,15 +67,13 @@ struct ContentView: View {
                     )
                 Spacer()
                 HStack {
+                    Text("Total \(catchups.count)")
+                        .multilineTextAlignment(.leading)
+                        .padding(.trailing, 20)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundColor(.gray)
                     Button(action: {
-                        Analytics.logEvent(AnalyticsEvent.UpdateTapped.rawValue, parameters: [AnalyticsParameter.CatchupsCount.rawValue: self.upcoming.catchups.count])
-                        self.upcoming.update()
-                    }) {
-                        Image(systemName: "arrow.clockwise").imageScale(.large)
-                            .padding([Edge.Set.trailing], 40)
-                    }
-                    Button(action: {
-                        Analytics.logEvent(AnalyticsEvent.NewCatchupTapped.rawValue, parameters: [AnalyticsParameter.CatchupsCount.rawValue: self.upcoming.catchups.count])
+                        Analytics.logEvent(AnalyticsEvent.NewCatchupTapped.rawValue, parameters: [AnalyticsParameter.CatchupsCount.rawValue: catchups.count])
                         guard (0..<CatchupLimit ~= Database.shared.catchupsCount()) else {
                             Analytics.logEvent(AnalyticsEvent.MaxCatchupsReached.rawValue, parameters: [:])
                             self.alertMessage = "You can only create a maximum of \(CatchupLimit) Ketchups due to iOS notification limits."
@@ -156,7 +155,7 @@ struct ContentView: View {
             self.upcoming.update()
             // after delay to let catchups load from database
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                Analytics.setUserProperty("\(self.upcoming.catchups.count)", forName: AnalyticsParameter.CatchupsCount.rawValue)
+                Analytics.setUserProperty("\(catchups.count)", forName: AnalyticsParameter.CatchupsCount.rawValue)
             }
             Analytics.setUserProperty(self.settings.weekdayTimeslots().reduce(into: "", { (result, slot) in
                 result += "s:\(slot.start)|e:\(slot.end),"
