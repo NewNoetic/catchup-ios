@@ -109,6 +109,9 @@ struct SettingsView: View {
                         NavigationLink(destination: DebugDatabaseView()) {
                             Text("View raw database")
                         }
+                        NavigationLink(destination: DebugCompareCatchupsToNotifications()) {
+                            Text("Compare catchups to notifications")
+                        }
                         Button("⚠️ Clear all Ketchups") {
                             do {
                                 try Database.shared.deleteAll()
@@ -138,7 +141,7 @@ struct SettingsView: View {
                     Scheduler.shared.reschedule(allCatchups)
                         .then { scheduledOrError in
                             try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
-                            scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
+                            scheduledOrError.compactMap { $0.error }.forEach { captureError($0) } // TODO: grab individual errors and catchups from them if provided
                     }
                     .catch { error in
                         captureError(error, message: "could not reschedule some or all catchups")

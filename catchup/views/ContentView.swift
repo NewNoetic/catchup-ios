@@ -100,7 +100,7 @@ struct ContentView: View {
                                 .then { Scheduler.shared.schedule([catchup]) }
                                 .then { scheduledOrError in
                                     try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
-                                    scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
+                                    scheduledOrError.compactMap { $0.error }.forEach { captureError($0) } // TODO: grab individual errors and catchups from them if provided
                                     if let scheduledCatchup = scheduledOrError.first?.value {
                                         guard let date = scheduledCatchup.nextTouch else { return }
                                         Analytics.logEvent(AnalyticsEvent.NewCatchupCreated.rawValue, parameters: [

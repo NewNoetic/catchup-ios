@@ -24,16 +24,33 @@ final class Upcoming: ObservableObject {
     }
     
     func update() {
+        guard let dbCatchups = try? Database.shared.allCatchups() else { return }
+        self.catchups = dbCatchups
+        
         // When updating, also grab any exprired catchups and reschedule them
-        let expiredCatchups = (try? Database.shared.expiredCatchups()) ?? []
-        Scheduler.shared.reschedule(expiredCatchups)
-            .then { scheduledOrError in
-                try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
-                scheduledOrError.compactMap { $0.error }.forEach { print($0.localizedDescription) } // TODO: grab individual errors and catchups from them if provided
-                guard let c = try? Database.shared.allCatchups() else { return }
-                self.catchups = c
-        }.catch { (error) in
-            print(error.localizedDescription)
+        if let expiredCatchups = try? Database.shared.expiredCatchups() {
+            Scheduler.shared.reschedule(expiredCatchups)
+                .then { scheduledOrError in
+                    try scheduledOrError.compactMap { $0.value }.forEach { try Database.shared.upsert(catchup: $0) }
+                    scheduledOrError.compactMap { $0.error }.forEach { captureError($0) } // TODO: grab individual errors and catchups from them if provided
+                    guard let c = try? Database.shared.allCatchups() else { return }
+                    self.catchups = c
+            }.catch { (error) in
+                captureError(error, message: "Couldn't reschedule expired catchups during update")
+            }
+        }
+        
+        // When updating, also delete any pending orphaned notifications
+        UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
+            let invalidNotificationIdentifiers = notifications.filter { n in
+                dbCatchups.first { c in
+                    return c.nextNotification == n.identifier
+                } == nil
+            }.map { n in
+                return n.identifier
+            }
+            
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: invalidNotificationIdentifiers)
         }
     }
     

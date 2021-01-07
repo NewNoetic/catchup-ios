@@ -115,6 +115,10 @@
 		D25BF51325A6760700051CEE /* DebugDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51125A6760700051CEE /* DebugDatabaseView.swift */; };
 		D25BF51425A6760700051CEE /* DebugDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51125A6760700051CEE /* DebugDatabaseView.swift */; };
 		D25BF51525A6760700051CEE /* DebugDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51125A6760700051CEE /* DebugDatabaseView.swift */; };
+		D25BF51B25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51A25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift */; };
+		D25BF51C25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51A25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift */; };
+		D25BF51D25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51A25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift */; };
+		D25BF51E25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BF51A25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift */; };
 		D29A8815258BCB4E00B2CC14 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D29A8814258BCB4E00B2CC14 /* SQLite */; };
 		D29A881A258BCB7400B2CC14 /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
 		D29A881F258BCB7400B2CC14 /* CNContactDisplayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2015F023E8BC410019BCD6 /* CNContactDisplayExtension.swift */; };
@@ -263,6 +267,7 @@
 		D25BF4FF25A62E4300051CEE /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = catchup/views/TopViewController.swift; sourceTree = SOURCE_ROOT; };
 		D25BF50825A6594B00051CEE /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		D25BF51125A6760700051CEE /* DebugDatabaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDatabaseView.swift; sourceTree = "<group>"; };
+		D25BF51A25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCompareCatchupsToNotifications.swift; sourceTree = "<group>"; };
 		D29A8876258BCFA200B2CC14 /* test_contacts.vcf */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_contacts.vcf; sourceTree = "<group>"; };
 		D29A887B258BD5CA00B2CC14 /* CatchupLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchupLimit.swift; sourceTree = "<group>"; };
 		D29A889C258EEC1900B2CC14 /* Framefile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Framefile.json; path = screenshots/Framefile.json; sourceTree = SOURCE_ROOT; };
@@ -573,6 +578,7 @@
 				D207FC8225898F690029B9C6 /* CatchupAction.swift */,
 				D29A88B32591641200B2CC14 /* ShowTaps.swift */,
 				D25BF51125A6760700051CEE /* DebugDatabaseView.swift */,
+				D25BF51A25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -847,6 +853,7 @@
 				DC6B727C23EA38E800607A9D /* Scheduler.swift in Sources */,
 				DC22532523E5E7B200A20AF8 /* ViewControllerSubscription.swift in Sources */,
 				D207FC8C2589D90B0029B9C6 /* Buttons.swift in Sources */,
+				D25BF51B25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift in Sources */,
 				DC0D9E3123E270EC00383CE1 /* ContentView.swift in Sources */,
 				DC975B2A240B647D000E6D25 /* MainView.swift in Sources */,
 				D207FC63258616F90029B9C6 /* Formatter.swift in Sources */,
@@ -876,6 +883,7 @@
 				D25BF50125A62E4300051CEE /* TopViewController.swift in Sources */,
 				D2001833257C0AE300640118 /* ShinyView.swift in Sources */,
 				DC153CC923EBE242004533AD /* Catchup.swift in Sources */,
+				D25BF51C25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift in Sources */,
 				D25BF50A25A6594B00051CEE /* ActivityIndicator.swift in Sources */,
 				D200182B257C0AE300640118 /* MotionManager.swift in Sources */,
 				DC281EFD250450A100E1826A /* Analytics.swift in Sources */,
@@ -936,6 +944,7 @@
 				D2088EB2258BCA99009E7A9B /* Slot.swift in Sources */,
 				D29A881F258BCB7400B2CC14 /* CNContactDisplayExtension.swift in Sources */,
 				D2088EAF258BCA99009E7A9B /* Touch.swift in Sources */,
+				D25BF51D25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift in Sources */,
 				D2088EC0258BCAA0009E7A9B /* Migration.swift in Sources */,
 				D2088E87258BCA90009E7A9B /* MailComposeView.swift in Sources */,
 				D2088E98258BCA95009E7A9B /* CombineCompatible.swift in Sources */,
@@ -991,6 +1000,7 @@
 				DCDC616F24AC564D00BD4337 /* Intervals.swift in Sources */,
 				D207FC5D258616740029B9C6 /* CatchupCell.swift in Sources */,
 				D2088E7A258BCA8D009E7A9B /* SwipeView.swift in Sources */,
+				D25BF51E25A695B800051CEE /* DebugCompareCatchupsToNotifications.swift in Sources */,
 				D2088EA5258BCA96009E7A9B /* DebugNotificationsList.swift in Sources */,
 				D2088E56258BC992009E7A9B /* AppState.swift in Sources */,
 				DCDC616E24AC555E00BD4337 /* TestHelpers.swift in Sources */,
