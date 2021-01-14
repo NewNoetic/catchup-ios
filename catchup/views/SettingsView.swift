@@ -36,13 +36,13 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Timeslot duration")) {
+                Section(header: Text("Ketchup duration")) {
                     VStack {
                         Slider(value: self.$settings.timeslotDuration, in: 900.0...3600.0, step: 300.0)
                         Text("\(Int(self.settings.timeslotDuration/60)) minutes")
                     }.padding()
                 }
-                Section(header: Text("Weekday time slots")) {
+                Section(header: Text("Weekday free time")) {
                     Picker("Start", selection: self.$settings.weekdayTimeslotStartIndex) {
                         ForEach(0 ..< self.settings.timeslotOptions.count) { index in
                             Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
@@ -54,7 +54,7 @@ struct SettingsView: View {
                         }
                     }
                 }
-                Section(header: Text("Weekend time slots")) {
+                Section(header: Text("Weekend free time")) {
                     Picker("Start", selection: self.$settings.weekendTimeslotStartIndex) {
                         ForEach(0 ..< self.settings.timeslotOptions.count) { index in
                             Text("\(self.timeslotToHour(timeslot: self.settings.timeslotOptions[index]))")
@@ -153,7 +153,7 @@ struct SettingsView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }
                 }) {
-                    Text("Save & re-schedule")
+                    Text("Save")
             })
                 .alert(isPresented: self.$showAlert) { () -> Alert in
                     Alert(title: Text("Something happened"), message: Text(self.alertMessage))
