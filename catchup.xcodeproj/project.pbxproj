@@ -19,6 +19,7 @@
 		D2001833257C0AE300640118 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001829257C0AE300640118 /* ShinyView.swift */; };
 		D2001834257C0AE300640118 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001829257C0AE300640118 /* ShinyView.swift */; };
 		D2001835257C0AE300640118 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2001829257C0AE300640118 /* ShinyView.swift */; };
+		D205C46A25B0C30D0042C0D5 /* catchupLockScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D205C46925B0C30D0042C0D5 /* catchupLockScreenTests.swift */; };
 		D207FC5B258616740029B9C6 /* CatchupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC5A258616740029B9C6 /* CatchupCell.swift */; };
 		D207FC5C258616740029B9C6 /* CatchupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC5A258616740029B9C6 /* CatchupCell.swift */; };
 		D207FC5D258616740029B9C6 /* CatchupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207FC5A258616740029B9C6 /* CatchupCell.swift */; };
@@ -255,6 +256,7 @@
 		D2001827257C0AE300640118 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		D2001828257C0AE300640118 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		D2001829257C0AE300640118 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
+		D205C46925B0C30D0042C0D5 /* catchupLockScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catchupLockScreenTests.swift; sourceTree = "<group>"; };
 		D207FC5A258616740029B9C6 /* CatchupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchupCell.swift; sourceTree = "<group>"; };
 		D207FC62258616F90029B9C6 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		D207FC72258947E80029B9C6 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 			isa = PBXGroup;
 			children = (
 				DC0D9E4E23E270F300383CE1 /* catchupSnapshotTests.swift */,
+				D205C46925B0C30D0042C0D5 /* catchupLockScreenTests.swift */,
 				DCBD38BD240D03A50027628A /* SnapshotHelper.swift */,
 				DCDC616424AC554900BD4337 /* Info.plist */,
 			);
@@ -995,6 +998,7 @@
 				D2088E8D258BCA90009E7A9B /* SettingsView.swift in Sources */,
 				D207FC75258947E80029B9C6 /* IntroView.swift in Sources */,
 				D2088EA4258BCA96009E7A9B /* CombineCompatible.swift in Sources */,
+				D205C46A25B0C30D0042C0D5 /* catchupLockScreenTests.swift in Sources */,
 				DCDC616B24AC555200BD4337 /* SnapshotHelper.swift in Sources */,
 				D2088E6C258BCA24009E7A9B /* StartView.swift in Sources */,
 				DCDC616F24AC564D00BD4337 /* Intervals.swift in Sources */,
