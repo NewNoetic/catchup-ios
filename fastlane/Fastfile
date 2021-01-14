@@ -34,7 +34,7 @@ platform :ios do
 
     run_tests(
         scheme: "catchupTests",
-        device: "iPhone 11",
+        device: "iPhone 8",
         derived_data_path: "./build/test_derived_data",
         output_directory: "./build/test_output"
     )
@@ -75,7 +75,7 @@ platform :ios do
 
       run_tests(
           scheme: "catchupTests",
-          #device: "iPhone 8 Plus",
+          device: "iPhone 8",
           derived_data_path: "./build/test_derived_data",
           output_directory: "./build/test_output"
       )
