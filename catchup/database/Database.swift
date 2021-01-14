@@ -52,6 +52,11 @@ struct Database {
         try createCatchupsTable()
     }
     
+    func createInteractionsTable() throws {
+        // TODO: Create columns for interactions
+        // catchup id, date, method
+    }
+    
     func createCatchupsTable() throws {
         try db.run(catchups.create(ifNotExists: true) { t in
             t.column(contact, primaryKey: true)
