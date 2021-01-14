@@ -38,6 +38,11 @@
                BlueprintName = "catchupSnapshotTests"
                ReferencedContainer = "container:catchup.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "catchupLockScreenTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
