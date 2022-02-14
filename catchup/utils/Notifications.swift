@@ -22,7 +22,8 @@ struct Notifications {
                     return
                 }
                 let notification = UNMutableNotificationContent()
-                notification.title = "Catch up with \(catchup.contact.displayName)"
+                notification.title = "Ketchup"
+                notification.subtitle = "Catch up with \(catchup.contact.displayName)"
                 notification.body = "Tap to \(catchup.method.rawValue)"
                     notification.categoryIdentifier = Notifications.defaultCategoryIdentifier
                 let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.day, .hour, .minute, .second], from: date), repeats: false)

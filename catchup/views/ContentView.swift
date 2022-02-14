@@ -89,7 +89,6 @@ struct ContentView: View {
                             .foregroundColor(Color.white)
                             .cornerRadius(12)
                     }
-                    .shiny()
                     .accessibility(identifier: "new catchup")
                     .sheet(isPresented: $showNewCatchup) {
                         NewCatchupView() { catchup in
